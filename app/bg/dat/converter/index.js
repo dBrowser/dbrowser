@@ -1,0 +1,1 @@
+require('@dbrowser/dwebx-legacy-tools/bin.js')
