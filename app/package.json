@@ -35,7 +35,7 @@
     "fs-reverse": "0.0.3",
     "function-queue": "0.0.12",
     "ddrive-daemon": "2.0.1",
-    "ddrive-daemon-client": "git://github.com/DistributedWeb/ddrive-daemon-client.git#06e26c64037fbc67bcb619a51f90594b73611acb",
+    "ddrive-daemon-client": "git://github.com/DistributedWeb/ddrive-daemon-client.git#bb2df8dfe20be7d5824a7cb5427e6be43acf013d",
     "icojs": "^0.12.3",
     "identify-filetype": "^1.0.0",
     "into-stream": "^3.1.0",
