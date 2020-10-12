@@ -104,7 +104,6 @@ class DesktopApp extends LitElement {
         ` : ''}
       </div>
       <div id="topright">
-        <a href="#" title="Release Notes" @click=${this.onClickReleaseNotes}><span class="fas fa-fw fa-rocket"></span> What's new in DBrowserX<span class="fas fa-fw fa-caret-down"></span></a>
         <a href="beaker://settings/" title="Settings"><span class="fas fa-cog"></span></a>
       </div>
       ${this.renderReleaseNotice()}

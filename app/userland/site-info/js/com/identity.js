@@ -29,7 +29,7 @@ class Identity extends LitElement {
       <div class="field-group">
         ${this.cert ? html`
           ${this.cert.type === 'beaker' ? html`
-            This is a builtin interface of Beaker
+            This is a builtin interface of DBrowser
           ` : ''}
           ${this.cert.type === 'tls' ? html`
             <div class="identity">
