@@ -119,7 +119,7 @@ export class PostView extends LitElement {
         await uwg.comments.add({href, parent, content})
       }
     } catch (e) {
-      alert('Something went wrong. Please let the Beaker team know! (An error is logged in the console.)')
+      alert('Something went wrong. Please let the DBrowserX team know! (An error is logged in the console.)')
       console.error('Failed to add comment')
       console.error(e)
       return
@@ -134,7 +134,7 @@ export class PostView extends LitElement {
     try {
       await uwg.comments.remove(comment)
     } catch (e) {
-      alert('Something went wrong. Please let the Beaker team know! (An error is logged in the console.)')
+      alert('Something went wrong. Please let the DBrowserX team know! (An error is logged in the console.)')
       console.error('Failed to delete comment')
       console.error(e)
       return

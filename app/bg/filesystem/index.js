@@ -88,14 +88,14 @@ export async function setup () {
     await ensureToolbar()
 
     // default bookmarks
-    if (isInitialCreation) {
+   // if (isInitialCreation) {
       await bookmarks.add({href: 'beaker://explorer/', title: 'Explore Files', pinned: true})
       await bookmarks.add({href: 'beaker://webterm/', title: 'Terminal', pinned: true})
       await bookmarks.add({href: 'https://userlist.beakerbrowser.com/', title: 'User Directory', pinned: true})
       await bookmarks.add({href: 'dweb://a8e9bd0f4df60ed5246a1b1f53d51a1feaeb1315266f769ac218436f12fda830/', title: 'Blahbity Blog', pinned: true})
-      await bookmarks.add({href: 'https://docs.beakerbrowser.com/', title: 'Beaker Documentation', pinned: true})
-      await bookmarks.add({href: 'https://beaker.dev/', title: 'Beaker Developer Portal', pinned: true})
-    }
+      await bookmarks.add({href: 'https://docs.beakerbrowser.com/', title: 'DBrowserX Documentation', pinned: true})
+      await bookmarks.add({href: 'https://beaker.dev/', title: 'DBrowserX Developer Portal', pinned: true})
+  //  }
   } catch (e) {
     console.error('Error while constructing the root drive', e.toString())
     logger.error('Error while constructing the root drive', {error: e.toString()})

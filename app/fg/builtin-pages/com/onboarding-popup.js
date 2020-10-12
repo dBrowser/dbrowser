@@ -15,7 +15,7 @@ let reject
 
 const STEPS = [
   {
-    title: 'Welcome to Beaker!',
+    title: 'Welcome to DBrowserX!',
     subtitle: 'Configure your preferences',
     description: 'Beaker is a browser for exploring and building the peer-to-peer Web.',
     content: () => yo`

@@ -204,7 +204,7 @@ function renderOnStartupSettings () {
       <h2 id="on-startup" class="subtitle-heading">Startup settings</h2>
 
       <p>
-        When Beaker starts
+        When DBrowserX starts
       </p>
 
       <div class="radio-group">
@@ -293,7 +293,7 @@ function renderAnalyticsSettings () {
 
   return yo`
     <div class="section analytics">
-      <h2 class="subtitle-heading">Beaker Analytics</h2>
+      <h2 class="subtitle-heading">DBrowserX Analytics</h2>
 
       <label class="toggle">
         <input checked=${settings.analytics_enabled == 1 ? 'true' : 'false'} type="checkbox" onchange=${toggle} />
@@ -309,7 +309,7 @@ function renderAnalyticsSettings () {
 
         <ul>
           <li>An anonymous ID</li>
-          <li>Your Beaker version, e.g. ${browserInfo.version}</li>
+          <li>Your DBrowserX version, e.g. ${browserInfo.version}</li>
           <li>Your operating system, e.g. Windows 10</li>
         </ul>
       </div>
@@ -352,7 +352,7 @@ function renderInformation () {
   return yo`
     <div class="view not-fullwidth">
       <div class="section">
-        <h2 id="information" class="subtitle-heading">About Beaker</h2>
+        <h2 id="information" class="subtitle-heading">About DBrowserX</h2>
         <ul>
           <li>Version: ${browserInfo.version} Electron: ${browserInfo.electronVersion} - Chromium: ${browserInfo.chromiumVersion} - Node: ${browserInfo.nodeVersion}</li>
           <li>User data: ${browserInfo.paths.userData}</li>
@@ -361,7 +361,7 @@ function renderInformation () {
       <div class="section">
         <h2 class="subtitle-heading">Get help</h2>
         <ul>
-          <li><a href="https://beakerbrowser.com/docs/using-beaker">Take a tour of Beaker</a></li>
+          <li><a href="https://beakerbrowser.com/docs/using-beaker">Take a tour of DBrowserX</a></li>
           <li><a href="https://beakerbrowser.com/docs">Read the documentation</a></li>
           <li><a href="https://github.com/beakerbrowser/beaker/issues/new">Report an issue</a></li>
         </ul>
@@ -388,7 +388,7 @@ function renderProtocolSettings () {
       <h2 id="protocol" class="subtitle-heading">Default browser settings</h2>
 
       <p>
-        Set Beaker as the default browser for:
+        Set DBrowserX as the default browser for:
       </p>
 
       ${Object.keys(defaultProtocolSettings).map(proto => yo`
@@ -427,12 +427,12 @@ function renderAutoUpdater () {
         <h2 id="auto-updater" class="subtitle-heading">Auto updater</h2>
 
         <div class="message info">
-          Sorry! Beaker auto-updates are only supported on the production build for macOS and Windows.
+          Sorry! DBrowserX auto-updates are only supported on the production build for macOS and Windows.
         </div>
 
         <p>
-          To get the most recent version of Beaker, you'll need to <a href="https://github.com/beakerbrowser/beaker">
-          build Beaker from source</a>.
+          To get the most recent version of DBrowserX, you'll need to <a href="https://github.com/beakerbrowser/beaker">
+          build DBrowserX from source</a>.
         </p>
       </div>`
   }
@@ -461,7 +461,7 @@ function renderAutoUpdater () {
 
             <span class="up-to-date">
               <span class="fa fa-check"></span>
-              Beaker v${browserInfo.version} is up-to-date
+              DBrowserX v${browserInfo.version} is up-to-date
             </span>
           </p>
 
@@ -516,7 +516,7 @@ function renderAutoUpdater () {
           <button class="btn" disabled>Updating</button>
           <span class="version-info">
             <div class="spinner"></div>
-            Downloading the latest version of Beaker...
+            Downloading the latest version of DBrowserX...
           </span>
           ${renderAutoUpdateCheckbox()}
         </div>
@@ -531,7 +531,7 @@ function renderAutoUpdater () {
           <button class="btn" onclick=${onClickRestart}>Restart now</button>
           <span class="version-info">
             <i class="fa fa-arrow-circle-o-up"></i>
-            <strong>New version available.</strong> Restart Beaker to install.
+            <strong>New version available.</strong> Restart DBrowserX to install.
           </span>
           ${renderAutoUpdateCheckbox()}
         </div>

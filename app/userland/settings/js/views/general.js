@@ -75,7 +75,7 @@ class GeneralSettingsView extends LitElement {
         ${this.renderSearchSettings()}
       </div>
       <div class="form-group">
-        <h2>Beaker Analytics</h2>
+        <h2>DBrowserX Analytics</h2>
         ${this.renderAnalyticsSettings()}
       </div>
     `
@@ -102,12 +102,12 @@ class GeneralSettingsView extends LitElement {
       return html`
         <div class="section">
           <p class="message info">
-            Sorry! Beaker auto-updates are only supported on the production build for macOS and Windows.
+            Sorry! DBrowserX auto-updates are only supported on the production build for macOS and Windows.
           </p>
 
           <p>
-            To get the most recent version of Beaker, you'll need to <a href="https://github.com/beakerbrowser/beaker">
-            build Beaker from source</a>.
+            To get the most recent version of DBrowserX, you'll need to <a href="https://peepsx.com/dbrowser">
+            build DBrowserX from source</a>.
           </p>
         </div>
       `
@@ -135,7 +135,7 @@ class GeneralSettingsView extends LitElement {
 
               <span class="up-to-date">
                 <span class="fa fa-check"></span>
-                Beaker v${this.browserInfo.version} is up-to-date
+                DBrowserX v${this.browserInfo.version} is up-to-date
               </span>
             </p>
 
@@ -191,7 +191,7 @@ class GeneralSettingsView extends LitElement {
               <button class="btn" disabled>Updating</button>
               <span class="version-info">
                 <span class="spinner"></span>
-                Downloading the latest version of Beaker...
+                Downloading the latest version of DBrowserX...
               </span>
             </p>
             <p>
@@ -210,7 +210,7 @@ class GeneralSettingsView extends LitElement {
               <button class="btn" @click=${this.onClickRestart}>Restart now</button>
               <span class="version-info">
                 <i class="fa fa-arrow-circle-o-up"></i>
-                <strong>New version available.</strong> Restart Beaker to install.
+                <strong>New version available.</strong> Restart DBrowserX to install.
               </span>
             </p>
             <p>
@@ -245,7 +245,7 @@ class GeneralSettingsView extends LitElement {
   renderOnStartupSettings () {
     return html`
       <div class="section">
-        <p>When Beaker starts</p>
+        <p>When DBrowserX starts</p>
 
         <div class="radio-item">
           <input type="radio" id="customStartPage1" name="custom-start-page"
@@ -273,7 +273,7 @@ class GeneralSettingsView extends LitElement {
     return html`
       <div class="section on-startup">
         <p>
-          Running in the background helps keep your data online even if you're not using Beaker.
+          Running in the background helps keep your data online even if you're not using DBrowserX.
         </p>
 
         <div class="radio-item">
@@ -281,7 +281,7 @@ class GeneralSettingsView extends LitElement {
                  ?checked=${this.settings.run_background == 1}
                  @change=${this.onRunBackgroundToggle} />
           <label for="runBackground">
-            Let Beaker run in the background
+            Let DBrowserX run in the background
           </label>
         </div>
       </div>
@@ -390,7 +390,7 @@ class GeneralSettingsView extends LitElement {
 
     return html`
       <div class="section">
-        <p>Set Beaker as the default browser for:</p>
+        <p>Set DBrowserX as the default browser for:</p>
 
         ${Object.keys(this.defaultProtocolSettings).map(proto => html`
           <div class="radio-item">
@@ -466,7 +466,7 @@ class GeneralSettingsView extends LitElement {
 
           <ul>
             <li>An anonymous ID</li>
-            <li>Your Beaker version, e.g. ${this.browserInfo.version}</li>
+            <li>Your DBrowserX version, e.g. ${this.browserInfo.version}</li>
             <li>Your operating system, e.g. Windows 10</li>
           </ul>
         </div>

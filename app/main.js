@@ -94,7 +94,7 @@ app.on('ready', async function () {
   }
 
   await logger.setup(join(commonOpts.userDataPath, 'beaker.log'))
-  log.info('Welcome to Beaker')
+  log.info('Welcome to DBrowserX')
   beakerProtocol.register(protocol)
   webapis.setup()
   initWindow.open()
@@ -110,7 +110,7 @@ app.on('ready', async function () {
 
   // start subsystems
   // (order is important)
-  log.info('Starting hyperdrive')
+  log.info('Starting ddrive')
   await hyper.setup(commonOpts)
   log.info('Initializing hyperdrive filesystem')
   await filesystem.setup()

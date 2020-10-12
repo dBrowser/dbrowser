@@ -63,7 +63,7 @@ export function buildWindowMenu (opts = {}) {
   const isWritable = driveInfo && driveInfo.writable
 
   var darwinMenu = {
-    label: 'Beaker',
+    label: 'DBrowserX',
     submenu: [
       {
         label: 'Preferences',

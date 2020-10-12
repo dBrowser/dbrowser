@@ -68,7 +68,7 @@ class BrowserMenu extends LitElement {
         <div class="section">
           <div class="menu-item" @click=${e => this.onNewHyperdrive()}>
             <i class="fas fa-plus"></i>
-            <span class="label">New Hyperdrive...</span>
+            <span class="label">New DDrive...</span>
           </div>
 
           <div class="menu-item" @click=${e => this.onNewHyperdriveFromFolder(e)}>
