@@ -812,17 +812,17 @@ export function buildWindowMenu (opts = {}) {
     submenu: [
       {
         id: 'beakerHelp',
-        label: 'Beaker Help',
+        label: 'dbrowser Help',
         accelerator: 'F1',
         click: function (item) {
-          if (win) tabManager.create(win, 'https://docs.beakerbrowser.com/', {setActive: true})
+          if (win) tabManager.create(win, 'https://github.com/dbrowser/dbrowser', {setActive: true})
         }
       },
       {
         id: 'developerPortal',
         label: 'Developer Portal',
         click: function (item) {
-          if (win) tabManager.create(win, 'https://beaker.dev/', {setActive: true})
+          if (win) tabManager.create(win, 'https://github.com/dbrowser/dbrowser', {setActive: true})
         }
       },
       {type: 'separator'},
@@ -830,14 +830,14 @@ export function buildWindowMenu (opts = {}) {
         id: 'reportIssue',
         label: 'Report Issue',
         click: function (item) {
-          if (win) tabManager.create(win, 'https://github.com/beakerbrowser/beaker/issues', {setActive: true})
+          if (win) tabManager.create(win, 'https://github.com/dBrowser/dbrowser/issues', {setActive: true})
         }
       },
       {
         id: 'beakerDiscussions',
         label: 'Discussion Forum',
         click: function (item) {
-          if (win) tabManager.create(win, 'https://github.com/beakerbrowser/beaker/discussions', {setActive: true})
+          if (win) tabManager.create(win, 'https://github.com/dBrowser/dbrowser/issues', {setActive: true})
         }
       }
     ]
