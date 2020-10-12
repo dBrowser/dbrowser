@@ -4,7 +4,7 @@ Beaker Browser
 
 ![logo.png](build/icons/256x256.png)
 
-Beaker is an experimental peer-to-peer Web browser. It adds new APIs for building hostless applications while remaining compatible with the rest of the Web. [Visit the website.](https://beakerbrowser.com/)
+DBrowserX is an experimental peer-to-peer Web browser. It adds new APIs for building hostless applications while remaining compatible with the rest of the Web. [Visit the website.](https://beakerbrowser.com/)
 
 Please feel free to open usability issues. Join us at #beakerbrowser on Freenode.
 
@@ -101,7 +101,7 @@ If you're doing development, `npm run watch` to have assets build automatically.
 
 ## Documentation
 
-Looking to work on Beaker? [Watch this video](https://www.youtube.com/watch?v=YuE9OO-ZDYo) and take a look at [the build notes](./build-notes.md).
+Looking to work on DBrowserX? [Watch this video](https://www.youtube.com/watch?v=YuE9OO-ZDYo) and take a look at [the build notes](./build-notes.md).
 
 - [Documentation site](https://beakerbrowser.com/docs/)
 - **Web APIs**
@@ -124,7 +124,7 @@ See [SECURITY.md](./SECURITY.md) for reporting security issues and vulnerabiliti
 
 ### tmux
 
-Launching from tmux is known to cause issues with GUI apps in macOS. On Beaker, it may cause the application to hang during startup.
+Launching from tmux is known to cause issues with GUI apps in macOS. On DBrowserX, it may cause the application to hang during startup.
 
 ## Contributors
 
