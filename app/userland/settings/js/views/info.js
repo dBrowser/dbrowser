@@ -50,7 +50,7 @@ class InfoSettingsView extends LitElement {
             <li><strong>Electron:</strong> ${this.browserInfo.electronVersion}</li>
             <li><strong>Chromium:</strong> ${this.browserInfo.chromiumVersion}</li>
             <li><strong>Node:</strong> ${this.browserInfo.nodeVersion}</li>
-            <li><strong>Hyperdrive:</strong> ${this.daemonStatus.hyperdriveVersion}
+            <li><strong>DDrive:</strong> ${this.daemonStatus.hyperdriveVersion}
               <ul>
                 <li><strong>API:</strong> ${this.daemonStatus.apiVersion}</li>
                 <li><strong>Daemon:</strong> ${this.daemonStatus.daemonVersion}</li>

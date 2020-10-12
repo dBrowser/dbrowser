@@ -240,8 +240,8 @@ class NavbarLocation extends LitElement {
   renderDatConverterBtn () {
     if (this.url.startsWith('dwebx:')) {
       return html`
-        <button class="dat-converter" title="Convert to Hyperdrive" @click=${this.onClickConvertDat}>
-          Convert this site to Hyperdrive
+        <button class="dat-converter" title="Convert to DDrive" @click=${this.onClickConvertDat}>
+          Convert this site to DDrive
         </button>
       `
     }

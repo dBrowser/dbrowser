@@ -122,10 +122,10 @@ export async function setup () {
     interval.unref()
 
     events.on('daemon-restored', async () => {
-      logger.info('Hyperdrive daemon has been restored')
+      logger.info('DDrive daemon has been restored')
     })
     events.on('daemon-stopped', async () => {
-      logger.info('Hyperdrive daemon has been lost')
+      logger.info('DDrive daemon has been lost')
       isControllingDaemonProcess = false
     })
 

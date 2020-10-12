@@ -431,7 +431,7 @@ function renderAutoUpdater () {
         </div>
 
         <p>
-          To get the most recent version of DBrowserX, you'll need to <a href="https://github.com/beakerbrowser/beaker">
+          To get the most recent version of DBrowserX, you'll need to <a href="https://github.com/dbrowser/dbrowser">
           build DBrowserX from source</a>.
         </p>
       </div>`

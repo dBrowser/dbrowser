@@ -62,7 +62,7 @@ export async function setup () {
   //   }
   // })
 
-  logger.info('Initialized dat daemon')
+  logger.info('Initialized dwebx daemon')
 }
 
 /**

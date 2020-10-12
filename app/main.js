@@ -112,7 +112,7 @@ app.on('ready', async function () {
   // (order is important)
   log.info('Starting ddrive')
   await hyper.setup(commonOpts)
-  log.info('Initializing hyperdrive filesystem')
+  log.info('Initializing ddrive filesystem')
   await filesystem.setup()
   log.info('Initializing browser')
   await beakerBrowser.setup()
