@@ -251,7 +251,7 @@ class DesktopApp extends LitElement {
     return html`
       <div class="legacy-archives-notice">
         <details>
-          <summary>You have ${this.legacyArchives.length} legacy Dat ${pluralize(this.legacyArchives.length, 'archive')} which can be converted to Hyperdrive.</summary>
+          <summary>You have ${this.legacyArchives.length} legacy Dat ${pluralize(this.legacyArchives.length, 'archive')} which can be converted to DDrive.</summary>
           <div class="archives">
           ${this.legacyArchives.map(archive => html`
             <div class="archive">

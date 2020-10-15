@@ -29,7 +29,7 @@ const PREVIEW_MODE_HELP = yo`<span>
 </span>`
 
 const DONATE_LINK_HELP = yo`<span>
-  Enter a link to your donation page and Beaker will show a <span class="fa fa-donate"></span> icon in your site's URL bar.
+  Enter a link to your donation page and DBrowser will show a <span class="fa fa-donate"></span> icon in your site's URL bar.
 </span>`
 
 // globals

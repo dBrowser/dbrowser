@@ -414,7 +414,7 @@ function windowWithinBounds (windowState, bounds) {
 function userWantsToRestoreSession () {
   let answer = dialog.showMessageBoxSync({
     type: 'question',
-    message: 'Sorry! It looks like Beaker did not exit properly',
+    message: 'Sorry! It looks like DBrowser did not exit properly',
     detail: 'Would you like to restore your previous browsing session?',
     buttons: [ 'Restore Session', 'Start New Session' ],
     defaultId: 0,

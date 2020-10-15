@@ -167,7 +167,7 @@ function render () {
 
             <p class="builtin-hint">
               <i class="fa fa-info-circle"></i>
-              Your Watchlist contains websites you${"'"}ve asked Beaker to find for you.
+              Your Watchlist contains websites you${"'"}ve asked DBrowser to find for you.
               You${"'"}ll be notified when a site is found. <button class="link" onclick=${onAddToWatchlist}>Add site</button>.
             </p>
           </div>

@@ -17,7 +17,7 @@ const STEPS = [
   {
     title: 'Welcome to DBrowserX!',
     subtitle: 'Configure your preferences',
-    description: 'Beaker is a browser for exploring and building the peer-to-peer Web.',
+    description: 'DBrowser is a browser for exploring and building the peer-to-peer Web.',
     content: () => yo`
       <div>
         <img class="icon" src="beaker://assets/img/onboarding/p2p-connection.svg" />
@@ -27,7 +27,7 @@ const STEPS = [
             <input checked=${defaultProtocolSettings.dat} type="checkbox" onchange=${onToggleDefaultBrowser} />
             <div class="switch"></div>
             <span class="text">
-              Set Beaker as the default browser for dwebx:// URLs
+              Set DBrowser as the default browser for dwebx:// URLs
             </span>
 
             <button type="button" class="btn hint-btn plain link" onclick=${onShowHint}>
@@ -36,7 +36,7 @@ const STEPS = [
           </label>
 
           <div class="onboarding-hint ${isHintHidden ? 'hidden' : ''}">
-            dwebx:// is a peer-to-peer protocol that Beaker uses to host websites
+            dwebx:// is a peer-to-peer protocol that DBrowser uses to host websites
           </div>
         </p>
       </div>`,
@@ -80,7 +80,7 @@ const STEPS = [
             </h3>
 
             <p>
-              Explore websites, apps, and tools built with Beaker and dwebx://.
+              Explore websites, apps, and tools built with DBrowser and dwebx://.
             </p>
           </span>
         </a>
@@ -95,7 +95,7 @@ const STEPS = [
             </h3>
 
             <p>
-              Explore Beaker${"'"}s documentation and tutorials.
+              Explore DBrowser${"'"}s documentation and tutorials.
             </p>
           </span>
         </a>

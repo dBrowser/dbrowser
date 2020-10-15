@@ -306,7 +306,7 @@ export const protocolHandler = async function (request, respond) {
       logger.silly('Not found', {url: request.url})
       return respondError(404, 'File Not Found', {
         errorDescription: 'File Not Found',
-        errorInfo: `Beaker could not find the file ${urlp.path}`,
+        errorInfo: `DBrowser could not find the file ${urlp.path}`,
         title: 'File Not Found'
       })
     }

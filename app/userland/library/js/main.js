@@ -121,7 +121,7 @@ export class LibraryApp extends LitElement {
       items: [
         {
           icon: 'far fa-hdd',
-          label: 'Hyperdrive',
+          label: 'DDrive',
           click: async () => {
             var drive = await beaker.hyperdrive.createDrive()
             toast.create('Drive created')

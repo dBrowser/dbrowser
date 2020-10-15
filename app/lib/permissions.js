@@ -231,7 +231,7 @@ export function renderPermDesc ({html, bg, url, permId, permParam, permOpts}) {
     case 'experimentalLibrary': return 'Read and modify your Library'
     case 'experimentalDatPeers': return 'Send and receive messages with peers'
     case 'dangerousAppControl': return 'Read and write your data, including bookmarks, archives, and files'
-    case 'contactsList': return 'Read your address-book in Beaker'
+    case 'contactsList': return 'Read your address-book in DBrowser'
     case 'panesCreate': return 'Open a page in a new pane'
     case 'panesAttach': return 'Attach to other open pages and navigate them'
     case 'panesInject': return 'Inject code into other open pages'

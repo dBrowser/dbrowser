@@ -280,7 +280,7 @@
     },
     {
       "name": "system",
-      "help": "Beaker system info commands",
+      "help": "DBrowser system info commands",
       "subcommands": [
         {
           "name": "fs_audit_stream",

@@ -560,7 +560,7 @@ export function restartBrowser () {
     autoUpdater.quitAndInstall()
     logger.info('[AUTO-UPDATE] Quitting and installing.')
   } else {
-    logger.info('Restarting Beaker by restartBrowser()')
+    logger.info('Restarting DBrowser by restartBrowser()')
     // do a simple restart
     app.relaunch()
     setTimeout(() => app.exit(0), 1e3)

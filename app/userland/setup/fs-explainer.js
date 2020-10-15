@@ -2,7 +2,7 @@ import { BaseSlideView } from './base-slide-view.js'
 
 const SIDENOTES = [
   'It contains all of your personal data, including your <strong><span class="far fa-star"></span>Bookmarks</strong> and <strong><span class="fas fa-cog"></span> Settings</strong>.',
-  'A Hyperdrive is a set of files that lives on the peer-to-peer network.',
+  'A DDrive is a set of files that lives on the peer-to-peer network.',
   'There are plenty of templates to get you started.'
 ]
 

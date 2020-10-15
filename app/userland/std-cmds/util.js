@@ -56,7 +56,7 @@ export function toNiceUrl (str) {
 }
 
 /*
-This wrapper provides a Hyperdrive interface for non-dat sites
+This wrapper provides a DDrive interface for non-dat sites
 so that errors can be smoothly generated
 */
 

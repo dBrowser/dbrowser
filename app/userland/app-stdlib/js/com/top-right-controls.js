@@ -84,7 +84,7 @@ class TopRightControls extends LitElement {
       } catch (e) {
         console.error(e)
         if (e.name === 'TimeoutError') {
-          toast.create('Beaker was unable to download the template for your new site. Please check your Internet connection and try again!', 'error')
+          toast.create('DBrowser was unable to download the template for your new site. Please check your Internet connection and try again!', 'error')
         } else {
           toast.create('Unexpected error: ' + e.message, 'error')
         }

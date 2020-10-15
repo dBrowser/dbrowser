@@ -412,7 +412,7 @@ function update () {
       yo`
         <div class="cover-screen gray">
           <div class="cover-screen-leftpane">
-            <h1>Beaker Editor</h1>
+            <h1>DBrowser Editor</h1>
             <button class="btn primary thick" onclick=${onOpenSite}>Open site</button>
           </div>
         </div>

@@ -1,4 +1,4 @@
-Beaker Browser
+DBrowserX Browser
 ======
 [![Backers on Open Collective](https://opencollective.com/beaker/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/beaker/sponsors/badge.svg)](#sponsors)
 

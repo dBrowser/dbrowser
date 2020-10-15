@@ -85,9 +85,9 @@ class GeneralSettingsView extends LitElement {
     if (this.browserInfo && !this.browserInfo.isDaemonActive) {
       return html`
         <div class="section warning">
-          <h2><span class="fas fa-exclamation-triangle"></span> The Hyperdrive Daemon is Not Active</h2>
+          <h2><span class="fas fa-exclamation-triangle"></span> The DDrive Daemon is Not Active</h2>
           <p>
-            The "daemon" runs Beaker's Hyperdrive networking.
+            The "daemon" runs DBrowser's DDrive networking.
           </p>
           <p>
             <button @click=${this.onClickRestartDaemon}>Restart the Daemon</button>

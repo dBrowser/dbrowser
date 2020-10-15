@@ -2,7 +2,7 @@
 
 ## How to report a vulnerability
 
-If you believe you've discovered a security issue related to Beaker Browser, please email us at support@beakerbrowser.com with a full description of the vulnerability. We ask that you please keep the details private until we've had a chance to resolve the issue.
+If you believe you've discovered a security issue related to DBrowserX Browser, please email us at support@beakerbrowser.com with a full description of the vulnerability. We ask that you please keep the details private until we've had a chance to resolve the issue.
 
 ## Public notification
 
