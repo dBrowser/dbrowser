@@ -13,14 +13,8 @@ customElements.define('intro-view', class extends HTMLElement {
 
   render (shadow) {
     shadow.innerHTML = `
-<div id="logo">
-  <div class="ring" id="ring1"></div>
-  <div class="ring" id="ring2"></div>
-  <div class="ring" id="ring3"></div>
-  <div class="ring" id="ring4"></div>
-  <div class="ring" id="ring5"></div>
-  <div class="ring" id="ring6"></div>
-  <div class="nub"></div>
+<div id="custumlogo">
+<img src="https://peepsx.com/assets/img/logo/hd-white-logo.png" alt="logo">
 </div>
 <h1><span>Welcome</span> <span>to</span> <span>DBrowser</span></h1>
 <a>Get Started &gt;</a>
@@ -87,6 +81,22 @@ customElements.define('intro-view', class extends HTMLElement {
   }
   a:hover {
     text-decoration: underline;
+  }
+  #custumlogo {
+    --fg-color: #fff;
+
+    position: fixed;
+    left: 40%;
+    top: 27%;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+    /* border: 1px dashed gray; */
+    background: #334;
+  }
+  #custumlogo img {
+    max-width: 120px;
+    max-height: 120px;
   }
   #logo {
     --fg-color: #fff;
