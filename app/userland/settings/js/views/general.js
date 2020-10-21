@@ -102,12 +102,12 @@ class GeneralSettingsView extends LitElement {
       return html`
         <div class="section">
           <p class="message info">
-            Sorry! DBrowserX auto-updates are only supported on the production build for macOS and Windows.
+            Sorry! dBrowser auto-updates are only supported on the production build for macOS and Windows.
           </p>
 
           <p>
             To get the most recent version of DBrowserX, you'll need to <a href="https://github.com/dbrowser/dbrowser">
-            build DBrowserX from source</a>.
+            build dBrowser from source</a>.
           </p>
         </div>
       `
@@ -245,7 +245,7 @@ class GeneralSettingsView extends LitElement {
   renderOnStartupSettings () {
     return html`
       <div class="section">
-        <p>When DBrowserX starts</p>
+        <p>When dBrowser starts</p>
 
         <div class="radio-item">
           <input type="radio" id="customStartPage1" name="custom-start-page"
@@ -281,7 +281,7 @@ class GeneralSettingsView extends LitElement {
                  ?checked=${this.settings.run_background == 1}
                  @change=${this.onRunBackgroundToggle} />
           <label for="runBackground">
-            Let DBrowserX run in the background
+            Let dBrowser run in the background
           </label>
         </div>
       </div>
@@ -390,7 +390,7 @@ class GeneralSettingsView extends LitElement {
 
     return html`
       <div class="section">
-        <p>Set DBrowserX as the default browser for:</p>
+        <p>Set dBrowser as the default browser for. as the default browser for:</p>
 
         ${Object.keys(this.defaultProtocolSettings).map(proto => html`
           <div class="radio-item">
@@ -466,7 +466,7 @@ class GeneralSettingsView extends LitElement {
 
           <ul>
             <li>An anonymous ID</li>
-            <li>Your DBrowserX version, e.g. ${this.browserInfo.version}</li>
+            <li>Your dBrowser version, e.g. ${this.browserInfo.version}</li>
             <li>Your operating system, e.g. Windows 10</li>
           </ul>
         </div>

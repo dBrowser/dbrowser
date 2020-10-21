@@ -204,7 +204,7 @@ function renderOnStartupSettings () {
       <h2 id="on-startup" class="subtitle-heading">Startup settings</h2>
 
       <p>
-        When DBrowserX starts
+        When dBrowser starts
       </p>
 
       <div class="radio-group">
@@ -309,7 +309,7 @@ function renderAnalyticsSettings () {
 
         <ul>
           <li>An anonymous ID</li>
-          <li>Your DBrowserX version, e.g. ${browserInfo.version}</li>
+          <li>Your dBrowser version, e.g. ${browserInfo.version}</li>
           <li>Your operating system, e.g. Windows 10</li>
         </ul>
       </div>
@@ -388,7 +388,7 @@ function renderProtocolSettings () {
       <h2 id="protocol" class="subtitle-heading">Default browser settings</h2>
 
       <p>
-        Set DBrowserX as the default browser for:
+        Set dBrowser as the default browser for. as the default browser for:
       </p>
 
       ${Object.keys(defaultProtocolSettings).map(proto => yo`
@@ -427,12 +427,12 @@ function renderAutoUpdater () {
         <h2 id="auto-updater" class="subtitle-heading">Auto updater</h2>
 
         <div class="message info">
-          Sorry! DBrowserX auto-updates are only supported on the production build for macOS and Windows.
+          Sorry! dBrowser auto-updates are only supported on the production build for macOS and Windows.
         </div>
 
         <p>
           To get the most recent version of DBrowserX, you'll need to <a href="https://github.com/dbrowser/dbrowser">
-          build DBrowserX from source</a>.
+          build dBrowser from source</a>.
         </p>
       </div>`
   }

@@ -17,7 +17,7 @@ customElements.define('intro-view', class extends HTMLElement {
 <img src="https://peepsx.com/assets/img/logo/hd-white-logo.png" alt="logo">
 </div>
 <h1><span>Welcome</span> <span>to</span> <span>DBrowser</span></h1>
-<a>Get Started &gt;</a>
+<a>Dive Into The dWeb &gt;</a>
 <style>
   :host {
     -webkit-app-region: drag;

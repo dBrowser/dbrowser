@@ -33,8 +33,8 @@ small {
   color: #889;
 }
 </style>
-<h1><strong>Let's create your personal website</strong>.</h1>
-<p>This site will be your profile on the p2p Web.</p>
+<h1><strong>Let's create your dStatus profile</strong>.</h1>
+<p>This your global profile on the dWeb.</p>
 <hr>
 <p><small><span class="fas fa-fw fa-info"></span> You're free to use it or not! Your profile is not shared until you share it.</small></p>
 <hr>

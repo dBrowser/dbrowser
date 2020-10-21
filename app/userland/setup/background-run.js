@@ -46,7 +46,7 @@ label {
 <p>
   <label>
     <input type="checkbox">
-    Let DBrowserX run in the background
+    Let dBrowser run in the background
   </label>
 </p>
 <hr>

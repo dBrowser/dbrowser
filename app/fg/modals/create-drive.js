@@ -124,7 +124,7 @@ class CreateDriveModal extends LitElement {
       <link rel="stylesheet" href="beaker://assets/font-awesome.css">
       <div class="wrapper">
         <h1 class="title">
-          Create New DDrive
+          Create New dDrive
         </h1>
         <form @submit=${this.onSubmit}>
           <div>

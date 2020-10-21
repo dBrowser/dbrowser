@@ -15,7 +15,7 @@ let reject
 
 const STEPS = [
   {
-    title: 'Welcome to DBrowserX!',
+    title: 'Welcome to dBrowser!',
     subtitle: 'Configure your preferences',
     description: 'DBrowser is a browser for exploring and building the peer-to-peer Web.',
     content: () => yo`

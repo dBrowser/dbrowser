@@ -43,7 +43,7 @@ async function buildMenu () {
     {label: 'Open new tab', click: onClickOpen},
     {label: 'Restore last window', click: onClickRestore},
     {type: 'separator'},
-    {type: 'checkbox', label: 'Let DBrowserX run in the background', checked: runBackground, click: () => onTogglePersist(!runBackground)},
+    {type: 'checkbox', label: 'Let dBrowser run in the background', checked: runBackground, click: () => onTogglePersist(!runBackground)},
     {label: 'Quit DBrowserX', click: () => app.quit()}
   ])
   tray.setContextMenu(contextMenu)

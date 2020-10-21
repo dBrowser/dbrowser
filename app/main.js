@@ -94,7 +94,7 @@ app.on('ready', async function () {
   }
 
   await logger.setup(join(commonOpts.userDataPath, 'beaker.log'))
-  log.info('Welcome to DBrowserX')
+  log.info('Welcome to dBrowser')
   beakerProtocol.register(protocol)
   webapis.setup()
   initWindow.open()

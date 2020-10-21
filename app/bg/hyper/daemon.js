@@ -193,7 +193,7 @@ export async function shutdown () {
 }
 
 /**
- * Gets a hyperdrives interface to the daemon for the given key
+ * Gets a ddrives interface to the daemon for the given key
  *
  * @param {Object|string} opts
  * @param {Buffer} [opts.key]
@@ -207,7 +207,7 @@ export function getHyperdriveSession (opts) {
 }
 
 /**
- * Creates a hyperdrives interface to the daemon for the given key
+ * Creates a ddrives interface to the daemon for the given key
  *
  * @param {Object} opts
  * @param {Buffer} [opts.key]
@@ -256,7 +256,7 @@ export async function createHyperdriveSession (opts) {
 }
 
 /**
- * Closes a hyperdrives interface to the daemon for the given key
+ * Closes a ddrives interface to the daemon for the given key
  *
  * @param {Object|string} opts
  * @param {Buffer} [opts.key]

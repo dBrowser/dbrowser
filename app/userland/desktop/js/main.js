@@ -152,7 +152,7 @@ class DesktopApp extends LitElement {
       <div class="release-notice">
         <a href=${RELEASES[0].url} class="view-release-notes" @click=${this.onCloseReleaseNotes} target="_blank">
           <span class="fas fa-fw fa-rocket"></span>
-          <strong>Welcome to DBrowserX ${RELEASES[0].label}!</strong>
+          <strong>Welcome to dBrowser ${RELEASES[0].label}!</strong>
           Click here to see what's new.
         </a>
         <a class="close" @click=${this.onCloseReleaseNotes}><span class="fas fa-times"></span></a>
@@ -192,7 +192,7 @@ class DesktopApp extends LitElement {
     return html`
       <div class="intro">
         <a class="close" @click=${this.onClickCloseIntro}><span class="fas fa-times"></span></a>
-        <h3>Welcome to DBrowserX!</h3>
+        <h3>Welcome to dBrowser!</h3>
         <h5>Let's set up your network and get you familiar with DBrowserX.</h5>
         <div class="col3">
           <div>

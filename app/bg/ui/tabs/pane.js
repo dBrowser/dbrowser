@@ -229,8 +229,8 @@ export class Pane extends EventEmitter {
         if (urlp.hostname === 'explorer') return 'DBrowser Files Explorer'
         if (urlp.hostname === 'history') return 'DBrowser History'
         if (urlp.hostname === 'library') return 'DBrowser Library'
-        if (urlp.hostname === 'settings') return 'DBrowser Settings'
-        if (urlp.hostname === 'webterm') return 'DBrowser Webterm'
+        if (urlp.hostname === 'settings') return 'dBrowser Settings'
+        if (urlp.hostname === 'webterm') return 'dBrowser Webterm'
         return 'DBrowser'
       }
       return hostname + (urlp.port ? `:${urlp.port}` : '')

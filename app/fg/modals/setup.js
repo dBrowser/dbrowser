@@ -54,7 +54,7 @@ class SetupModal extends LitElement {
       <div class="wrapper">
         <div class="intro">
           <img class="intro-logo" src="beaker://assets/logo">
-          <h1 class="intro-title">Welcome to DBrowserX</h1>
+          <h1 class="intro-title">Welcome to dBrowser</h1>
           <p class="intro-text">
             The browser that <strong>does more</strong>.
           </p>
@@ -97,7 +97,7 @@ class SetupModal extends LitElement {
         </div>
 
         <div class="nav-controls">
-          <button class="btn transparent thick" tabindex="1" @click=${this.onClickNext}>Get Started <span class="fas fa-chevron-circle-right"></span></button>
+          <button class="btn transparent thick" tabindex="1" @click=${this.onClickNext}>Dive Into The dWeb <span class="fas fa-chevron-circle-right"></span></button>
         </div>
       </div>
     `
