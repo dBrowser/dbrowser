@@ -135,7 +135,7 @@ class ShellWindowToolbarMenu extends LitElement {
       ` : ''}
       ${this.toolbar ? repeat(this.toolbar, btn) : ''}
       <span class="spacer"></span>
-      <a data-href="https://peepsx.com/" title="Developer Portal" @mousedown=${this.onMousedownLink}>Dev Portal</a>
+      <a data-href="https://t.me/peepsology" title="Developer Portal" @mousedown=${this.onMousedownLink}>Dev Portal</a>
       <a data-href="https://github.com/dBrowser/dbrowser/issues" title="Help" @mousedown=${this.onMousedownLink}>Help</a>
       ${this.activeTab && this.activeTab.isLoading ? html`<div class="loading-bar"></div>` : ''}
     `
