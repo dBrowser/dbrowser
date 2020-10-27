@@ -264,7 +264,7 @@ export class Pane extends EventEmitter {
       return 'fas fa-check-circle'
     }
     if (url.startsWith('beaker:')) {
-      return 'beaker-logo'
+      return 'beaker'
     }
     return 'fas fa-info-circle'
   }

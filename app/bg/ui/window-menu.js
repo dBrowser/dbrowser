@@ -837,7 +837,7 @@ export function buildWindowMenu (opts = {}) {
         id: 'beakerDiscussions',
         label: 'Discussion Forum',
         click: function (item) {
-          if (win) tabManager.create(win, 'https://github.com/dBrowser/dbrowser/issues', {setActive: true})
+          if (win) tabManager.create(win, 'https://t.me/peepsology', {setActive: true})
         }
       }
     ]
