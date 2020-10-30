@@ -90,10 +90,10 @@ export async function setup () {
     // default bookmarks
     if (isInitialCreation) {
       //await bookmarks.add({href: 'https://explorer.arisen.network/', title: 'Arisen Explorer', pinned: true})
-      await bookmarks.add({href: 'dweb://fd30312cf5669b2c2fecbee693521bb94513e9c8c413cc35c97b06edf0970f28/', title: 'Arisen', pinned: true})
-      await bookmarks.add({href: 'dweb://cb14d963c2fc5058124ae0823976acef306c35a8c3ce451de9eb32998eb9ad46/', title: 'Peeps', pinned: true})
-      await bookmarks.add({href: 'dweb://e4a6686e6f3409ee9e2c59a1a74e8183ad4f0863b0a2e1b89c68a07d7f13a774/', title: 'DSocial', pinned: true})
-      await bookmarks.add({href: 'dweb://6951d09f346e88c151d4fec6f6fa3e1c0ba13b85856fb9e0ab502602cbd36552/', title: 'dWeb', pinned: true})
+      await bookmarks.add({href: 'dweb://dc6167f8b0af58973566a3082ea4229fc84b54522a6f4336904b836d308ae6f7/', title: 'Arisen', pinned: true})
+      await bookmarks.add({href: 'dweb://ea8308e10b5886a4a65afa0881247591a05378d131a356838b538b833adcfd87/', title: 'Peeps', pinned: true})
+      await bookmarks.add({href: 'dweb://66381ca798320e92150ff86568a5dea03468255c5d03a6c4c6705787446f142a/', title: 'DSocial', pinned: true})
+      await bookmarks.add({href: 'dweb://dad24bb0d3ba26d534bed0ac402c73b5557d63eaf8981fc24ef53da88681ed45/', title: 'dWeb', pinned: true})
      // await bookmarks.add({href: 'https://beaker.dev/', title: 'dBrowser Developer Portal', pinned: true})
    }
   } catch (e) {
