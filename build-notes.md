@@ -5,10 +5,10 @@ beaker browser was cloned from [electron-boilerplate](https://github.com/szwacz/
 There are **two** `package.json` files:  
 
 #### 1. For development
-Sits on path: `beaker-browser/scripts/package.json`. Here you declare dependencies for the development environment and build scripts. **This folder is not distributed with real application!**
+Sits on path: `dbrowser/scripts/package.json`. Here you declare dependencies for the development environment and build scripts. **This folder is not distributed with real application!**
 
 #### 2. For the application
-Sits on path: `beaker-browser/app/package.json`. This is **real** manifest of the application. Declare the app dependencies here.
+Sits on path: `dbrowser/app/package.json`. This is **real** manifest of the application. Declare the app dependencies here.
 
 #### OMG, but seriously why there are two `package.json`?
 1. Native npm modules (those written in C, not JavaScript) need to be compiled, and here we have two different compilation targets for them. Those used in application need to be compiled against electron runtime, and all `devDependencies` need to be compiled against your locally installed node.js. Thanks to having two files this is trivial.
