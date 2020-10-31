@@ -30,7 +30,7 @@ class DevicesView extends LitElement {
     return html`
       <link rel="stylesheet" href="beaker://assets/font-awesome.css">
       <div class="section">
-        <h2>Sync Devices</h2>
+        <h2>dSync</h2>
 
         <p class="message info">
           <span class="fas fa-fw fa-exclamation-triangle"></span>

@@ -293,7 +293,7 @@ function renderAnalyticsSettings () {
 
   return yo`
     <div class="section analytics">
-      <h2 class="subtitle-heading">DBrowserX Analytics</h2>
+      <h2 class="subtitle-heading"> dBrowser Analytics</h2>
 
       <label class="toggle">
         <input checked=${settings.analytics_enabled == 1 ? 'true' : 'false'} type="checkbox" onchange=${toggle} />
@@ -352,7 +352,7 @@ function renderInformation () {
   return yo`
     <div class="view not-fullwidth">
       <div class="section">
-        <h2 id="information" class="subtitle-heading">About DBrowserX</h2>
+        <h2 id="information" class="subtitle-heading">About dBrowser</h2>
         <ul>
           <li>Version: ${browserInfo.version} Electron: ${browserInfo.electronVersion} - Chromium: ${browserInfo.chromiumVersion} - Node: ${browserInfo.nodeVersion}</li>
           <li>User data: ${browserInfo.paths.userData}</li>
@@ -361,7 +361,7 @@ function renderInformation () {
       <div class="section">
         <h2 class="subtitle-heading">Get help</h2>
         <ul>
-          <li><a href="https://beakerbrowser.com/docs/using-beaker">Take a tour of DBrowserX</a></li>
+          <li><a href="https://beakerbrowser.com/docs/using-beaker">Take a tour of dBrowser</a></li>
           <li><a href="https://beakerbrowser.com/docs">Read the documentation</a></li>
           <li><a href="https://github.com/beakerbrowser/beaker/issues/new">Report an issue</a></li>
         </ul>
@@ -431,7 +431,7 @@ function renderAutoUpdater () {
         </div>
 
         <p>
-          To get the most recent version of DBrowserX, you'll need to <a href="https://github.com/dbrowser/dbrowser">
+          To get the most recent version of dBrowser, you'll need to <a href="https://github.com/dbrowser/dbrowser">
           build dBrowser from source</a>.
         </p>
       </div>`
@@ -461,7 +461,7 @@ function renderAutoUpdater () {
 
             <span class="up-to-date">
               <span class="fa fa-check"></span>
-              DBrowserX v${browserInfo.version} is up-to-date
+              dBrowser v${browserInfo.version} is up-to-date
             </span>
           </p>
 
@@ -516,7 +516,7 @@ function renderAutoUpdater () {
           <button class="btn" disabled>Updating</button>
           <span class="version-info">
             <div class="spinner"></div>
-            Downloading the latest version of DBrowserX...
+            Downloading the latest version of dBrowser...
           </span>
           ${renderAutoUpdateCheckbox()}
         </div>
@@ -531,7 +531,7 @@ function renderAutoUpdater () {
           <button class="btn" onclick=${onClickRestart}>Restart now</button>
           <span class="version-info">
             <i class="fa fa-arrow-circle-o-up"></i>
-            <strong>New version available.</strong> Restart DBrowserX to install.
+            <strong>New version available.</strong> Restart dBrowser to install.
           </span>
           ${renderAutoUpdateCheckbox()}
         </div>

@@ -351,7 +351,7 @@ class SiteInfoApp extends LitElement {
       items: [
         {
           icon: 'fas fa-fw fa-code-branch',
-          label: 'Fork Drive',
+          label: 'Clone dDrive',
           click: () => this.onForkDrive()
         },
         this.info && this.info.writable ? {
@@ -364,7 +364,7 @@ class SiteInfoApp extends LitElement {
         } : undefined,
         {
           icon: 'far fa-fw fa-list-alt',
-          label: 'Drive Properties',
+          label: 'dDrive Properties',
           click: () => this.onDriveProps()
         }
       ].filter(Boolean)

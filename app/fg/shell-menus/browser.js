@@ -117,7 +117,7 @@ class BrowserMenu extends LitElement {
 
           <div class="menu-item" @click=${e => this.onOpenPage(e, 'beaker://settings/?view=devices')}>
             <i class="fas fa-sync"></i>
-            <span class="label">Sync Devices</span>
+            <span class="label">dSync</span>
           </div>
         </div>
       </div>
@@ -160,7 +160,7 @@ class BrowserMenu extends LitElement {
         <div class="section">
           <div class="menu-item" @click=${e => this.onOpenPage(e, 'beaker://library/drives')}>
             <i class="far fa-star"></i>
-            <span class="label">My Drives</span>
+            <span class="label">My dDrives</span>
           </div>
 
           <div class="menu-item" @click=${e => this.onOpenPage(e, 'beaker://library/hosting')}>
@@ -192,7 +192,7 @@ class BrowserMenu extends LitElement {
         <div class="section">
           <div class="menu-item" @click=${e => this.onOpenPage(e, 'dweb://system')}>
             <i class="far fa-hdd"></i>
-            <span class="label">My System Drive</span>
+            <span class="label">My Home Drive</span>
           </div>
         </div>
       </div>`

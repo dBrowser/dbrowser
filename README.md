@@ -63,8 +63,8 @@ Here are a few other crucial links involving the entire dWeb ecosystem:
 
 ### Environment Variables
 - `DEBUG` - Which log systems to output? A comma separated string. Can be `dbrowser`, `dwebx`, `bittorrent-dht`, `dns-discovery`, `ddatabase-protocol`. Specific `*` for all.
-- `DBROWSERX_OPEN_URL`: Open the given URL on load, rather than the previous session or default tab.
-- `DBROWSERX_USER_DATA_PATH`: Override the user-data path, therefore, c hanging where data is read/written. Useful for testing. For default value, see `userData` in the [Electron Docs](https://electron.atom.io/docs/api/app/#appgetpathname).
+- `dBrowser_OPEN_URL`: Open the given URL on load, rather than the previous session or default tab.
+- `dBrowser_USER_DATA_PATH`: Override the user-data path, therefore, c hanging where data is read/written. Useful for testing. For default value, see `userData` in the [Electron Docs](https://electron.atom.io/docs/api/app/#appgetpathname).
 - `DBROWERX_DWEBX_QUOTA_DEFAULT_BYTES_ALLOWED`: Override the default max-quote for bytes allowed to be written by a dWebx site. Useful for testing. Default value is `500mb`. This can be a Number or a String. Check [bytes.parse](https://github.com/visionmedia/bytes.js/tree/a4b9af2bf289175f12b3538eb172f2489844b1ec#bytesparsestringnumber-value-numbernull) for supported units and abbreviations.
 
 ## Disclosure of Security Risks
@@ -79,13 +79,13 @@ Copyright (c) 2020 Peeps Labs
 
 >
 
-DBrowserX Browser
+dBrowser
 ======
 [![Backers on Open Collective](https://opencollective.com/beaker/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/beaker/sponsors/badge.svg)](#sponsors)
 
 ![logo.png](build/icons/256x256.png)
 
-DBrowserX is an experimental peer-to-peer Web browser. It adds new APIs for building hostless applications while remaining compatible with the rest of the Web. [Visit the website.](https://beakerbrowser.com/)
+dBrowser is an experimental peer-to-peer Web browser. It adds new APIs for building hostless applications while remaining compatible with the rest of the Web. [Visit the website.](https://beakerbrowser.com/)
 
 Please feel free to open usability issues. Join us at #beakerbrowser on Freenode.
 
@@ -182,7 +182,7 @@ If you're doing development, `npm run watch` to have assets build automatically.
 
 ## Documentation
 
-Looking to work on DBrowserX? [Watch this video](https://www.youtube.com/watch?v=YuE9OO-ZDYo) and take a look at [the build notes](./build-notes.md).
+Looking to work on dBrowser? [Watch this video](https://www.youtube.com/watch?v=YuE9OO-ZDYo) and take a look at [the build notes](./build-notes.md).
 
 - [Documentation site](https://beakerbrowser.com/docs/)
 - **Web APIs**
@@ -205,7 +205,7 @@ See [SECURITY.md](./SECURITY.md) for reporting security issues and vulnerabiliti
 
 ### tmux
 
-Launching from tmux is known to cause issues with GUI apps in macOS. On DBrowserX, it may cause the application to hang during startup.
+Launching from tmux is known to cause issues with GUI apps in macOS. On dBrowser, it may cause the application to hang during startup.
 
 ## Contributors
 

@@ -109,7 +109,7 @@ class DesktopApp extends LitElement {
       ${this.renderReleaseNotice()}
       ${this.renderFiles()}
       <nav>
-        ${navItem('drives', 'My Drives')}
+        ${navItem('drives', 'My dDrives')}
         ${navItem('recent', 'Recent')}
         ${navItem('bookmarks', 'Bookmarks')}
         ${navItem('address-book', 'Address Book')}
@@ -126,7 +126,7 @@ class DesktopApp extends LitElement {
           <a class="new-btn" @click=${this.onClickNewPost}><span class="fas fa-plus"></span> New Post</a>
         ` : ''}
         ${this.currentNav === 'drives' ? html`
-          <a class="new-btn" @click=${this.onClickNewDrive}><span class="fas fa-plus"></span> New Drive</a>
+          <a class="new-btn" @click=${this.onClickNewDrive}><span class="fas fa-plus"></span> New dDrive</a>
         ` : ''}
         ${this.currentNav === 'bookmarks' ? html`
           <a class="new-btn" @click=${e => this.onClickNewBookmark(e, false)}><span class="fas fa-plus"></span> New Bookmark</a>
@@ -193,7 +193,7 @@ class DesktopApp extends LitElement {
       <div class="intro">
         <a class="close" @click=${this.onClickCloseIntro}><span class="fas fa-times"></span></a>
         <h3>Welcome to dBrowser!</h3>
-        <h5>Let's set up your network and get you familiar with DBrowserX.</h5>
+        <h5>Let's set up your network and get you familiar with dBrowser.</h5>
         <div class="col3">
           <div>
             ${this.profile ? html`
@@ -279,7 +279,7 @@ class DesktopApp extends LitElement {
     e.stopPropagation()
     const items = RELEASES.map(({label, url}) => ({
       icon: false,
-      label: `DBrowserX ${label}`,
+      label: `dBrowser ${label}`,
       click: () => window.open(url)
     }))
     var rect = e.currentTarget.getClientRects()[0]

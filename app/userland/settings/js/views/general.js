@@ -71,11 +71,11 @@ class GeneralSettingsView extends LitElement {
         ${this.renderThemeSettings()}
       </div>
       <div class="form-group">
-        <h2>Search Settings</h2>
+        <h2>Default Search</h2>
         ${this.renderSearchSettings()}
       </div>
       <div class="form-group">
-        <h2>DBrowserX Analytics</h2>
+        <h2> dBrowser Analytics</h2>
         ${this.renderAnalyticsSettings()}
       </div>
     `
@@ -106,7 +106,7 @@ class GeneralSettingsView extends LitElement {
           </p>
 
           <p>
-            To get the most recent version of DBrowserX, you'll need to <a href="https://github.com/dbrowser/dbrowser">
+            To get the most recent version of dBrowser, you'll need to <a href="https://github.com/dbrowser/dbrowser">
             build dBrowser from source</a>.
           </p>
         </div>
@@ -135,7 +135,7 @@ class GeneralSettingsView extends LitElement {
 
               <span class="up-to-date">
                 <span class="fa fa-check"></span>
-                DBrowserX v${this.browserInfo.version} is up-to-date
+                dBrowser v${this.browserInfo.version} is up-to-date
               </span>
             </p>
 
@@ -191,7 +191,7 @@ class GeneralSettingsView extends LitElement {
               <button class="btn" disabled>Updating</button>
               <span class="version-info">
                 <span class="spinner"></span>
-                Downloading the latest version of DBrowserX...
+                Downloading the latest version of dBrowser...
               </span>
             </p>
             <p>
@@ -210,7 +210,7 @@ class GeneralSettingsView extends LitElement {
               <button class="btn" @click=${this.onClickRestart}>Restart now</button>
               <span class="version-info">
                 <i class="fa fa-arrow-circle-o-up"></i>
-                <strong>New version available.</strong> Restart DBrowserX to install.
+                <strong>New version available.</strong> Restart dBrowser to install.
               </span>
             </p>
             <p>
@@ -273,7 +273,7 @@ class GeneralSettingsView extends LitElement {
     return html`
       <div class="section on-startup">
         <p>
-          Running in the background helps keep your data online even if you're not using DBrowserX.
+          Running in the background helps keep your data online even if you're not using dBrowser.
         </p>
 
         <div class="radio-item">

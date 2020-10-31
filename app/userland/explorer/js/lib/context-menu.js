@@ -142,7 +142,7 @@ export function constructItems (app) {
     items.push('-')
     items.push({
       icon: 'fas fa-fw fa-code-branch',
-      label: 'Fork this drive',
+      label: 'Fork this dDrive',
       disabled: !app.canShare(app.locationAsItem),
       click: () => app.onForkDrive()
     })

@@ -69,7 +69,7 @@
     "appImage": {
       "category": "Network",
       "desktop": {
-        "Name": "DBrowserX Browser",
+        "Name": "dBrowser",
         "GenericName": "Web Browser",
         "Type": "Application",
         "Terminal": false,
@@ -104,7 +104,7 @@
   },
   "collective": {
     "type": "opencollective",
-    "url": "https://opencollective.com/dbrowserx",
+    "url": "https://opencollective.com/dBrowser",
     "logo": "https://opencollective.com/opencollective/logo.txt"
   },
   "repository": {

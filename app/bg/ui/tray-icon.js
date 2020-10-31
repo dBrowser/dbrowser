@@ -16,7 +16,7 @@ var tray
 
 export function setup () {
   tray = new Tray(path.join(__dirname, getIcon()))
-  tray.setToolTip('DBrowserX')
+  tray.setToolTip('dBrowser')
   tray.on('click', e => tray.popupContextMenu())
   settingsDb.on('set:run_background', buildMenu)
   nativeTheme.on('updated', updateIcon)
@@ -44,7 +44,7 @@ async function buildMenu () {
     {label: 'Restore last window', click: onClickRestore},
     {type: 'separator'},
     {type: 'checkbox', label: 'Let dBrowser run in the background', checked: runBackground, click: () => onTogglePersist(!runBackground)},
-    {label: 'Quit DBrowserX', click: () => app.quit()}
+    {label: 'Quit dBrowser', click: () => app.quit()}
   ])
   tray.setContextMenu(contextMenu)
 }

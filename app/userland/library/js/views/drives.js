@@ -75,7 +75,7 @@ export class DrivesView extends LitElement {
       },
       {type: 'separator'},
       {
-        label: 'Copy Drive Link',
+        label: 'Copy dDrive Link',
         click: () => {
           writeToClipboard(drive.url)
           toast.create('Copied to clipboard')
@@ -92,7 +92,7 @@ export class DrivesView extends LitElement {
       },
       {type: 'separator'},
       {
-        label: 'Drive Properties',
+        label: 'dDrive Properties',
         click: () => this.driveProps(drive)
       },
       {
@@ -161,7 +161,7 @@ export class DrivesView extends LitElement {
             ${this.readonly ? html`
               <div class="empty"><span class="fas fa-share-alt" style="margin-bottom: 30px"></span><div>Not currently hosting any Hyperdrives</div></div>
             ` : html`
-              <div class="empty"><span class="fas fa-hdd"></span><div>Click "New Drive" to create a DDrive</div></div>
+              <div class="empty"><span class="fas fa-hdd"></span><div>Click "New dDrive" to create a DDrive</div></div>
             `}
           ` : ''}
           ${drives.length === 0 && this.filter ? html`

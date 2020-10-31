@@ -62,10 +62,10 @@ class SettingsApp extends LitElement {
     }
     return html`
       ${item('general', 'fas fa-cog', 'General')}
-      ${item('devices', 'fas fa-sync', 'Sync Devices')}
+      ${item('devices', 'fas fa-sync', 'dSync')}
       <hr>
       ${item('general-logs', 'fas fa-clipboard-list', 'General Logs')}
-      ${item('network', 'fas fa-share-alt', 'Network Stats')}
+      ${item('network', 'fas fa-share-alt', 'dWeb Stats')}
       ${item('fs-audit-log', 'fas fa-clipboard-check', 'Filesystem Audit Log')}
       ${''/*DISABLEDitem('daemon-log', 'fas fa-clipboard-list', 'Daemon Log')*/}
       ${item('info', 'fas fa-info-circle', 'Information')}

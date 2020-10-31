@@ -74,7 +74,7 @@ export class LibraryApp extends LitElement {
       <div class="layout">
         <nav>
           <div class="page-nav">
-            ${pageNav('drives', html`<span class="far fa-fw fa-hdd"></span> My Drives`)}
+            ${pageNav('drives', html`<span class="far fa-fw fa-hdd"></span> My dDrives`)}
             ${pageNav('hosting', html`<span class="fas fa-fw fa-share-alt"></span> Hosting`)}
             ${pageNav('bookmarks', html`<span class="far fa-fw fa-star"></span> Bookmarks`)}
             ${pageNav('address-book', html`<span class="far fa-fw fa-address-card"></span> Address Book`)}

@@ -30,7 +30,7 @@ assignees: ''
 
 **Environment**
  - OS: <!-- e.g. Windows 10 -->
- - DBrowserX Version: <!-- e.g. 1.0.0-prerelease.3 -->
+ - dBrowser Version: <!-- e.g. 1.0.0-prerelease.3 -->
 
 **Additional Context**
 <!-- Add any other context about the problem here. -->

@@ -63,7 +63,7 @@ export function buildWindowMenu (opts = {}) {
   const isWritable = driveInfo && driveInfo.writable
 
   var darwinMenu = {
-    label: 'DBrowserX',
+    label: 'dBrowser',
     submenu: [
       {
         label: 'Preferences',
@@ -450,7 +450,7 @@ export function buildWindowMenu (opts = {}) {
       {type: 'separator'},
       {
         id: 'forkDrive',
-        label: 'Fork Drive',
+        label: 'Clone dDrive',
         enabled: !!isDriveSite,
         async click (item) {
           if (win) {
@@ -555,7 +555,7 @@ export function buildWindowMenu (opts = {}) {
       {type: 'separator'},
       {
         id: 'driveProperties',
-        label: 'Drive Properties',
+        label: 'dDrive Properties',
         enabled: !!isDriveSite,
         async click (item) {
           if (win) runDrivePropertiesFlow(win, hyper.drives.fromURLToKey(url))
@@ -604,7 +604,7 @@ export function buildWindowMenu (opts = {}) {
       { type: 'separator' },
       {
         id: 'bookmarkThisPage',
-        label: 'Bookmark this Page',
+        label: 'Bookmark This Page',
         enabled: !noWindows,
         accelerator: 'CmdOrCtrl+D',
         click: function (item) {
@@ -812,7 +812,7 @@ export function buildWindowMenu (opts = {}) {
     submenu: [
       {
         id: 'beakerHelp',
-        label: 'dbrowser Help',
+        label: 'dBrowser Help',
         accelerator: 'F1',
         click: function (item) {
           if (win) tabManager.create(win, 'https://github.com/dbrowser/dbrowser', {setActive: true})
@@ -835,7 +835,7 @@ export function buildWindowMenu (opts = {}) {
       },
       {
         id: 'beakerDiscussions',
-        label: 'Discussion Forum',
+        label: 'Community Chat',
         click: function (item) {
           if (win) tabManager.create(win, 'https://t.me/peepsology', {setActive: true})
         }

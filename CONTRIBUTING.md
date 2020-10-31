@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Thanks for considering contributing to DBrowserX!
+Thanks for considering contributing to dBrowser!
 
 We welcome any type of contribution, not only code. You can help with
 - **QA**: file bug reports, the more details you can give the better (e.g. screenshots with the console open)
@@ -10,7 +10,7 @@ We welcome any type of contribution, not only code. You can help with
 - **Code**: take a look at the [open issues](https://github.com/beakerbrowser/beaker/issues). Even if you can't write code, commenting on them, showing that you care about a given issue matters. It helps us triage them.
 - **Money**: we welcome financial contributions in full transparency on our [open collective](https://opencollective.com/beaker).
 
-Looking to work on DBrowserX? [Watch this video](https://www.youtube.com/watch?v=YuE9OO-ZDYo) and take a look at [the build notes](./build-notes.md).
+Looking to work on dBrowser? [Watch this video](https://www.youtube.com/watch?v=YuE9OO-ZDYo) and take a look at [the build notes](./build-notes.md).
 
 ## Building from source
 
@@ -79,7 +79,7 @@ npm test
 
 ## Submitting code
 
-Any code change should be submitted as a pull request. The description should explain what the code does and give steps to execute it. The pull request should also contain tests, if applicable. For example, a PR that changes a part of the DBrowserX UI will likely not need tests, but a PR that updates Beaker's networking stack would.
+Any code change should be submitted as a pull request. The description should explain what the code does and give steps to execute it. The pull request should also contain tests, if applicable. For example, a PR that changes a part of the dBrowser UI will likely not need tests, but a PR that updates Beaker's networking stack would.
 
 ## Code review process
 

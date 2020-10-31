@@ -583,12 +583,12 @@ export class ExplorerApp extends LitElement {
     return html`
       <nav class="left">
         <section class="transparent drives-list">
-          ${navItem('dweb://system/', 'My System Drive')}
+          ${navItem('dweb://system/', 'My Home Drive')}
           ${!this.profiles ? html`` : html`
             ${repeat(this.profiles, profile => navItem(profile.url, profile.title))}
           `}
           ${!this.drives ? html`<span>Loading...</span>` : html`
-            <h5>My Drives</h4>
+            <h5>My dDrives</h4>
             ${repeat(this.drives.filter(d => d.info.writable), drive => navItem(drive.url, drive.info.title))}
             <h5>Cohosting</h4>
             ${repeat(this.drives.filter(d => !d.info.writable), drive => navItem(drive.url, drive.info.title))}

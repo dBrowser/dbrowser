@@ -59,7 +59,7 @@ export class EditBookmarkPopup extends BasePopup {
       <form @submit=${this.onSubmit}>
         <div>
           <label for="title-input">Title</label>
-          <input required type="text" id="title-input" name="title" value="${this.bookmark?.stat.metadata.title || ''}" placeholder="E.g. DBrowserX" />
+          <input required type="text" id="title-input" name="title" value="${this.bookmark?.stat.metadata.title || ''}" placeholder="E.g. dBrowser" />
 
           <label for="href-input">URL</label>
           <input required type="text" id="href-input" name="href" value="${this.bookmark?.stat.metadata.href || ''}" placeholder="E.g. beakerbrowser.com" />

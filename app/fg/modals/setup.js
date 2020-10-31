@@ -72,7 +72,7 @@ class SetupModal extends LitElement {
       <link rel="stylesheet" href="beaker://assets/font-awesome.css">
       <div class="wrapper">
         <div class="intro">
-          <h1 class="intro-title" style="margin: 10px 0 30px; font-size: 52px;">What can DBrowserX do?</h1>
+          <h1 class="intro-title" style="margin: 10px 0 30px; font-size: 52px;">What can dBrowser do?</h1>
           <div class="feature feat1">
             <span class="feature-icon fas fa-fw fa-magic"></span>
             <div class="feature-text">

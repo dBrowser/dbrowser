@@ -34,7 +34,7 @@ class NetworkMenu extends LitElement {
       <div class="wrapper">
         <div class="header">
           <h1 class="page-title">
-            Network Status
+            dWeb Network Status
           </h1>
         </div>
 
