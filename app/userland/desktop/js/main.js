@@ -190,7 +190,7 @@ class DesktopApp extends LitElement {
       return ''
     }
     return html`
-      <div class="intro">
+      <div class="intro" style="display: none">
         <a class="close" @click=${this.onClickCloseIntro}><span class="fas fa-times"></span></a>
         <h3>Welcome to dBrowser!</h3>
         <h5>Let's set up your network and get you familiar with dBrowser.</h5>
