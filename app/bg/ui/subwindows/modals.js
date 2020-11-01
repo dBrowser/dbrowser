@@ -96,7 +96,7 @@ export async function create (webContents, modalName, params = {}) {
   view.webContents.on('console-message', (e, level, message) => {
     console.log('Modals window says:', message)
   })
-  view.webContents.loadURL('beaker://modals/')
+  view.webContents.loadURL('dbrowser://modals/')
   view.webContents.focus()
 
   // run the modal flow

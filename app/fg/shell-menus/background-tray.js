@@ -36,7 +36,7 @@ class BackgroundTrayMenu extends LitElement {
   render () {
     if (!this.tabs) {
       return html`
-        <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+        <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
         <div class="wrapper">
           <div class="header"><h1>Minimized Tabs</h1></div>
           <span class="spinner"></span>
@@ -45,7 +45,7 @@ class BackgroundTrayMenu extends LitElement {
     }
     if (!this.tabs.length) {
       return html`
-        <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+        <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
         <div class="wrapper">
           <div class="header"><h1>Minimized Tabs</h1></div>
           <div class="empty">You can minimize tabs to this tray and they will run in the background.</div>
@@ -53,7 +53,7 @@ class BackgroundTrayMenu extends LitElement {
       `
     }
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="wrapper">
         <div class="header"><h1>Minimized Tabs</h1></div>
         <div class="tabs">

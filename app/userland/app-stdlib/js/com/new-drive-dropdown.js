@@ -9,7 +9,7 @@ export async function create ({x, y}) {
     y,
     render: () => {
       return html`
-        <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+        <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
         <style>
           .dropdown-items {
             padding: 6px 0 4px;
@@ -112,24 +112,24 @@ export async function create ({x, y}) {
 
 async function onCreateDrive (type) {
   contextMenu.destroy()
-  var drive = await beaker.hyperdrive.createDrive({type})
+  var drive = await dbrowser.hyperdrive.createDrive({type})
   window.location = drive.url
 }
 
 async function onCreateDriveFromFolder () {
   contextMenu.destroy()
-  var folder = await beaker.browser.showOpenDialog({
+  var folder = await dbrowser.browser.showOpenDialog({
     title: 'Select folder',
     buttonLabel: 'Use folder',
     properties: ['openDirectory']
   })
   if (!folder || !folder.length) return
 
-  var drive = await beaker.hyperdrive.createDrive({
+  var drive = await dbrowser.hyperdrive.createDrive({
     title: folder[0].split('/').pop(),
     prompt: false
   })
   toast.create('Importing...')
-  await beaker.hyperdrive.importFromFilesystem({src: folder[0], dst: drive.url})
+  await dbrowser.hyperdrive.importFromFilesystem({src: folder[0], dst: drive.url})
   window.location = drive.url
 }

@@ -31,7 +31,7 @@ class UserSession extends LitElement {
   render () {
     if (!this.session) return html`<div></div>`
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
 
       <div class="field-group">
         <div class="field-group-title">User session</div>
@@ -54,7 +54,7 @@ class UserSession extends LitElement {
 
   onClickLink (e) {
     e.preventDefault()
-    beaker.browser.openUrl(e.currentTarget.getAttribute('href'), {setActive: true})
+    dbrowser.browser.openUrl(e.currentTarget.getAttribute('href'), {setActive: true})
   }
 
   async onClickLogout (e) {

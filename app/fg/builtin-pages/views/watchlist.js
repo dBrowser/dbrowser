@@ -1,4 +1,4 @@
-/* globals DatArchive beaker confirm localStorage */
+/* globals DatArchive dbrowser confirm localStorage */
 
 import yo from 'yo-yo'
 import {niceDate} from '../../../lib/time'
@@ -12,7 +12,7 @@ import renderBuiltinPagesNav from '../com/builtin-pages-nav'
 // watchlist, cached in memory
 let watchlist = []
 let selectedItems = []
-let wlEvents = beaker.watchlist.createEventsStream()
+let wlEvents = dbrowser.watchlist.createEventsStream()
 
 // main
 // =
@@ -32,7 +32,7 @@ async function setup () {
   var location = new URL(window.location)
   if (location.searchParams.get('url')) {
     await addToWatchlist(location.searchParams.get('url'))
-    window.history.replaceState({}, null, 'beaker://watchlist/')
+    window.history.replaceState({}, null, 'dbrowser://watchlist/')
   }
 }
 
@@ -40,14 +40,14 @@ async function setup () {
 // =
 
 async function loadWatchlist () {
-  watchlist = await beaker.watchlist.list()
+  watchlist = await dbrowser.watchlist.list()
   sortWatchlist()
 }
 
 async function addToWatchlist (url, description) {
   description = description || url
   try {
-    await beaker.watchlist.add(url, {description, seedWhenResolved: false})
+    await dbrowser.watchlist.add(url, {description, seedWhenResolved: false})
     toast.create('Added to your watchlist', 'success')
   } catch (e) {
     console.error(e)
@@ -105,7 +105,7 @@ function renderRow (row, i) {
       </span>
 
       <span class="watchlist-item-title">
-        <img class="favicon" src="beaker-favicon:32,${row.url}" />
+        <img class="favicon" src="dbrowser-favicon:32,${row.url}" />
         <span class="description">${row.description}</span>
       </span>
 
@@ -136,7 +136,7 @@ function render () {
       <div class="watchlist-wrapper watchlist builtin-wrapper">
         <div class="builtin-main">
           <div class="builtin-sidebar">
-            ${renderBuiltinPagesNav('beaker://watchlist/', 'Watchlist')}
+            ${renderBuiltinPagesNav('dbrowser://watchlist/', 'Watchlist')}
           </div>
           
           <div>
@@ -220,7 +220,7 @@ async function onDelete (e, item) {
   }
 
   try {
-    await beaker.watchlist.remove(item.url)
+    await dbrowser.watchlist.remove(item.url)
   } catch (e) {
     console.error(e)
     toast.create(`Could not remove site from watchlist`, 'error')
@@ -233,7 +233,7 @@ async function onDeleteSelected () {
   await Promise.all(selectedItems.map(async a => {
     a.checked = false
     try {
-      await beaker.watchlist.remove(a.url)
+      await dbrowser.watchlist.remove(a.url)
     } catch (e) {
       toast.create(`Could not remove site from watchlist`, 'error')
     }

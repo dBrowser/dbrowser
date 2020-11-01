@@ -28,7 +28,7 @@ class RequestedPerms extends LitElement {
       return html`<div class="field-group">No permissions assigned</div>`
     }
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="field-group">
         <div class="field-group-title">Permissions</div>
         ${perms}
@@ -61,7 +61,7 @@ class RequestedPerms extends LitElement {
     var permObj = this.perms.find(o => o.perm === perm)
     if (!permObj) return
     var newValue = +(e.currentTarget.value)
-    await beaker.sitedata.setPermission(this.origin, perm, newValue)
+    await dbrowser.sitedata.setPermission(this.origin, perm, newValue)
     permObj.value = newValue
     this.requestUpdate()
   }
@@ -70,7 +70,7 @@ class RequestedPerms extends LitElement {
     e.preventDefault()
     var permObj = this.perms.find(o => o.perm === perm)
     if (!permObj) return
-    await beaker.sitedata.clearPermission(this.origin, perm)
+    await dbrowser.sitedata.clearPermission(this.origin, perm)
     this.perms = this.perms.filter(p => p !== permObj)
     this.requestUpdate()
   }

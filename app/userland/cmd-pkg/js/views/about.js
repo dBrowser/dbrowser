@@ -1,6 +1,6 @@
-import { LitElement, html } from 'beaker://app-stdlib/vendor/lit-element/lit-element.js'
-import { repeat } from 'beaker://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
-import { until } from 'beaker://app-stdlib/vendor/lit-element/lit-html/directives/until.js'
+import { LitElement, html } from 'dbrowser://app-stdlib/vendor/lit-element/lit-element.js'
+import { repeat } from 'dbrowser://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
+import { until } from 'dbrowser://app-stdlib/vendor/lit-element/lit-html/directives/until.js'
 import aboutCSS from '../../css/views/about.css.js'
 
 export class AboutView extends LitElement {
@@ -20,7 +20,7 @@ export class AboutView extends LitElement {
   async renderCommands () {
     var manifest
     try {
-      var drive = new beaker.hyperdrive.drive(location)
+      var drive = new dbrowser.hyperdrive.drive(location)
       manifest = JSON.parse(await drive.readFile('/index.json', 'utf8'))
     } catch (e) {
       return e.toString()

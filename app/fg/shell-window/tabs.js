@@ -68,7 +68,7 @@ class ShellWindowTabs extends LitElement {
       fullscreen: this.isFullscreen
     })
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div
         class="${shellCls}"
         @mousedown=${this.onMousedownShell}
@@ -98,7 +98,7 @@ class ShellWindowTabs extends LitElement {
       tab.isLoading
       || tab.isPinned
       || faviconUrl
-      || tab.url.startsWith('beaker:')
+      || tab.url.startsWith('dbrowser:')
     )
     const cls = classMap({tab: true, current: tab.isActive, pinned: tab.isPinned, 'no-favicon': !showFavicon})
     return html`

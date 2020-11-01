@@ -228,7 +228,7 @@ export function createShellWindow (windowState, createOpts = {dontInitPages: fal
     subwindows[k].setup(win)
   }
   downloads.registerListener(win)
-  win.loadURL('beaker://shell-window')
+  win.loadURL('dbrowser://shell-window')
   sessionWatcher.watchWindow(win, state)
 
   numActiveWindows++
@@ -269,13 +269,13 @@ export function createShellWindow (windowState, createOpts = {dontInitPages: fal
       // -prf
       // run setup modal
       // let isTestDriverActive = !!getEnvVar('BEAKER_TEST_DRIVER')
-      // let hasDoneSetup = Number(await sitedataDb.get('beaker://shell-window', 'has_done_setup')) === 1
+      // let hasDoneSetup = Number(await sitedataDb.get('dbrowser://shell-window', 'has_done_setup')) === 1
       // if (!!getEnvVar('BEAKER_RUN_SETUP_FLOW')) {
       //   hasDoneSetup = false
       // }
       // if (!isTestDriverActive && !hasDoneSetup) {
       //   subwindows.modals.create(win.webContents, 'setup')
-      //   await sitedataDb.set('beaker://shell-window', 'has_done_setup', 1)
+      //   await sitedataDb.set('dbrowser://shell-window', 'has_done_setup', 1)
       // }
     }
   }
@@ -345,8 +345,8 @@ export function restoreLastShellWindow () {
 export function getActiveWindow () {
   // try to pull the `focus`ed window; if there isnt one, fallback to the last created
   var win = BrowserWindow.getFocusedWindow()
-  if (!win || win.webContents.getURL() !== 'beaker://shell-window/') {
-    win = BrowserWindow.getAllWindows().filter(win => win.webContents.getURL() === 'beaker://shell-window/').pop()
+  if (!win || win.webContents.getURL() !== 'dbrowser://shell-window/') {
+    win = BrowserWindow.getAllWindows().filter(win => win.webContents.getURL() === 'dbrowser://shell-window/').pop()
   }
   return win
 }

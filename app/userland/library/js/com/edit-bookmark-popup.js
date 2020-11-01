@@ -1,7 +1,7 @@
-/* globals beaker */
-import { html, css } from 'beaker://app-stdlib/vendor/lit-element/lit-element.js'
-import { BasePopup } from 'beaker://app-stdlib/js/com/popups/base.js'
-import popupsCSS from 'beaker://app-stdlib/css/com/popups.css.js'
+/* globals dbrowser */
+import { html, css } from 'dbrowser://app-stdlib/vendor/lit-element/lit-element.js'
+import { BasePopup } from 'dbrowser://app-stdlib/js/com/popups/base.js'
+import popupsCSS from 'dbrowser://app-stdlib/css/com/popups.css.js'
 
 // exported api
 // =
@@ -55,7 +55,7 @@ export class EditBookmarkPopup extends BasePopup {
 
   renderBody () {
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <form @submit=${this.onSubmit}>
         <div>
           <label for="title-input">Title</label>
@@ -91,14 +91,14 @@ export class EditBookmarkPopup extends BasePopup {
 
     var pinned = e.target.pinned.checked
     if (this.bookmark) {
-      await beaker.hyperdrive.drive('dweb://system/').updateMetadata(this.bookmark.path, {
+      await dbrowser.hyperdrive.drive('dweb://system/').updateMetadata(this.bookmark.path, {
         href: e.target.href.value,
         title: e.target.title.value,
         pinned: pinned ? '1' : undefined
       })
-      if (!pinned) await beaker.hyperdrive.drive('dweb://system/').deleteMetadata(this.bookmark.path, ['pinned'])
+      if (!pinned) await dbrowser.hyperdrive.drive('dweb://system/').deleteMetadata(this.bookmark.path, ['pinned'])
     } else {
-      await beaker.bookmarks.add({
+      await dbrowser.bookmarks.add({
         href: e.target.href.value,
         title: e.target.title.value,
         pinned

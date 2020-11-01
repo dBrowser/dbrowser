@@ -36,7 +36,7 @@ var preloadedNewTabs = {} // map of {[win.id]: Tab}
 var lastSelectedTabIndex = {} // map of {[win.id]: Number}
 var closedItems = {} // map of {[win.id]: Array<Object>}
 var windowEvents = {} // mapof {[win.id]: EventEmitter}
-var defaultUrl = 'beaker://desktop/'
+var defaultUrl = 'dbrowser://desktop/'
 
 // classes
 // =
@@ -1084,9 +1084,9 @@ export function getPreviousTabIndex (win) {
 export function openOrFocusDownloadsPage (win) {
   win = getTopWindow(win)
   var tabs = getAll(win)
-  var downloadsTab = tabs.find(v => v.url.startsWith('beaker://library/downloads'))
+  var downloadsTab = tabs.find(v => v.url.startsWith('dbrowser://library/downloads'))
   if (!downloadsTab) {
-    downloadsTab = create(win, 'beaker://library/downloads')
+    downloadsTab = create(win, 'dbrowser://library/downloads')
   }
   setActive(win, downloadsTab)
 }

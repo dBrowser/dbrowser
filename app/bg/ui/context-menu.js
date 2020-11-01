@@ -34,8 +34,8 @@ export default function registerContextMenu () {
       var targetTab = tabManager.getActive(targetWindow)
 
       // handle shell UI specially
-      if (props.pageURL == 'beaker://shell-window/') { return }
-      if (props.pageURL.startsWith('beaker://modals')) {
+      if (props.pageURL == 'dbrowser://shell-window/') { return }
+      if (props.pageURL.startsWith('dbrowser://modals')) {
         return modals.handleContextMenu(webContents, targetWindow, can, props)
       }
 
@@ -216,13 +216,13 @@ export default function registerContextMenu () {
         menuItems.push({
           label: 'Edit Source',
           click: async (item, win) => {
-            if (targetTab) targetTab.createOrFocusPaneByOrigin({url: 'beaker://editor/', setActive: true})
+            if (targetTab) targetTab.createOrFocusPaneByOrigin({url: 'dbrowser://editor/', setActive: true})
           }
         })
         menuItems.push({
           label: 'Explore Files',
           click: async (item, win) => {
-            if (targetTab) targetTab.createOrFocusPaneByOrigin({url: 'beaker://explorer/', setActive: true})
+            if (targetTab) targetTab.createOrFocusPaneByOrigin({url: 'dbrowser://explorer/', setActive: true})
           }
         })
       }

@@ -69,8 +69,8 @@ export function buildWindowMenu (opts = {}) {
         label: 'Preferences',
         accelerator: 'Cmd+,',
         click (item) {
-          if (win) tabManager.create(win, 'beaker://settings', {setActive: true})
-          else createShellWindow({ pages: ['beaker://settings'] })
+          if (win) tabManager.create(win, 'dbrowser://settings', {setActive: true})
+          else createShellWindow({ pages: ['dbrowser://settings'] })
         }
       },
       { type: 'separator' },
@@ -444,7 +444,7 @@ export function buildWindowMenu (opts = {}) {
         label: 'Explore Files',
         enabled: !noWindows && !!isDriveSite,
         click: async function (item) {
-          if (tab) tab.togglePaneByOrigin({url: 'beaker://explorer/'})
+          if (tab) tab.togglePaneByOrigin({url: 'dbrowser://explorer/'})
         }
       },
       {type: 'separator'},
@@ -464,7 +464,7 @@ export function buildWindowMenu (opts = {}) {
         label: 'Diff / Merge',
         enabled: !!isDriveSite,
         async click (item) {
-          if (win) tabManager.create(win, `beaker://diff/?base=${url}`, {setActive: true})
+          if (win) tabManager.create(win, `dbrowser://diff/?base=${url}`, {setActive: true})
         }
       },
       { type: 'separator' },
@@ -597,8 +597,8 @@ export function buildWindowMenu (opts = {}) {
         label: 'Show Full History',
         accelerator: showHistoryAccelerator,
         click: function (item) {
-          if (win) tabManager.create(win, 'beaker://history', {setActive: true})
-          else createShellWindow({ pages: ['beaker://history'] })
+          if (win) tabManager.create(win, 'dbrowser://history', {setActive: true})
+          else createShellWindow({ pages: ['dbrowser://history'] })
         }
       },
       { type: 'separator' },
@@ -653,7 +653,7 @@ export function buildWindowMenu (opts = {}) {
         enabled: !noWindows,
         accelerator: 'CmdOrCtrl+B',
         click: async function (item) {
-          if (tab) tab.togglePaneByOrigin({url: 'beaker://editor/'})
+          if (tab) tab.togglePaneByOrigin({url: 'dbrowser://editor/'})
         }
       },
       {
@@ -662,7 +662,7 @@ export function buildWindowMenu (opts = {}) {
         enabled: !noWindows,
         accelerator: 'Ctrl+`',
         click: function (item) {
-          if (tab) tab.togglePaneByOrigin({url: 'beaker://webterm/'})
+          if (tab) tab.togglePaneByOrigin({url: 'dbrowser://webterm/'})
         }
       },
       {
@@ -848,7 +848,7 @@ export function buildWindowMenu (opts = {}) {
       label: 'About',
       role: 'about',
       click: function (item) {
-        if (win) tabManager.create(win, 'beaker://settings', {setActive: true})
+        if (win) tabManager.create(win, 'dbrowser://settings', {setActive: true})
       }
     })
   }

@@ -217,7 +217,7 @@ export default {
 }
 
 async function isBeakerApp (sender) {
-  if (/^(beaker:|https?:\/\/(.*\.)?hyperdrive\.network(:|\/))/.test(sender.getURL())) {
+  if (/^(dbrowser:|https?:\/\/(.*\.)?hyperdrive\.network(:|\/))/.test(sender.getURL())) {
     return true
   }
   return false

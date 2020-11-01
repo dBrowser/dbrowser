@@ -20,7 +20,7 @@ customElements.define('profile-view', class extends HTMLElement {
 <h1>New dStatus profile</h1>
 <form>
   <div class="img-ctrl">
-    <img class="thumb" src="${this.thumbDataURL || 'beaker://assets/default-user-thumb'}">
+    <img class="thumb" src="${this.thumbDataURL || 'dbrowser://assets/default-user-thumb'}">
     <input type="file" accept=".jpg,.jpeg,.png">
     <button type="button" class="btn choose-image" tabindex="4">Choose Picture</button>
   </div>
@@ -147,17 +147,17 @@ customElements.define('profile-view', class extends HTMLElement {
 
     try {
       var thumbBase64 = this.thumbDataURL ? this.thumbDataURL.split(',').pop() : undefined
-      await beaker.browser.setupDefaultProfile({
+      await dbrowser.browser.setupDefaultProfile({
         title: this.title,
         description: this.description,
         thumbBase64,
         thumbExt: 'png'
       })
     } catch (e) {
-      this.errors.general = e.message || e.toString()
+      this.dbrowser.general = e.message || e.toString()
       return this.render()
     }
-    await beaker.browser.updateSetupState({profileSetup: 1})
+    await dbrowser.browser.updateSetupState({profileSetup: 1})
 
     this.removeAttribute('active')
     setTimeout(() => {

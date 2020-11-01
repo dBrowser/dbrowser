@@ -25,10 +25,10 @@ class Identity extends LitElement {
 
   render () {
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="field-group">
         ${this.cert ? html`
-          ${this.cert.type === 'beaker' ? html`
+          ${this.cert.type === 'dbrowser' ? html`
             This is a builtin interface of DBrowser
           ` : ''}
           ${this.cert.type === 'tls' ? html`
@@ -103,9 +103,9 @@ class Identity extends LitElement {
   async onToggleSaveContact (e) {
     var isContact = this.cert && this.cert.ident ? this.cert.ident.contact : false
     if (isContact) {
-      await beaker.contacts.remove(this.url)
+      await dbrowser.contacts.remove(this.url)
     } else {
-      await beaker.contacts.requestAddContact(this.url)
+      await dbrowser.contacts.requestAddContact(this.url)
     }
     emit(this, 'change-url', {detail: {url: this.url}})
   }

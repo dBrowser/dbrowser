@@ -1,12 +1,12 @@
-/* globals beaker */
-import { html, css } from 'beaker://app-stdlib/vendor/lit-element/lit-element.js'
-import { repeat } from 'beaker://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
-import { BasePopup } from 'beaker://app-stdlib/js/com/popups/base.js'
-import buttonsCSS from 'beaker://app-stdlib/css/buttons2.css.js'
-import popupsCSS from 'beaker://app-stdlib/css/com/popups.css.js'
-import { writeToClipboard } from 'beaker://app-stdlib/js/clipboard.js'
-import * as contextMenu from 'beaker://app-stdlib/js/com/context-menu.js'
-import { toNiceUrl, normalizeUrl } from 'beaker://app-stdlib/js/strings.js'
+/* globals dbrowser */
+import { html, css } from 'dbrowser://app-stdlib/vendor/lit-element/lit-element.js'
+import { repeat } from 'dbrowser://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
+import { BasePopup } from 'dbrowser://app-stdlib/js/com/popups/base.js'
+import buttonsCSS from 'dbrowser://app-stdlib/css/buttons2.css.js'
+import popupsCSS from 'dbrowser://app-stdlib/css/com/popups.css.js'
+import { writeToClipboard } from 'dbrowser://app-stdlib/js/clipboard.js'
+import * as contextMenu from 'dbrowser://app-stdlib/js/com/context-menu.js'
+import { toNiceUrl, normalizeUrl } from 'dbrowser://app-stdlib/js/strings.js'
 
 // exported api
 // =
@@ -171,7 +171,7 @@ export class AddLinkPopup extends BasePopup {
 
   async runQuery () {
     this.reset()
-    this.history = await (this.query ? beaker.history.search(this.query) : beaker.history.getVisitHistory(0))
+    this.history = await (this.query ? dbrowser.history.search(this.query) : dbrowser.history.getVisitHistory(0))
     if (this.query) {
       let queryEntry = normalizeUrl(this.query)
       if (!this.history.find(item => normalizeUrl(item.url) === queryEntry)) {
@@ -195,7 +195,7 @@ export class AddLinkPopup extends BasePopup {
   renderBody () {
     var hasResults = this.history.length > 0
     return html`  
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="filter-control">
         <input type="text" id="search-input" name="url" placeholder="Search my history or input a URL" @keyup=${e => delay(this.onChangeQuery.bind(this), e)} />
       </div>
@@ -250,7 +250,7 @@ export class AddLinkPopup extends BasePopup {
       {icon: 'fa fa-external-link-alt', label: 'Open Link in New Tab', click: () => window.open(url)},
       {icon: 'fa fa-link', label: 'Copy Link Address', click: () => writeToClipboard(url)}
     ]
-    contextMenu.create({x: e.clientX, y: e.clientY, items, fontAwesomeCSSUrl: 'beaker://assets/font-awesome.css'})
+    contextMenu.create({x: e.clientX, y: e.clientY, items, fontAwesomeCSSUrl: 'dbrowser://assets/font-awesome.css'})
   }
 }
 customElements.define('add-link-popup', AddLinkPopup)

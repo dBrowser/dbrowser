@@ -162,7 +162,7 @@ class AddContactModal extends LitElement {
 
   render () {
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="wrapper">
         <h1 class="title">Add to Address Book</h1>
 
@@ -173,10 +173,10 @@ class AddContactModal extends LitElement {
             </div>
           ` : this.info ? html`
             <div class="contact">
-              <beaker-img-fallbacks>
+              <dbrowser-img-fallbacks>
                 <img src="${this.info.url}/thumb" slot="img1">
-                <img src="beaker://assets/default-user-thumb" slot="img2">
-              </beaker-img-fallbacks>
+                <img src="dbrowser://assets/default-user-thumb" slot="img2">
+              </dbrowser-img-fallbacks>
               <div class="info">
                 <div class="title"><span>${this.info.title}</span></div>
                 <div class="description"><span>${this.info.description}</span></div>

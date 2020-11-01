@@ -62,7 +62,7 @@ export async function cd (opts = {}, location = '') {
   if (cwd.startsWith('dweb://')) {
     // make sure the target location can be visited
     let urlp = new URL(cwd)
-    let drive = beaker.hyperdrive.drive(urlp.origin)
+    let drive = dbrowser.hyperdrive.drive(urlp.origin)
     let st
     try { st = await drive.stat(urlp.pathname) }
     catch (e) {
@@ -240,7 +240,7 @@ export async function bookmark (opts = {}, href = '.') {
   href = this.env.resolve(href || '.')
   var name = opts.filename || href.split('/').filter(Boolean).pop()
   if (!name.endsWith('.goto')) name += '.goto'
-  await beaker.hyperdrive.drive('dweb://system/').writeFile(`/bookmarks/${name}`, '', {metadata: {href}})
+  await dbrowser.hyperdrive.drive('dweb://system/').writeFile(`/bookmarks/${name}`, '', {metadata: {href}})
 }
 
 // utilities
@@ -267,7 +267,7 @@ export async function echo (opts, ...args) {
 
 export async function open (opts = {}, location = '') {
   if (opts.bookmark) {
-    location = `${beaker.hyperdrive.getSystemDrive().url}/bookmarks/${location}`
+    location = `${dbrowser.hyperdrive.getSystemDrive().url}/bookmarks/${location}`
     if (!location.endsWith('.goto')) location += '.goto'
   }
   location = this.env.resolve(location)
@@ -379,7 +379,7 @@ export const system = {
       }
     }
 
-    var stream = await beaker.logger.streamAuditLog()
+    var stream = await dbrowser.logger.streamAuditLog()
     stream.addEventListener('data', e => {
       if (opts.caller && !isOriginEq(opts.caller, e.detail.caller)) return
       if (opts.target && !isOriginEq(opts.target, e.detail.target)) return

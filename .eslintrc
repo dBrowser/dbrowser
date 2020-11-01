@@ -29,7 +29,7 @@
     "uwg": true,
     "DatArchive": true,
     "location": true,
-    "beaker": true,
+    "dbrowser": true,
     "prompt": true,
     "CSSStyleSheet": true,
     "confirm": true,

@@ -69,7 +69,7 @@ class ShellWindowNavbar extends LitElement {
 
   render () {
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="buttons" style="padding-right: 6px">
         ${this.backBtn}
         ${this.forwardBtn}
@@ -293,11 +293,11 @@ class ShellWindowNavbar extends LitElement {
 
   onClickWatchlistBtn (e) {
     this.numWatchlistNotifications = 0
-    bg.views.createTab('beaker://watchlist', {setActive: true})
+    bg.views.createTab('dbrowser://watchlist', {setActive: true})
   }
 
   onClickDaemonInactiveBtn (e) {
-    bg.views.createTab('beaker://settings', {setActive: true})
+    bg.views.createTab('dbrowser://settings', {setActive: true})
   }
 
   onClickUserProfile (e) {

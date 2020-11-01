@@ -30,25 +30,25 @@ function intentProtocol (request, respond) {
     case 'unwalled.garden/view-profile':
       return respond({
         statusCode: 303,
-        headers: {Location: `dwebx://beaker.social/profile/${encodeURIComponent(urlp.qs.url)}`},
+        headers: {Location: `dwebx://dbrowser.social/profile/${encodeURIComponent(urlp.qs.url)}`},
         data: intoStream('')
       })
     case 'unwalled.garden/view-address-book':
       return respond({
         statusCode: 303,
-        headers: {Location: `beaker://library/?view=addressbook&site=${encodeURIComponent(urlp.qs.url)}`},
+        headers: {Location: `dbrowser://library/?view=addressbook&site=${encodeURIComponent(urlp.qs.url)}`},
         data: intoStream('')
       })
     case 'unwalled.garden/view-feed':
       return respond({
         statusCode: 303,
-        headers: {Location: `dwebx://beaker.social/profile/${encodeURIComponent(urlp.qs.url)}`},
+        headers: {Location: `dwebx://dbrowser.social/profile/${encodeURIComponent(urlp.qs.url)}`},
         data: intoStream('')
       })
     case 'unwalled.garden/view-file':
       return respond({
         statusCode: 303,
-        headers: {Location: `beaker://editor/${urlp.qs.url}`},
+        headers: {Location: `dbrowser://editor/${urlp.qs.url}`},
         data: intoStream('')
       })
   }

@@ -10,7 +10,7 @@ export function setup () {
 
   initialize() // contains-ads
 
-  const beakerUrls = /^(beaker|blob)/
+  const beakerUrls = /^(dbrowser|blob)/
   session.defaultSession.webRequest.onBeforeRequest(['*://*./*'], (details, callback) => {
     const shouldBeBlocked = !details.url.match(beakerUrls) && containsAds(details.url)
 

@@ -1,5 +1,5 @@
-import { LitElement, html } from 'beaker://app-stdlib/vendor/lit-element/lit-element.js'
-import { until } from 'beaker://app-stdlib/vendor/lit-element/lit-html/directives/until.js'
+import { LitElement, html } from 'dbrowser://app-stdlib/vendor/lit-element/lit-element.js'
+import { until } from 'dbrowser://app-stdlib/vendor/lit-element/lit-html/directives/until.js'
 import fileCSS from '../../css/views/file.css.js'
 
 export class FileView extends LitElement {
@@ -9,7 +9,7 @@ export class FileView extends LitElement {
 
   async readFile () {
     try {
-      var drive = new beaker.hyperdrive.drive(location)
+      var drive = new dbrowser.hyperdrive.drive(location)
       return await drive.readFile(location.pathname, 'utf8')
     } catch (e) {
       return e.toString()

@@ -1,7 +1,7 @@
-import { LitElement, html, css } from '/vendor/beaker-app-stdlib/vendor/lit-element/lit-element.js'
-import * as appMenu from '/vendor/beaker-app-stdlib/js/com/app-menu.js'
-import * as contextMenu from '/vendor/beaker-app-stdlib/js/com/context-menu.js'
-import * as toast from '/vendor/beaker-app-stdlib/js/com/toast.js'
+import { LitElement, html, css } from '/vendor/dbrowser-app-stdlib/vendor/lit-element/lit-element.js'
+import * as appMenu from '/vendor/dbrowser-app-stdlib/js/com/app-menu.js'
+import * as contextMenu from '/vendor/dbrowser-app-stdlib/js/com/context-menu.js'
+import * as toast from '/vendor/dbrowser-app-stdlib/js/com/toast.js'
 import _debounce from '../../vendor/lodash.debounce.js'
 
 const WIKI_KEY = '9d9bc457f39c987cb775e638d1623d894860947509a4143d035305d4d468587b'
@@ -13,7 +13,7 @@ const createContextMenu = (el, items) => contextMenu.create({
   withTriangle: true,
   noBorders: true,
   style: 'padding: 4px 0; min-width: 200px; font-size: 14px; color: #000',
-  fontAwesomeCSSUrl: 'beaker://assets/font-awesome.css',
+  fontAwesomeCSSUrl: 'dbrowser://assets/font-awesome.css',
   items
 })
 
@@ -49,7 +49,7 @@ class TopRightControls extends LitElement {
 
   render () {
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div>
         <a @click=${this.onClickNewMenu} style="font-size: 14px; font-weight: 500; line-height: 14px;">+ New <i class="fas fa-caret-down"></i></a>
         <a @click=${this.onClickAppMenu}><i class="fas fa-th"></i></a>
@@ -79,7 +79,7 @@ class TopRightControls extends LitElement {
       setTimeout(() => toast.create('Still loading, is your Internet connected?...', '', 10e3), 40e3)
       setTimeout(() => toast.create('Lets give it 10 more seconds...', '', 10e3), 50e3)
       try {
-        var newSite = await beaker.hyperdrive.forkDrive(templateUrl, {title, description, prompt: false})
+        var newSite = await dbrowser.hyperdrive.forkDrive(templateUrl, {title, description, prompt: false})
         window.location = urlModifyFn ? urlModifyFn(newSite.url) : newSite.url
       } catch (e) {
         console.error(e)
@@ -92,7 +92,7 @@ class TopRightControls extends LitElement {
     }
     const items = [
       html`<div class="section-header small light">Projects</div>`,
-      {icon: false, label: 'Blank website', click: () => goto('beaker://library/?view=new-website')},
+      {icon: false, label: 'Blank website', click: () => goto('dbrowser://library/?view=new-website')},
       '-',
       html`<div class="section-header small light">Templates</div>`,
       {icon: false, label: 'Wiki', click: () => create(WIKI_KEY, 'Untitled Wiki', ' ', url => url + '?edit')}
@@ -113,11 +113,11 @@ class TopRightControls extends LitElement {
       {icon: false, label: 'Beaker.Social profile', click: () => goto(`intent:unwalled.garden/view-feed?url=${encodeURIComponent(this.userUrl)}`)},
       '-',
       html`<div class="section-header light small">Personal data</div>`,
-      {icon: false, label: 'Your address book', click: () => goto('beaker://library/?view=addressbook')},
-      {icon: false, label: 'Your bookmarks', click: () => goto('beaker://library/?view=bookmarks')},
-      {icon: false, label: 'Your websites', click: () => goto('beaker://library/?view=websites')},
+      {icon: false, label: 'Your address book', click: () => goto('dbrowser://library/?view=addressbook')},
+      {icon: false, label: 'Your bookmarks', click: () => goto('dbrowser://library/?view=bookmarks')},
+      {icon: false, label: 'Your websites', click: () => goto('dbrowser://library/?view=websites')},
       '-',
-      {icon: false, label: 'Settings', click: () => goto('beaker://settings/')}
+      {icon: false, label: 'Settings', click: () => goto('dbrowser://settings/')}
     ]
     createContextMenu(e.currentTarget, items)
   }
@@ -166,4 +166,4 @@ a:hover {
 }
 `
 
-customElements.define('beaker-top-right-controls', TopRightControls)
+customElements.define('dbrowser-top-right-controls', TopRightControls)

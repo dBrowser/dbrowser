@@ -30,7 +30,7 @@ class NetworkMenu extends LitElement {
   render () {
     if (!this.daemonStatus) return html`<div class="wrapper"></div>`
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="wrapper">
         <div class="header">
           <h1 class="page-title">

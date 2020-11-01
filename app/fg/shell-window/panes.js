@@ -171,7 +171,7 @@ class ShellWindowPanes extends LitElement {
 
     if (!hasMultiple) {
       return html`
-        <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+        <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
         ${repeat(this.activeTab.paneLayout, pane => pane.id, pane => html`
           ${background(pane)}
           ${statusBar(pane)}
@@ -179,7 +179,7 @@ class ShellWindowPanes extends LitElement {
       `
     }
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       ${repeat(this.activeTab.paneLayout, pane => pane.id, pane => html`
         ${background(pane)}
         ${horzLine(pane, pane.bounds.y - 2, 'top')}

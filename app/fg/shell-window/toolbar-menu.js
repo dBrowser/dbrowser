@@ -124,7 +124,7 @@ class ShellWindowToolbarMenu extends LitElement {
     }
 
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       ${WINDOW_MENU_ENABLED ? html`
         ${this.renderMenuButton('file', 'File')}
         ${this.renderMenuButton('drive', 'Drive')}

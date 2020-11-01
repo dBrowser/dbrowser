@@ -1,8 +1,8 @@
-/* globals beaker DatArchive */
+/* globals dbrowser DatArchive */
 
 import yo from 'yo-yo'
 import {Archive as LibraryDatArchive} from 'builtin-pages-lib'
-import {diffLines} from '@beaker/dat-archive-file-diff'
+import {diffLines} from '@dbrowser/dat-archive-file-diff'
 import renderArchiveComparison from '../archive/archive-comparison'
 import * as toast from '../toast'
 

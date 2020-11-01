@@ -1,4 +1,4 @@
-/* globals beaker */
+/* globals dbrowser */
 
 import yo from 'yo-yo'
 import {writeToClipboard} from '../../../lib/event-handlers'
@@ -55,7 +55,7 @@ export function destroy () {
 // =
 
 async function loadSuggestions () {
-  suggestions = await beaker.crawler.listSuggestions(query)
+  suggestions = await dbrowser.crawler.listSuggestions(query)
   update()
 }
 
@@ -119,7 +119,7 @@ function renderSuggestion (row) {
 }
 
 function renderIcon (row) {
-  return yo`<img class="favicon" src="beaker-favicon:32,${row.url}"/>`
+  return yo`<img class="favicon" src="dbrowser-favicon:32,${row.url}"/>`
 }
 
 // event handlers
@@ -158,10 +158,10 @@ function onContextMenu (e) {
   contextMenu.create({x: e.clientX, y: e.clientY, items})
 
   async function pin () {
-    if (!(await beaker.bookmarks.isBookmarked(url))) {
-      await beaker.bookmarks.bookmarkPrivate(url, {title: title})
+    if (!(await dbrowser.bookmarks.isBookmarked(url))) {
+      await dbrowser.bookmarks.bookmarkPrivate(url, {title: title})
     }
-    await beaker.bookmarks.setBookmarkPinned(url, true)
+    await dbrowser.bookmarks.setBookmarkPinned(url, true)
     toast.create('Pinned to your start page')
   }
 }

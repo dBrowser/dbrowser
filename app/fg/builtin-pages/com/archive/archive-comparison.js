@@ -146,7 +146,7 @@ function renderArchive (archive) {
   if (!archive) return ''
   return yo`
     <span>
-      <img class="favicon" src="beaker-favicon:${archive.url}" /> ${getSafeTitleHTML(archive)}
+      <img class="favicon" src="dbrowser-favicon:${archive.url}" /> ${getSafeTitleHTML(archive)}
     </span>
   `
 }
@@ -184,13 +184,13 @@ function renderRevisions ({base, target, isLocalSyncPath, labels, revisions, isR
           ${target.info.userSettings.localSyncPath
             ? yo`
                 <p class="empty-description">
-                  The files in <a href="beaker://library/${target.url}" onclick=${gotoHomeView}>${getSafeTitleHTML(target)}</a>
+                  The files in <a href="dbrowser://library/${target.url}" onclick=${gotoHomeView}>${getSafeTitleHTML(target)}</a>
                   are in sync with the files in
                   <span onclick=${() => onOpenFolder(target.info.userSettings.localSyncPath)} class="link">${target.info.userSettings.localSyncPath}</span>.
                 </p>`
             : yo`
                 <p class="empty-description">
-                  All the files in <a href="beaker://library/${target.url}" onclick=${gotoHomeView}>${getSafeTitleHTML(target)}</a> have been published to the network.
+                  All the files in <a href="dbrowser://library/${target.url}" onclick=${gotoHomeView}>${getSafeTitleHTML(target)}</a> have been published to the network.
                 </p>`
           }
 
@@ -208,9 +208,9 @@ function renderRevisions ({base, target, isLocalSyncPath, labels, revisions, isR
           </div>
 
           <p>
-            The files in <a href="beaker://library/${base.url}" target="_blank">${getSafeTitleHTML(base)}</a>
+            The files in <a href="dbrowser://library/${base.url}" target="_blank">${getSafeTitleHTML(base)}</a>
             are in sync with the files in
-            <a class="link" href="beaker://library/${target.url}" target="_blank">${getSafeTitleHTML(target)}</a>.
+            <a class="link" href="dbrowser://library/${target.url}" target="_blank">${getSafeTitleHTML(target)}</a>.
           </p>
 
           ${onDeleteDraft

@@ -111,7 +111,7 @@ export const protocolHandler = async function (request, respond) {
         statusCode: code,
         headers: {
           'Content-Type': 'text/html',
-          'Content-Security-Policy': "default-src 'unsafe-inline' beaker:;",
+          'Content-Security-Policy': "default-src 'unsafe-inline' dbrowser:;",
           'Access-Control-Allow-Origin': '*',
           'Allow-CSP-From': '*'
         },
@@ -172,7 +172,7 @@ export const protocolHandler = async function (request, respond) {
     // to the files explorer
     // -prf
     logger.silly(`Redirecting to explorer ${logUrl}`, {url: request.url})
-    return respondRedirect(`beaker://explorer/${urlp.host}${urlp.version ? ('+' + urlp.version) : ''}${urlp.pathname || ''}`)
+    return respondRedirect(`dbrowser://explorer/${urlp.host}${urlp.version ? ('+' + urlp.version) : ''}${urlp.pathname || ''}`)
   }
 
   auditLog.record('-browser', 'serve', {url: urlp.origin, path: urlp.pathname}, undefined, async () => {
@@ -282,14 +282,14 @@ export const protocolHandler = async function (request, respond) {
           'Access-Control-Allow-Origin': '*',
           'Allow-CSP-From': '*',
           'Cache-Control': 'no-cache',
-          'Content-Security-Policy': `default-src 'self' beaker:`
+          'Content-Security-Policy': `default-src 'self' dbrowser:`
         },
         data: intoStream(`<!doctype html>
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="beaker://app-stdlib/css/fontawesome.css">
-    <script type="module" src="beaker://drive-view/index.js"></script>
+    <link rel="stylesheet" href="dbrowser://app-stdlib/css/fontawesome.css">
+    <script type="module" src="dbrowser://drive-view/index.js"></script>
   </head>
 </html>`)
       })

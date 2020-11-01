@@ -219,7 +219,7 @@ class SelectDriveModal extends LitElement {
 
   render () {
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="wrapper">
         <form @submit=${this.onSubmit}>
           <h1 class="title">${this.customTitle || 'Select a drive'}</h1>
@@ -301,8 +301,8 @@ class SelectDriveModal extends LitElement {
         <img
           class="thumb"
           srcset="
-            beaker://assets/img/drive-types/files.png 1x,
-            beaker://assets/img/drive-types/files-64.png 2x
+            dbrowser://assets/img/drive-types/files.png 1x,
+            dbrowser://assets/img/drive-types/files-64.png 2x
           "
         >
         <div class="info">

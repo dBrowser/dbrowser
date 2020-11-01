@@ -37,7 +37,7 @@ export const setup = async function (opts) {
     auto_update_enabled: 1,
     auto_redirect_to_dat: 1,
     custom_start_page: 'blank',
-    new_tab: 'beaker://desktop/',
+    new_tab: 'dbrowser://desktop/',
     new_tabs_in_foreground: 0,
     run_background: 1,
     default_zoom: 0,

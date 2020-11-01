@@ -12,15 +12,15 @@ import bookmarksManifest from '../../bg/web-apis/manifests/internal/bookmarks'
 import hyperdriveManifest from '../../bg/web-apis/manifests/external/hyperdrive'
 import historyManifest from '../../bg/web-apis/manifests/internal/history'
 import locationBarManifest from '../../bg/rpc-manifests/location-bar'
-import beakerFsManifest from '../../bg/web-apis/manifests/internal/beaker-filesystem'
+import beakerFsManifest from '../../bg/web-apis/manifests/internal/dbrowser-filesystem'
 import viewsManifest from '../../bg/rpc-manifests/views'
 const bg = {
-  beakerBrowser: rpc.importAPI('beaker-browser', browserManifest),
+  beakerBrowser: rpc.importAPI('dbrowser-browser', browserManifest),
   bookmarks: rpc.importAPI('bookmarks', bookmarksManifest),
   hyperdrive: rpc.importAPI('hyperdrive', hyperdriveManifest),
   history: rpc.importAPI('history', historyManifest),
   locationBar: rpc.importAPI('background-process-location-bar', locationBarManifest),
-  beakerFs: rpc.importAPI('beaker-filesystem', beakerFsManifest),
+  beakerFs: rpc.importAPI('dbrowser-filesystem', beakerFsManifest),
   views: rpc.importAPI('background-process-views', viewsManifest)
 }
 
@@ -85,13 +85,13 @@ class LocationBar extends LitElement {
           @mouseleave=${this.onMouseleaveSearch}
           @click=${this.onClickSearch}
         >
-          <img src="beaker://assets/search-engines/${label.toLowerCase()}.png">
+          <img src="dbrowser://assets/search-engines/${label.toLowerCase()}.png">
         </a>
       `
     }
 
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="wrapper">
         <input
           type="text"
@@ -119,7 +119,7 @@ class LocationBar extends LitElement {
             ${searchLink('Google', `https://google.com/search?q=${encodeURIComponent(this.inputQuery)}`)}
             ${searchLink('YouTube', `https://www.youtube.com/results?search_query=${encodeURIComponent(this.inputQuery)}`)}
             ${searchLink('Wikipedia', `https://en.wikipedia.org/w/index.php?search=${encodeURIComponent(this.inputQuery)}`)}
-            ${''/* TODO restore at some point esearchLink('Beaker', `beaker://search/?q=${encodeURIComponent(this.inputQuery)}`) */}
+            ${''/* TODO restore at some point esearchLink('dbrowser', `dbrowser://search/?q=${encodeURIComponent(this.inputQuery)}`) */}
           </div>
         </div>
       </div>

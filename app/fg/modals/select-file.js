@@ -366,7 +366,7 @@ class SelectFileModal extends LitElement {
       path: url,
       icon: url.startsWith('dweb:')
         ? url === 'dweb://system/'
-          ? html`<img class="favicon" srcset="beaker://assets/img/drive-types/files.png 1x, beaker://assets/img/drive-types/files-64.png 2x">`
+          ? html`<img class="favicon" srcset="dbrowser://assets/img/drive-types/files.png 1x, dbrowser://assets/img/drive-types/files-64.png 2x">`
           : html`<img class="favicon" src="asset:favicon:${url}">`
         : html`<span class="fa-fw ${icon}"></span>`,
       name,
@@ -473,7 +473,7 @@ class SelectFileModal extends LitElement {
 
   render () {
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div>
         <div class="title">${this.title}</div>
         <div class="wrapper">

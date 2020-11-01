@@ -14,7 +14,7 @@ export function create (message, type = '', time = 5000, button = null) {
 }
 
 export function destroy () {
-  var toast = document.querySelector('beaker-toast')
+  var toast = document.querySelector('dbrowser-toast')
 
   if (toast) {
     // fadeout before removing element
@@ -46,4 +46,4 @@ class BeakerToast extends LitElement {
 }
 BeakerToast.styles = toastCSS
 
-customElements.define('beaker-toast', BeakerToast)
+customElements.define('dbrowser-toast', BeakerToast)

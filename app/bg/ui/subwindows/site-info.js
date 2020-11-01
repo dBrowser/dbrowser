@@ -42,7 +42,7 @@ export function setup (parentWindow) {
   view.webContents.on('console-message', (e, level, message) => {
     console.log('Site-Info window says:', message)
   })
-  view.webContents.loadURL('beaker://site-info/')
+  view.webContents.loadURL('dbrowser://site-info/')
 }
 
 export function destroy (parentWindow) {

@@ -1,6 +1,6 @@
-import { LitElement, html, css } from 'beaker://app-stdlib/vendor/lit-element/lit-element.js'
-import { repeat } from 'beaker://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
-import bytes from 'beaker://app-stdlib/vendor/bytes/index.js'
+import { LitElement, html, css } from 'dbrowser://app-stdlib/vendor/lit-element/lit-element.js'
+import { repeat } from 'dbrowser://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
+import bytes from 'dbrowser://app-stdlib/vendor/bytes/index.js'
 
 class DriveView extends LitElement {
   static get styles () {
@@ -112,7 +112,7 @@ class DriveView extends LitElement {
 
   constructor () {
     super()
-    this.drive = beaker.hyperdrive.drive(location)
+    this.drive = dbrowser.hyperdrive.drive(location)
     this.info = undefined
     this.entries = []
     this.load()
@@ -132,7 +132,7 @@ class DriveView extends LitElement {
   render () {
     if (!this.info) return html``
     return html`
-      <link rel="stylesheet" href="beaker://app-stdlib/css/fontawesome.css">
+      <link rel="stylesheet" href="dbrowser://app-stdlib/css/fontawesome.css">
       <header>
         <h1>
           <img src="/thumb" @error=${e => {e.currentTarget.style.display = 'none'}}>
@@ -193,7 +193,7 @@ class DriveView extends LitElement {
 
   async onClickEditProperties (e) {
     e.preventDefault()
-    await beaker.shell.drivePropertiesDialog(location.origin)
+    await dbrowser.shell.drivePropertiesDialog(location.origin)
     this.load()
   }
 
@@ -212,7 +212,7 @@ class DriveView extends LitElement {
   </body>
 </html>`)
     }
-    window.location = `beaker://editor/?url=${location.origin}${location.pathname}index.${ext}`
+    window.location = `dbrowser://editor/?url=${location.origin}${location.pathname}index.${ext}`
   }
 }
 

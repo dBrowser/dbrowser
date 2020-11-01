@@ -33,7 +33,7 @@ import * as trayIcon from './bg/ui/tray-icon'
 import * as downloads from './bg/ui/downloads'
 import * as permissions from './bg/ui/permissions'
 
-import * as beakerProtocol from './bg/protocols/beaker'
+import * as beakerProtocol from './bg/protocols/dbrowser'
 import * as assetProtocol from './bg/protocols/asset'
 import * as hyperProtocol from './bg/protocols/hyper'
 import * as datProtocol from './bg/protocols/dat'
@@ -68,7 +68,7 @@ app.allowRendererProcessReuse = true
 protocol.registerSchemesAsPrivileged([
   {scheme: 'dwebx', privileges: {standard: true, secure: true, allowServiceWorkers: true, supportFetchAPI: true, corsEnabled: true}},
   {scheme: 'dweb', privileges: {standard: true, secure: true, allowServiceWorkers: true, supportFetchAPI: true, corsEnabled: true}},
-  {scheme: 'beaker', privileges: {standard: true, secure: true, allowServiceWorkers: true, supportFetchAPI: true, corsEnabled: true}}
+  {scheme: 'dbrowser', privileges: {standard: true, secure: true, allowServiceWorkers: true, supportFetchAPI: true, corsEnabled: true}}
 ])
 
 // handle OS event to open URLs
@@ -93,7 +93,7 @@ app.on('ready', async function () {
     homePath: app.getPath('home')
   }
 
-  await logger.setup(join(commonOpts.userDataPath, 'beaker.log'))
+  await logger.setup(join(commonOpts.userDataPath, 'dbrowser.log'))
   log.info('Welcome to dBrowser')
   beakerProtocol.register(protocol)
   webapis.setup()

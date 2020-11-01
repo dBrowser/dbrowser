@@ -1,4 +1,4 @@
-require.config({ baseUrl: 'beaker://assets/' });
+require.config({ baseUrl: 'dbrowser://assets/' });
 require(['vs/editor/editor.main'], function() {
   var commonOpts = {
     renderLineHighlight: 'none',

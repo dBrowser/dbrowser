@@ -11,7 +11,7 @@ var counter = 0
 var history
 var baseUrl
 export default function render (archive, {currentVersion, viewerUrl, filePath, linkifyPaths, includePreview} = {}) {
-  viewerUrl = viewerUrl || 'beaker://library'
+  viewerUrl = viewerUrl || 'dbrowser://library'
   filePath = filePath || ''
   var el = renderHistory()
   //el.isSameNode = (other) => (other && other.classList && other.classList.contains('archive-history'))

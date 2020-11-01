@@ -47,7 +47,7 @@ export class ExplorerApp extends LitElement {
 
   constructor () {
     super()
-    beaker.panes.setAttachable()
+    dbrowser.panes.setAttachable()
 
     // location information
     this.driveInfo = undefined
@@ -72,31 +72,31 @@ export class ExplorerApp extends LitElement {
     this.drives = undefined
     this.profiles = undefined
 
-    beaker.panes.addEventListener('pane-attached', e => {
-      this.attachedPane = beaker.panes.getAttachedPane()
+    dbrowser.panes.addEventListener('pane-attached', e => {
+      this.attachedPane = dbrowser.panes.getAttachedPane()
       if (loc.getUrl() !== this.attachedPane.url) {
         loc.setUrl(this.attachedPane.url)
       }
     })
-    beaker.panes.addEventListener('pane-detached', e => {
+    dbrowser.panes.addEventListener('pane-detached', e => {
       this.attachedPane = undefined
     })
-    beaker.panes.addEventListener('pane-navigated', e => {
+    dbrowser.panes.addEventListener('pane-navigated', e => {
       if (loc.getUrl() !== e.detail.url) {
         loc.setUrl(e.detail.url)
       }
     })
 
     ;(async () => {
-      this.attachedPane = beaker.panes.getAttachedPane()
+      this.attachedPane = dbrowser.panes.getAttachedPane()
       if (this.attachedPane) {
         // already attached, drive them
         if (loc.getUrl() && loc.getUrl() !== this.attachedPane.url) {
-          beaker.panes.navigate(this.attachedPane.id, loc.getUrl())
+          dbrowser.panes.navigate(this.attachedPane.id, loc.getUrl())
         }
       } else {
         // try to attach and then follow their url
-        this.attachedPane = await beaker.panes.attachToLastActivePane()
+        this.attachedPane = await dbrowser.panes.attachToLastActivePane()
         if (this.attachedPane && loc.getUrl() !== this.attachedPane.url) {
           loc.setUrl(this.attachedPane.url)
           return
@@ -192,12 +192,12 @@ export class ExplorerApp extends LitElement {
     }
 
     // read helper state
-    beaker.hyperdrive.readFile('dweb://system/address-book.json', 'json').then(addressBook => {
-      return Promise.all(addressBook.profiles.map(p => beaker.hyperdrive.getInfo(p.key)))
+    dbrowser.hyperdrive.readFile('dweb://system/address-book.json', 'json').then(addressBook => {
+      return Promise.all(addressBook.profiles.map(p => dbrowser.hyperdrive.getInfo(p.key)))
     }).then(profiles => {
       profiles.sort((a, b) => (a.title||'').localeCompare(b.title||''))
       this.profiles = profiles
-      return beaker.drives.list()
+      return dbrowser.drives.list()
     }).then(drives => {
       drives = drives.filter(d => !this.profiles.find(p => p.url === d.url))
       drives.sort((a, b) => (a.info.title||'').localeCompare(b.info.title||''))
@@ -205,7 +205,7 @@ export class ExplorerApp extends LitElement {
     })
 
     // read location information
-    var drive = beaker.hyperdrive.drive(loc.getOrigin())
+    var drive = dbrowser.hyperdrive.drive(loc.getOrigin())
     try {
       this.driveInfo = await this.attempt(`Reading drive information (${loc.getOrigin()})`, () => drive.getInfo())
       this.driveTitle = getDriveTitle(this.driveInfo)
@@ -229,7 +229,7 @@ export class ExplorerApp extends LitElement {
       this.inlineMode = Boolean(getGlobalSavedConfig('inline-mode', false))
       this.sortMode = getGlobalSavedConfig('sort-mode', 'name')
       if (!this.watchStream) {
-        let currentDrive = beaker.hyperdrive.drive(this.currentDriveInfo.url)
+        let currentDrive = dbrowser.hyperdrive.drive(this.currentDriveInfo.url)
         this.watchStream = currentDrive.watch(this.realPathname)
         var hackSetupTime = Date.now()
         this.watchStream.addEventListener('changed', e => {
@@ -283,7 +283,7 @@ export class ExplorerApp extends LitElement {
 
   async readPathAncestry () {
     var ancestry = []
-    var drive = beaker.hyperdrive.drive(loc.getOrigin())
+    var drive = dbrowser.hyperdrive.drive(loc.getOrigin())
     var pathParts = loc.getPath().split('/').filter(Boolean)
     while (pathParts.length) {
       let name = pathParts[pathParts.length - 1]
@@ -301,7 +301,7 @@ export class ExplorerApp extends LitElement {
       if (stat.mount) {
         mount = await this.attempt(
           `Reading drive information (${stat.mount.key}) for parent mount at ${path}`,
-          () => beaker.hyperdrive.drive(stat.mount.key).getInfo()
+          () => dbrowser.hyperdrive.drive(stat.mount.key).getInfo()
         )
       }
       ancestry.unshift({name, path, stat, mount})
@@ -330,7 +330,7 @@ export class ExplorerApp extends LitElement {
       if (item.stat.mount) {
         item.mount = await this.attempt(
           `Reading drive information (${item.stat.mount.key}) for mounted drive at ${item.path}`,
-          () => beaker.hyperdrive.drive(item.stat.mount.key).getInfo()
+          () => dbrowser.hyperdrive.drive(item.stat.mount.key).getInfo()
         )
       }
       item.shareUrl = this.getShareUrl(item)
@@ -361,8 +361,8 @@ export class ExplorerApp extends LitElement {
       item.realUrl = item.url
       item.url = joinPath(loc.getOrigin(), item.path)
       item.shareUrl = this.getShareUrl(item)
-      item.drive = await beaker.hyperdrive.drive(item.drive).getInfo()
-      item.mount = item.mount ? beaker.hyperdrive.drive(item.mount).getInfo() : undefined
+      item.drive = await dbrowser.hyperdrive.drive(item.drive).getInfo()
+      item.mount = item.mount ? dbrowser.hyperdrive.drive(item.mount).getInfo() : undefined
       this.setItemIcons(item)
     })))
 
@@ -701,7 +701,7 @@ export class ExplorerApp extends LitElement {
     }
     if (this.attachedPane) {
       if (newWindow) window.open(url)
-      else beaker.panes.navigate(this.attachedPane.id, url)
+      else dbrowser.panes.navigate(this.attachedPane.id, url)
     } else {
       if (leaveExplorer) {
         if (newWindow) window.open(url)
@@ -772,7 +772,7 @@ export class ExplorerApp extends LitElement {
     var filename = prompt('Enter the name of your new file')
     if (filename) {
       var pathname = joinPath(this.realPathname, filename)
-      var drive = beaker.hyperdrive.drive(this.currentDriveInfo.url)
+      var drive = dbrowser.hyperdrive.drive(this.currentDriveInfo.url)
       if (await drive.stat(pathname).catch(e => false)) {
         toast.create('A file or folder already exists at that name')
         return
@@ -785,7 +785,7 @@ export class ExplorerApp extends LitElement {
         return
       }
       var url = joinPath(loc.getUrl(), filename)
-      window.open(`beaker://editor/?url=${url}`)
+      window.open(`dbrowser://editor/?url=${url}`)
     }
   }
 
@@ -794,7 +794,7 @@ export class ExplorerApp extends LitElement {
     var foldername = prompt('Enter the name of your new folder')
     if (foldername) {
       var pathname = joinPath(this.realPathname, foldername)
-      var drive = beaker.hyperdrive.drive(this.currentDriveInfo.url)
+      var drive = dbrowser.hyperdrive.drive(this.currentDriveInfo.url)
       try {
         await drive.mkdir(pathname)
       } catch (e) {
@@ -806,9 +806,9 @@ export class ExplorerApp extends LitElement {
 
   async onNewMount (e) {
     if (!this.currentDriveInfo.writable) return
-    var drive = beaker.hyperdrive.drive(this.currentDriveInfo.url)
-    var targetUrl = await beaker.shell.selectDriveDialog({title: 'Select a drive'})
-    var target = beaker.hyperdrive.drive(targetUrl)
+    var drive = dbrowser.hyperdrive.drive(this.currentDriveInfo.url)
+    var targetUrl = await dbrowser.shell.selectDriveDialog({title: 'Select a drive'})
+    var target = dbrowser.hyperdrive.drive(targetUrl)
     var info = await target.getInfo()
     var name = await getAvailableName(drive, this.realPathname, info.title)
     name = prompt('Enter the mount name', name)
@@ -822,13 +822,13 @@ export class ExplorerApp extends LitElement {
   }
 
   async onForkDrive (e) {
-    var drive = await beaker.hyperdrive.forkDrive(this.currentDriveInfo.url)
+    var drive = await dbrowser.hyperdrive.forkDrive(this.currentDriveInfo.url)
     toast.create('Drive created')
     loc.setUrl(drive.url)
   }
 
   async onDriveProperties (e) {
-    await beaker.shell.drivePropertiesDialog(this.currentDriveInfo.url)
+    await dbrowser.shell.drivePropertiesDialog(this.currentDriveInfo.url)
     this.load()
   }
 
@@ -836,7 +836,7 @@ export class ExplorerApp extends LitElement {
     if (!this.currentDriveInfo.writable) return
     toast.create('Importing...')
     try {
-      var {numImported} = await beaker.shell.importFilesDialog(loc.getUrl())
+      var {numImported} = await dbrowser.shell.importFilesDialog(loc.getUrl())
       if (numImported > 0) toast.create('Import complete', 'success')
       else toast.destroy()
     } catch (e) {
@@ -849,7 +849,7 @@ export class ExplorerApp extends LitElement {
     if (!this.currentDriveInfo.writable) return
     toast.create('Importing...')
     try {
-      var {numImported} = await beaker.shell.importFoldersDialog(loc.getUrl())
+      var {numImported} = await dbrowser.shell.importFoldersDialog(loc.getUrl())
       if (numImported > 0) toast.create('Import complete', 'success')
       else toast.destroy()
     } catch (e) {
@@ -862,7 +862,7 @@ export class ExplorerApp extends LitElement {
     var urls = (this.selection.length ? this.selection : this.items).map(item => item.url)
     toast.create('Exporting...')
     try {
-      var {numExported} = await beaker.shell.exportFilesDialog(urls)
+      var {numExported} = await dbrowser.shell.exportFilesDialog(urls)
       if (numExported > 0) toast.create('Export complete', 'success')
       else toast.destroy()
     } catch (e) {
@@ -878,7 +878,7 @@ export class ExplorerApp extends LitElement {
     if (newName) {
       var oldPath = this.selection[0] ? joinPath(this.realPathname, oldName) : this.realPathname
       var newPath = oldPath.split('/').slice(0, -1).concat([newName]).join('/')
-      var drive = beaker.hyperdrive.drive(this.currentDriveInfo.url)
+      var drive = dbrowser.hyperdrive.drive(this.currentDriveInfo.url)
       try {
         await drive.rename(oldPath, newPath)
       } catch (e) {
@@ -896,7 +896,7 @@ export class ExplorerApp extends LitElement {
   async onDelete (e) {
     if (!this.currentDriveInfo.writable) return
 
-    var drive = beaker.hyperdrive.drive(this.currentDriveInfo.url)
+    var drive = dbrowser.hyperdrive.drive(this.currentDriveInfo.url)
     const del = async (path, stat) => {
       if (stat.mount && stat.mount.key) {
         await drive.unmount(path)
@@ -938,7 +938,7 @@ export class ExplorerApp extends LitElement {
   async onUpdateFileMetadata (e) {
     if (!this.currentDriveInfo.writable) return
     var {newMetadata, deletedKeys} = e.detail
-    var drive = beaker.hyperdrive.drive(this.currentDriveInfo.url)
+    var drive = dbrowser.hyperdrive.drive(this.currentDriveInfo.url)
     try {
       if (this.selection.length) {
         for (let sel of this.selection) {
@@ -962,7 +962,7 @@ export class ExplorerApp extends LitElement {
 
   async onShowMenu (e, useAppMenuAlways = false) {
     var items = constructContextMenuItems(this)
-    if (!useAppMenuAlways && typeof beaker !== 'undefined' && typeof beaker.browser !== 'undefined') {
+    if (!useAppMenuAlways && typeof dbrowser !== 'undefined' && typeof dbrowser.browser !== 'undefined') {
       let fns = {}
       for (let i = 0; i < items.length; i++) {
         if (items[i].id) continue
@@ -973,7 +973,7 @@ export class ExplorerApp extends LitElement {
         delete items[i].icon
         delete items[i].click
       }
-      var choice = await beaker.browser.showContextMenu(items, true)
+      var choice = await dbrowser.browser.showContextMenu(items, true)
       if (fns[choice]) fns[choice]()
     } else {
       return contextMenu.create({
@@ -1003,13 +1003,13 @@ export class ExplorerApp extends LitElement {
   }
 
   async doDiff (base) {
-    if (this.attachedMode) beaker.browser.gotoUrl(`beaker://diff/?base=${base}`)
-    else window.open(`beaker://diff/?base=${base}`)
+    if (this.attachedMode) dbrowser.browser.gotoUrl(`dbrowser://diff/?base=${base}`)
+    else window.open(`dbrowser://diff/?base=${base}`)
   }
 
   async onSelectDrive (e) {
     e.preventDefault()
-    var drive = await beaker.shell.selectDriveDialog()
+    var drive = await dbrowser.shell.selectDriveDialog()
     loc.setUrl(drive)
   }
 }

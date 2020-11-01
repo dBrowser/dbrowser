@@ -22,12 +22,12 @@ export class BeakerEditProfile extends BasePopup {
   static async runFlow (profiles) {
     var profile = await profiles.me()
     var newValues = await BeakerEditProfile.create(profile)
-    await beaker.hyperdrive.drive(profile.url).configure(newValues)
+    await dbrowser.hyperdrive.drive(profile.url).configure(newValues)
     return profiles.me()
   }
 
   static destroy () {
-    return BasePopup.destroy('beaker-edit-profile')
+    return BasePopup.destroy('dbrowser-edit-profile')
   }
 
   // rendering
@@ -105,4 +105,4 @@ img {
 }
 `]
 
-customElements.define('beaker-edit-profile', BeakerEditProfile)
+customElements.define('dbrowser-edit-profile', BeakerEditProfile)

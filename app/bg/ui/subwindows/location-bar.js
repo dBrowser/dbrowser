@@ -36,7 +36,7 @@ export function setup (parentWindow) {
   view.webContents.on('console-message', (e, level, message) => {
     console.log('Location-Bar window says:', message)
   })
-  view.webContents.loadURL('beaker://location-bar/')
+  view.webContents.loadURL('dbrowser://location-bar/')
 }
 
 export function destroy (parentWindow) {

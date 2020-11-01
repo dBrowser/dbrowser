@@ -1,4 +1,4 @@
-import {css} from 'beaker://app-stdlib/vendor/lit-element/lit-element.js'
+import {css} from 'dbrowser://app-stdlib/vendor/lit-element/lit-element.js'
 
 const cssStr = css`
 :host {

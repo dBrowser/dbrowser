@@ -42,9 +42,9 @@ class NetworkView extends LitElement {
   async load () {
     this.error = undefined
     try {
-      var networkStatus = await beaker.browser.getDaemonNetworkStatus()
+      var networkStatus = await dbrowser.browser.getDaemonNetworkStatus()
       for (let stats of networkStatus) {
-        stats[0].drive = await beaker.drives.get(stats[0].metadata.key)
+        stats[0].drive = await dbrowser.drives.get(stats[0].metadata.key)
       }
       this.networkStatus = networkStatus
       console.log(this.networkStatus)
@@ -61,7 +61,7 @@ class NetworkView extends LitElement {
 
   render () {
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <h3>Active Drives</h3>
       ${this.error ? html`
         <pre>${this.error.toString()}</pre>

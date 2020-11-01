@@ -1,5 +1,5 @@
-import { LitElement, html } from 'beaker://app-stdlib/vendor/lit-element/lit-element.js'
-import { repeat } from 'beaker://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
+import { LitElement, html } from 'dbrowser://app-stdlib/vendor/lit-element/lit-element.js'
+import { repeat } from 'dbrowser://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
 import recentCSS from '../../css/views/recent.css.js'
 
 export class RecentView extends LitElement {
@@ -28,7 +28,7 @@ export class RecentView extends LitElement {
   }
 
   async load () {
-    var links = await beaker.history.getVisitHistory({search: this.filter})
+    var links = await dbrowser.history.getVisitHistory({search: this.filter})
     this.links = links
   }
 
@@ -41,7 +41,7 @@ export class RecentView extends LitElement {
       links = links.filter(link => link.title.toLowerCase().includes(this.filter))
     }
     return html`
-      <link rel="stylesheet" href="beaker://app-stdlib/css/fontawesome.css">
+      <link rel="stylesheet" href="dbrowser://app-stdlib/css/fontawesome.css">
       ${links ? html`
         <div class="links">
           ${repeat(links, link => this.renderLink(link))}

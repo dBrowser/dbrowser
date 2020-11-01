@@ -1,6 +1,6 @@
-import { LitElement, html } from 'beaker://app-stdlib/vendor/lit-element/lit-element.js'
-import * as toast from 'beaker://app-stdlib/js/com/toast.js'
-import * as contextMenu from 'beaker://app-stdlib/js/com/context-menu.js'
+import { LitElement, html } from 'dbrowser://app-stdlib/vendor/lit-element/lit-element.js'
+import * as toast from 'dbrowser://app-stdlib/js/com/toast.js'
+import * as contextMenu from 'dbrowser://app-stdlib/js/com/context-menu.js'
 import { EditBookmarkPopup } from './com/edit-bookmark-popup.js'
 import { AddContactPopup } from './com/add-contact-popup.js'
 import mainCSS from '../css/main.css.js'
@@ -57,7 +57,7 @@ export class LibraryApp extends LitElement {
       </a>
     `
     return html`
-      <link rel="stylesheet" href="beaker://app-stdlib/css/fontawesome.css">
+      <link rel="stylesheet" href="dbrowser://app-stdlib/css/fontawesome.css">
       <header>
         <div class="brand">
           <span class="fas fa-fw fa-list"></span>
@@ -116,14 +116,14 @@ export class LibraryApp extends LitElement {
       top: false,
       roomy: true,
       noBorders: true,
-      fontAwesomeCSSUrl: 'beaker://assets/font-awesome.css',
+      fontAwesomeCSSUrl: 'dbrowser://assets/font-awesome.css',
       style: `padding: 4px 0`,
       items: [
         {
           icon: 'far fa-hdd',
           label: 'DDrive',
           click: async () => {
-            var drive = await beaker.hyperdrive.createDrive()
+            var drive = await dbrowser.hyperdrive.createDrive()
             toast.create('Drive created')
             window.location = drive.url
           }

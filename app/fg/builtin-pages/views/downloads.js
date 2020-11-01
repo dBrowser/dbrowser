@@ -30,7 +30,7 @@ function render () {
     <div class="downloads-wrapper builtin-wrapper">
       <div class="builtin-main">
         <div class="builtin-sidebar">
-          ${renderBuiltinPagesNav('beaker://downloads/', 'Downloads')}
+          ${renderBuiltinPagesNav('dbrowser://downloads/', 'Downloads')}
         </div>
         ${renderDownloadsList(downloadsList)}
       </div>

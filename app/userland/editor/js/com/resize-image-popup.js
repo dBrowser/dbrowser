@@ -27,7 +27,7 @@ export class ResizeImagePopup extends BasePopup {
   }
 
   static destroy () {
-    return BasePopup.destroy('beaker-edit-thumb')
+    return BasePopup.destroy('dbrowser-edit-thumb')
   }
 
   // rendering
@@ -201,4 +201,4 @@ input[type="file"] {
 }
 `]
 
-customElements.define('beaker-resize-image', ResizeImagePopup)
+customElements.define('dbrowser-resize-image', ResizeImagePopup)

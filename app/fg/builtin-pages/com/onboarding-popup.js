@@ -1,4 +1,4 @@
-/* globals beaker DatArchive localStorage */
+/* globals dbrowser DatArchive localStorage */
 
 import yo from 'yo-yo'
 
@@ -20,7 +20,7 @@ const STEPS = [
     description: 'DBrowser is a browser for exploring and building the peer-to-peer Web.',
     content: () => yo`
       <div>
-        <img class="icon" src="beaker://assets/img/onboarding/p2p-connection.svg" />
+        <img class="icon" src="dbrowser://assets/img/onboarding/p2p-connection.svg" />
 
         <p>
           <label class="toggle">
@@ -43,9 +43,9 @@ const STEPS = [
     color: 'blue',
     onLeave: async () => {
       if (defaultProtocolSettings.dat) {
-        await beaker.browser.setAsDefaultProtocolClient('dwebx')
+        await dbrowser.browser.setAsDefaultProtocolClient('dwebx')
       } else {
-        await beaker.browser.removeAsDefaultProtocolClient('dwebx')
+        await dbrowser.browser.removeAsDefaultProtocolClient('dwebx')
       }
     }
   },
@@ -56,7 +56,7 @@ const STEPS = [
     content: () => yo`
       <p>
         <div class="module" onclick=${onCreateWebsite}>
-          <img src="beaker://assets/img/onboarding/create-website.svg"/>
+          <img src="dbrowser://assets/img/onboarding/create-website.svg"/>
 
           <span>
             <h3 class="module-heading">
@@ -71,7 +71,7 @@ const STEPS = [
         </div>
 
         <a href="dwebx://explore.beakerbrowser.com" class="module" target="_blank">
-          <img src="beaker://assets/img/onboarding/community.svg"/>
+          <img src="dbrowser://assets/img/onboarding/community.svg"/>
 
           <span>
             <h3 class="module-heading">
@@ -86,7 +86,7 @@ const STEPS = [
         </a>
 
         <a href="dwebx://beakerbrowser.com/docs" class="module" target="_blank">
-          <img src="beaker://assets/img/onboarding/documentation.svg"/>
+          <img src="dbrowser://assets/img/onboarding/documentation.svg"/>
 
           <span>
             <h3 class="module-heading">
@@ -109,15 +109,15 @@ const STEPS = [
 
 async function onCreateWebsite () {
   var archive = await DatArchive.create({template: 'website', prompt: false})
-  window.location = `beaker://editor/${archive.url}#setup`
+  window.location = `dbrowser://editor/${archive.url}#setup`
 }
 
 // exported api
 // =
 
 export async function create (opts = {}) {
-  settings = await beaker.browser.getSettings()
-  defaultProtocolSettings = await beaker.browser.getDefaultProtocolSettings()
+  settings = await dbrowser.browser.getSettings()
+  defaultProtocolSettings = await dbrowser.browser.getDefaultProtocolSettings()
   currentStep = (opts.showHelpOnly) ? (STEPS.length - 1) : 0
   showNavigation = !opts.showHelpOnly
 

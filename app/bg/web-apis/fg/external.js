@@ -15,7 +15,7 @@ export const setup = function (rpc) {
   var markdown = rpc.importAPI('markdown', markdownManifest, RPC_OPTS)
   var shell = rpc.importAPI('shell', shellManifest, RPC_OPTS)
 
-  if (window.location.protocol !== 'beaker:') {
+  if (window.location.protocol !== 'dbrowser:') {
     delete shell.importFilesAndFolders
     delete shell.importFilesDialog
     delete shell.importFoldersDialog

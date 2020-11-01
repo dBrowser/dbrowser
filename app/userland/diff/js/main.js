@@ -1,12 +1,12 @@
-import { LitElement, html } from 'beaker://app-stdlib/vendor/lit-element/lit-element.js'
-import { repeat } from 'beaker://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
-import { emit } from 'beaker://app-stdlib/js/dom.js'
-import { pluralize, toNiceDomain } from 'beaker://app-stdlib/js/strings.js'
-import { isFilenameBinary } from 'beaker://app-stdlib/js/is-ext-binary.js'
-import * as toast from 'beaker://app-stdlib/js/com/toast.js'
-import * as contextMenu from 'beaker://app-stdlib/js/com/context-menu.js'
-import * as QP from 'beaker://app-stdlib/js/query-params.js'
-import { writeToClipboard } from 'beaker://app-stdlib/js/clipboard.js'
+import { LitElement, html } from 'dbrowser://app-stdlib/vendor/lit-element/lit-element.js'
+import { repeat } from 'dbrowser://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
+import { emit } from 'dbrowser://app-stdlib/js/dom.js'
+import { pluralize, toNiceDomain } from 'dbrowser://app-stdlib/js/strings.js'
+import { isFilenameBinary } from 'dbrowser://app-stdlib/js/is-ext-binary.js'
+import * as toast from 'dbrowser://app-stdlib/js/com/toast.js'
+import * as contextMenu from 'dbrowser://app-stdlib/js/com/context-menu.js'
+import * as QP from 'dbrowser://app-stdlib/js/query-params.js'
+import { writeToClipboard } from 'dbrowser://app-stdlib/js/clipboard.js'
 import * as compare from './lib/compare.js'
 
 var isMonacoLoaded = false
@@ -65,7 +65,7 @@ export class CompareApp extends LitElement {
   async load () {
     if (!this.otherDrives) {
       ;(async () => {
-        this.otherDrives = await beaker.drives.list({includeSystem: false})
+        this.otherDrives = await dbrowser.drives.list({includeSystem: false})
 
         // move forks onto their parents
         this.otherDrives = this.otherDrives.filter(drive => {
@@ -82,8 +82,8 @@ export class CompareApp extends LitElement {
       })()
     }
 
-    this.baseDrive = this.base ? beaker.hyperdrive.drive(this.base) : undefined
-    this.targetDrive = this.target ? beaker.hyperdrive.drive(this.target) : undefined
+    this.baseDrive = this.base ? dbrowser.hyperdrive.drive(this.base) : undefined
+    this.targetDrive = this.target ? dbrowser.hyperdrive.drive(this.target) : undefined
     await this.attempt(
       'Reading information about the drives',
       async () => {
@@ -111,12 +111,12 @@ export class CompareApp extends LitElement {
     this.baseForks = this.baseInfo
       ? await this.attempt(
         'Fetching known forks of the base drive',
-        () => beaker.drives.getForks(this.baseInfo.url)
+        () => dbrowser.drives.getForks(this.baseInfo.url)
        ) : undefined
     this.targetForks = this.targetInfo
       ? await this.attempt(
         'Fetching known forks of the target drive',
-        () => beaker.drives.getForks(this.targetInfo.url)
+        () => dbrowser.drives.getForks(this.targetInfo.url)
        ) : undefined
 
     if (this.baseInfo && this.targetInfo) {
@@ -134,7 +134,7 @@ export class CompareApp extends LitElement {
 
     if (!isMonacoLoaded) {
       await new Promise((resolve, reject) => {
-        window.require.config({ baseUrl: 'beaker://assets/' })
+        window.require.config({ baseUrl: 'dbrowser://assets/' })
         window.require(['vs/editor/editor.main'], () => {
           isMonacoLoaded = true
           resolve()
@@ -174,7 +174,7 @@ export class CompareApp extends LitElement {
       deletions: this.checkedItems?.filter?.(d => d.change === 'del')?.length
     }
     return html`
-      <link rel="stylesheet" href="beaker://app-stdlib/css/fontawesome.css">
+      <link rel="stylesheet" href="dbrowser://app-stdlib/css/fontawesome.css">
       <header>
         <div class="toolbar">
           <div class="title">
@@ -345,7 +345,7 @@ export class CompareApp extends LitElement {
       x: rect.left,
       y: rect.bottom,
       left: true,
-      fontAwesomeCSSUrl: 'beaker://assets/font-awesome.css',
+      fontAwesomeCSSUrl: 'dbrowser://assets/font-awesome.css',
       noBorders: true,
       style: `padding: 4px 0`,
       items: this.otherDrives.slice(0, 10).map(drive => ({
@@ -361,7 +361,7 @@ export class CompareApp extends LitElement {
           icon: 'far fa-fw fa-hdd',
           label: 'Browse...',
           click: async () => {
-            this.base = await beaker.shell.selectDriveDialog()
+            this.base = await dbrowser.shell.selectDriveDialog()
             this.load()
           }
         }
@@ -377,7 +377,7 @@ export class CompareApp extends LitElement {
       x: rect.left,
       y: rect.bottom,
       left: true,
-      fontAwesomeCSSUrl: 'beaker://assets/font-awesome.css',
+      fontAwesomeCSSUrl: 'dbrowser://assets/font-awesome.css',
       noBorders: true,
       style: `padding: 4px 0`,
       items: this.baseForks.map(fork => ({
@@ -399,7 +399,7 @@ export class CompareApp extends LitElement {
       x: rect.left,
       y: rect.bottom,
       left: true,
-      fontAwesomeCSSUrl: 'beaker://assets/font-awesome.css',
+      fontAwesomeCSSUrl: 'dbrowser://assets/font-awesome.css',
       noBorders: true,
       style: `padding: 4px 0`,
       items: this.otherDrives.slice(0, 10).map(drive => ({
@@ -415,7 +415,7 @@ export class CompareApp extends LitElement {
           icon: 'far fa-fw fa-hdd',
           label: 'Browse...',
           click: async () => {
-            this.target = await beaker.shell.selectDriveDialog()
+            this.target = await dbrowser.shell.selectDriveDialog()
             this.load()
           }
         }
@@ -431,7 +431,7 @@ export class CompareApp extends LitElement {
       x: rect.left,
       y: rect.bottom,
       left: true,
-      fontAwesomeCSSUrl: 'beaker://assets/font-awesome.css',
+      fontAwesomeCSSUrl: 'dbrowser://assets/font-awesome.css',
       noBorders: true,
       style: `padding: 4px 0`,
       items: this.targetForks.map(fork => ({
@@ -604,14 +604,14 @@ class CompareDiffItemContent extends LitElement {
 
   renderLeftColumn () {
     if (this.diff.change === 'del' || this.diff.change === 'mod') {
-      return this.renderFileContent(beaker.hyperdrive.drive(this.targetOrigin), this.diff.targetPath, this.diff.targetMountKey)
+      return this.renderFileContent(dbrowser.hyperdrive.drive(this.targetOrigin), this.diff.targetPath, this.diff.targetMountKey)
     }
     return ''
   }
 
   renderRightColumn () {
     if (this.diff.change === 'add' || this.diff.change === 'mod') {
-      return this.renderFileContent(beaker.hyperdrive.drive(this.baseOrigin), this.diff.basePath, this.diff.baseMountKey)
+      return this.renderFileContent(dbrowser.hyperdrive.drive(this.baseOrigin), this.diff.basePath, this.diff.baseMountKey)
     }
     return ''
   }
@@ -640,8 +640,8 @@ class CompareDiffItemContent extends LitElement {
     var editorEl = this.querySelector('.editor-container')
     if (!editorEl) return
     var [baseContent, targetContent] = await Promise.all([
-      this.diff.change === 'del' || this.diff.change === 'mod' ? (beaker.hyperdrive.drive(this.targetOrigin)).readFile(this.diff.targetPath).catch(e => '') : '',
-      this.diff.change === 'add' || this.diff.change === 'mod' ? (beaker.hyperdrive.drive(this.baseOrigin)).readFile(this.diff.basePath).catch(e => '') : '',
+      this.diff.change === 'del' || this.diff.change === 'mod' ? (dbrowser.hyperdrive.drive(this.targetOrigin)).readFile(this.diff.targetPath).catch(e => '') : '',
+      this.diff.change === 'add' || this.diff.change === 'mod' ? (dbrowser.hyperdrive.drive(this.baseOrigin)).readFile(this.diff.basePath).catch(e => '') : '',
     ])
     createDiffEditor(editorEl, baseContent, targetContent)
   }

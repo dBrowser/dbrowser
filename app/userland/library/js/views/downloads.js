@@ -1,8 +1,8 @@
-import { LitElement, html } from 'beaker://app-stdlib/vendor/lit-element/lit-element.js'
-import { repeat } from 'beaker://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
-import { writeToClipboard } from 'beaker://app-stdlib/js/clipboard.js'
-import bytes from 'beaker://app-stdlib/vendor/bytes/index.js'
-import { toNiceDomain } from 'beaker://app-stdlib/js/strings.js'
+import { LitElement, html } from 'dbrowser://app-stdlib/vendor/lit-element/lit-element.js'
+import { repeat } from 'dbrowser://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
+import { writeToClipboard } from 'dbrowser://app-stdlib/js/clipboard.js'
+import bytes from 'dbrowser://app-stdlib/vendor/bytes/index.js'
+import { toNiceDomain } from 'dbrowser://app-stdlib/js/strings.js'
 import downloadsCSS from '../../css/views/downloads.css.js'
 
 export class DownloadsView extends LitElement {
@@ -24,10 +24,10 @@ export class DownloadsView extends LitElement {
   }
 
   async load () {
-    this.downloads = await beaker.downloads.getDownloads()
+    this.downloads = await dbrowser.downloads.getDownloads()
     console.log(this.downloads)
 
-    var dlEvents = beaker.downloads.createEventsStream()
+    var dlEvents = dbrowser.downloads.createEventsStream()
     dlEvents.addEventListener('updated', this.onUpdateDownload.bind(this))
     dlEvents.addEventListener('done', this.onUpdateDownload.bind(this))
   }
@@ -43,7 +43,7 @@ export class DownloadsView extends LitElement {
       ))
     }
     return html`
-      <link rel="stylesheet" href="beaker://app-stdlib/css/fontawesome.css">
+      <link rel="stylesheet" href="dbrowser://app-stdlib/css/fontawesome.css">
       ${downloads ? html`
         <div class="downloads">
           ${repeat(downloads, download => this.renderDownload(download))}
@@ -180,15 +180,15 @@ export class DownloadsView extends LitElement {
   }
 
   onPauseDownload (download) {
-    beaker.downloads.pause(download.id)
+    dbrowser.downloads.pause(download.id)
   }
 
   onResumeDownload (download) {
-    beaker.downloads.resume(download.id)
+    dbrowser.downloads.resume(download.id)
   }
 
   onCancelDownload (download) {
-    beaker.downloads.cancel(download.id)
+    dbrowser.downloads.cancel(download.id)
   }
 
   onCopyDownloadLink (download) {
@@ -196,7 +196,7 @@ export class DownloadsView extends LitElement {
   }
 
   onShowDownload (download) {
-    beaker.downloads.showInFolder(download.id)
+    dbrowser.downloads.showInFolder(download.id)
       .catch(err => {
         download.fileNotFound = true
         this.requestUpdate()
@@ -204,7 +204,7 @@ export class DownloadsView extends LitElement {
   }
 
   onOpenDownload (download) {
-    beaker.downloads.open(download.id)
+    dbrowser.downloads.open(download.id)
       .catch(err => {
         download.fileNotFound = true
         this.requestUpdate()
@@ -212,7 +212,7 @@ export class DownloadsView extends LitElement {
   }
 
   onRemoveDownload (download) {
-    beaker.downloads.remove(download.id)
+    dbrowser.downloads.remove(download.id)
     this.downloads.splice(this.downloads.indexOf(download), 1)
     this.requestUpdate()
   }

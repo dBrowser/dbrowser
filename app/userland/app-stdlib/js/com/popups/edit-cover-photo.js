@@ -34,7 +34,7 @@ export class BeakerEditCoverPhoto extends BasePopup {
 
   static async runFlow (profiles) {
     var profile = await profiles.me()
-    var drive = beaker.hyperdrive.drive(profile.url)
+    var drive = dbrowser.hyperdrive.drive(profile.url)
 
     // find the existing cover
     var existingCoverPath = null
@@ -59,7 +59,7 @@ export class BeakerEditCoverPhoto extends BasePopup {
   }
 
   static destroy () {
-    return BasePopup.destroy('beaker-edit-cover-photo')
+    return BasePopup.destroy('dbrowser-edit-cover-photo')
   }
 
   // rendering
@@ -148,4 +148,4 @@ input[type="file"] {
 }
 `]
 
-customElements.define('beaker-edit-cover-photo', BeakerEditCoverPhoto)
+customElements.define('dbrowser-edit-cover-photo', BeakerEditCoverPhoto)

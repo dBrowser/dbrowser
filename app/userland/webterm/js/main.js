@@ -1,12 +1,12 @@
-import { LitElement, html, TemplateResult } from 'beaker://app-stdlib/vendor/lit-element/lit-element.js'
-import { render } from 'beaker://app-stdlib/vendor/lit-element/lit-html/lit-html.js'
-import { repeat } from 'beaker://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
+import { LitElement, html, TemplateResult } from 'dbrowser://app-stdlib/vendor/lit-element/lit-element.js'
+import { render } from 'dbrowser://app-stdlib/vendor/lit-element/lit-html/lit-html.js'
+import { repeat } from 'dbrowser://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
 import { parser } from './lib/parser.js'
 import { Cliclopts } from './lib/cliclopts.1.1.1.js'
 import { createDrive } from './lib/term-drive-wrapper.js'
 import { importModule } from './lib/import-module.js'
-import { joinPath, shortenAllKeys } from 'beaker://app-stdlib/js/strings.js'
-import { findParent } from 'beaker://app-stdlib/js/dom.js'
+import { joinPath, shortenAllKeys } from 'dbrowser://app-stdlib/js/strings.js'
+import { findParent } from 'dbrowser://app-stdlib/js/dom.js'
 import css from '../css/main.css.js'
 import './lib/term-icon.js'
 
@@ -53,7 +53,7 @@ class WebTerm extends LitElement {
 
   constructor () {
     super()
-    beaker.panes.setAttachable()
+    dbrowser.panes.setAttachable()
     this.attachedPane = undefined
     this.isLoaded = false
     this.startUrl = ''
@@ -100,7 +100,7 @@ class WebTerm extends LitElement {
           window.open(anchor.getAttribute('href'))
         } else {
           if (this.attachedPane) {
-            beaker.panes.navigate(this.attachedPane.id, anchor.getAttribute('href'))
+            dbrowser.panes.navigate(this.attachedPane.id, anchor.getAttribute('href'))
           } else {
             window.location = anchor.getAttribute('href')
           }
@@ -113,22 +113,22 @@ class WebTerm extends LitElement {
       }
     })
 
-    beaker.panes.addEventListener('pane-attached', e => {
-      this.attachedPane = beaker.panes.getAttachedPane()
+    dbrowser.panes.addEventListener('pane-attached', e => {
+      this.attachedPane = dbrowser.panes.getAttachedPane()
       this.setCWD(this.attachedPane.url)
     })
-    beaker.panes.addEventListener('pane-detached', e => {
+    dbrowser.panes.addEventListener('pane-detached', e => {
       this.attachedPane = undefined
     })
-    beaker.panes.addEventListener('pane-navigated', e => {
+    dbrowser.panes.addEventListener('pane-navigated', e => {
       this.attachedPane.url = e.detail.url
       this.setCWD(e.detail.url)
     })
 
     ;(async () => {
       let ctx = (new URLSearchParams(location.search)).get('url')
-      if (ctx && ctx.startsWith('beaker://webterm')) ctx = undefined
-      this.attachedPane = await beaker.panes.attachToLastActivePane()
+      if (ctx && ctx.startsWith('dbrowser://webterm')) ctx = undefined
+      this.attachedPane = await dbrowser.panes.attachToLastActivePane()
       if (this.attachedPane) {
         ctx = this.attachedPane.url
       }
@@ -195,16 +195,16 @@ class WebTerm extends LitElement {
 
   async loadCommands () {
     var packages = [{
-      url: 'beaker://std-cmds/',
-      manifest: JSON.parse(await beaker.browser.readFile('beaker://std-cmds/index.json', 'utf8'))
+      url: 'dbrowser://std-cmds/',
+      manifest: JSON.parse(await dbrowser.browser.readFile('dbrowser://std-cmds/index.json', 'utf8'))
     }]
 
-    var cmdPkgDrives = await beaker.hyperdrive.readFile('dweb://system/webterm/command-packages.json').then(JSON.parse).catch(e => ([]))
+    var cmdPkgDrives = await dbrowser.hyperdrive.readFile('dweb://system/webterm/command-packages.json').then(JSON.parse).catch(e => ([]))
     for (let driveUrl of cmdPkgDrives) {
       try {
         packages.push({
           url: driveUrl,
-          manifest: JSON.parse(await beaker.hyperdrive.drive(driveUrl).readFile(`index.json`))
+          manifest: JSON.parse(await dbrowser.hyperdrive.drive(driveUrl).readFile(`index.json`))
         })
       } catch (e) {
         console.log(e)
@@ -262,16 +262,16 @@ class WebTerm extends LitElement {
   }
 
   async loadPageCommands () {
-    this.attachedPane = beaker.panes.getAttachedPane()
+    this.attachedPane = dbrowser.panes.getAttachedPane()
     if (!this.attachedPane) {
       this.pageCommands = {}
       return
     }
-    this.pageCommands = await beaker.panes.executeJavaScript(this.attachedPane.id, `
+    this.pageCommands = await dbrowser.panes.executeJavaScript(this.attachedPane.id, `
       ;(() => {
         let commands = {}
-        if (beaker.terminal.getCommands().length) {
-          for (let command of beaker.terminal.getCommands()) {
+        if (dbrowser.terminal.getCommands().length) {
+          for (let command of dbrowser.terminal.getCommands()) {
             commands[command.name] = {
               package: 'page commands',
               name: '@' + command.name,
@@ -311,7 +311,7 @@ class WebTerm extends LitElement {
     this.url = location
     this.cwd = locationParsed
     if (this.attachedPane && this.attachedPane.url !== locationParsed.toString()) {
-      beaker.panes.navigate(this.attachedPane.id, locationParsed.toString())
+      dbrowser.panes.navigate(this.attachedPane.id, locationParsed.toString())
     }
     this.requestUpdate()
   }
@@ -451,7 +451,7 @@ class WebTerm extends LitElement {
     }
     this.commandHist.add(prompt.value)
 
-    this.attachedPane = beaker.panes.getAttachedPane()
+    this.attachedPane = dbrowser.panes.getAttachedPane()
     this.envVars['@'] = this.attachedPane ? this.attachedPane.url : this.cwd.toString()
 
     var inputValue = prompt.value
@@ -472,9 +472,9 @@ class WebTerm extends LitElement {
       await this.loadPageCommands()
       command = this.pageCommands[commandName.slice(1)]
       if (command) {
-        command.fn = (...args) => beaker.panes.executeJavaScript(this.attachedPane.id, `
+        command.fn = (...args) => dbrowser.panes.executeJavaScript(this.attachedPane.id, `
           ;(() => {
-            let command = beaker.terminal.getCommands().find(c => c.name === ${JSON.stringify(commandName.slice(1))});
+            let command = dbrowser.terminal.getCommands().find(c => c.name === ${JSON.stringify(commandName.slice(1))});
             if (command) {
               return command.handle.apply(command, ${JSON.stringify(args)})
             }
@@ -528,35 +528,35 @@ class WebTerm extends LitElement {
           goto (url, opts = {}) {
             if (opts.newTab) window.open(url)
             else {
-              var pane = beaker.panes.getAttachedPane()
+              var pane = dbrowser.panes.getAttachedPane()
               if (!pane) throw new Error('No attached pane')
-              beaker.panes.navigate(pane.id, url)
+              dbrowser.panes.navigate(pane.id, url)
             }
           },
           refresh () {
-            var pane = beaker.panes.getAttachedPane()
+            var pane = dbrowser.panes.getAttachedPane()
             if (!pane) throw new Error('No attached pane')
-            beaker.panes.navigate(pane.id, pane.url)
+            dbrowser.panes.navigate(pane.id, pane.url)
           },
           focus () {
-            var pane = beaker.panes.getAttachedPane()
+            var pane = dbrowser.panes.getAttachedPane()
             if (!pane) throw new Error('No attached pane')
-            beaker.panes.focus(pane.id)
+            dbrowser.panes.focus(pane.id)
           },
           exec (js) {
-            var pane = beaker.panes.getAttachedPane()
+            var pane = dbrowser.panes.getAttachedPane()
             if (!pane) throw new Error('No attached pane')
-            return beaker.panes.executeJavaScript(pane.id, js)
+            return dbrowser.panes.executeJavaScript(pane.id, js)
           },
           inject (css) {
-            var pane = beaker.panes.getAttachedPane()
+            var pane = dbrowser.panes.getAttachedPane()
             if (!pane) throw new Error('No attached pane')
-            return beaker.panes.injectCss(pane.id, css)
+            return dbrowser.panes.injectCss(pane.id, css)
           },
           uninject (id) {
-            var pane = beaker.panes.getAttachedPane()
+            var pane = dbrowser.panes.getAttachedPane()
             if (!pane) throw new Error('No attached pane')
-            return beaker.panes.uninjectCss(pane.id, id)
+            return dbrowser.panes.uninjectCss(pane.id, id)
           }
         },
         out: (...args) => {
@@ -805,7 +805,7 @@ class WebTerm extends LitElement {
           ${commands.map(command => {
             var name = parentCmdName + command.name
             var pkg
-            if (command.package.startsWith('beaker://')) {
+            if (command.package.startsWith('dbrowser://')) {
               pkg = html`std-cmds`
             } else {
               pkg = html`<a href=${command.package} target="_blank">${shortenHash(command.package)}</a>`
@@ -836,7 +836,7 @@ class WebTerm extends LitElement {
     var additionalTabCompleteOptions = this.tabCompletion ? this.tabCompletion.length - TAB_COMPLETION_RENDER_LIMIT : 0
     let endOfInput = this.promptInput.split(' ').pop().split('/').pop()
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="wrapper" @keydown=${this.onKeyDown}>
         <div class="output">
           ${this.outputHist}

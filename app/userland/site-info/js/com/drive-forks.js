@@ -38,7 +38,7 @@ class DriveForks extends LitElement {
       return html``
     }
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       ${this.forks.length > 1 ? html`
         <div class="list">
           ${repeat(this.forks, fork => {
@@ -76,7 +76,7 @@ class DriveForks extends LitElement {
   async onClickNewFork (e) {
     e.preventDefault()
     e.stopPropagation()
-    var drive = await beaker.hyperdrive.forkDrive(this.origin)
+    var drive = await dbrowser.hyperdrive.forkDrive(this.origin)
     emit(this, 'change-url', {detail: {url: this.url.replace(this.origin, drive.url)}})
   }
 
@@ -89,8 +89,8 @@ class DriveForks extends LitElement {
   onClickDiff (e, fork) {
     e.preventDefault()
     e.stopPropagation()
-    beaker.browser.openUrl(`beaker://diff/?base=${fork.url}&target=${this.forks[0].url}`, {setActive: true})
-    beaker.browser.toggleSiteInfo(false)
+    dbrowser.browser.openUrl(`dbrowser://diff/?base=${fork.url}&target=${this.forks[0].url}`, {setActive: true})
+    dbrowser.browser.toggleSiteInfo(false)
   }
 
   async onClickDelete (e, fork) {
@@ -99,7 +99,7 @@ class DriveForks extends LitElement {
     if (!confirm(`Delete "${fork.forkOf.label}"?`)) {
       return
     }
-    await beaker.drives.remove(fork.url)
+    await dbrowser.drives.remove(fork.url)
     this.forks.splice(this.forks.indexOf(fork), 1)
     this.requestUpdate()
   }

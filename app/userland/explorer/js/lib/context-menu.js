@@ -43,14 +43,14 @@ export function constructItems (app) {
         label: 'Open in Pane Right',
         ctxOnly: true,
         click: () => {
-          beaker.browser.newPane(sel.shareUrl, {splitDir: 'vert'})
+          dbrowser.browser.newPane(sel.shareUrl, {splitDir: 'vert'})
         }
       })
       items.push({
         label: 'Open in Pane Below',
         ctxOnly: true,
         click: () => {
-          beaker.browser.newPane(sel.shareUrl, {splitDir: 'horz'})
+          dbrowser.browser.newPane(sel.shareUrl, {splitDir: 'horz'})
         }
       })
       items.push('-')
@@ -66,7 +66,7 @@ export function constructItems (app) {
             } else {
               url = loc.getUrl()
             }
-            window.open(`beaker://editor/?url=${url}`)
+            window.open(`dbrowser://editor/?url=${url}`)
           }
         })
       }

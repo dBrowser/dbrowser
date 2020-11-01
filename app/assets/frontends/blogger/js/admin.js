@@ -14,13 +14,13 @@ export class DriveAdmin extends HTMLElement {
   render () {
     var links = h('div', {className: 'links'})
     var key = (/[0-9a-f]{64}/i).exec(hyperdrive.self.url)[0]
-    links.append(h('a', {className: 'btn primary', href: `https://beaker.network/${key}`}, 'View on Beaker.Network'))
+    links.append(h('a', {className: 'btn primary', href: `https://dbrowser.network/${key}`}, 'View on Beaker.Network'))
     if (this.info.writable) {
       let editProfile = h('a', {className: 'btn'}, 'Edit Profile')
       editProfile.addEventListener('click', this.onClickEditProfile.bind(this))
       links.prepend(editProfile)
 
-      let newPost = h('a', {className: 'btn', href: `https://beaker.network/compose`}, 'New Post')
+      let newPost = h('a', {className: 'btn', href: `https://dbrowser.network/compose`}, 'New Post')
       links.prepend(newPost)
     }
     this.append(links)

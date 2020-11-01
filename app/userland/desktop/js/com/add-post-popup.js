@@ -1,9 +1,9 @@
-/* globals beaker */
-import { html, css } from 'beaker://app-stdlib/vendor/lit-element/lit-element.js'
-import { BasePopup } from 'beaker://app-stdlib/js/com/popups/base.js'
-import popupsCSS from 'beaker://app-stdlib/css/com/popups.css.js'
-import spinnerCSS from 'beaker://app-stdlib/css/com/spinner.css.js'
-import _debounce from 'beaker://app-stdlib/vendor/lodash.debounce.js'
+/* globals dbrowser */
+import { html, css } from 'dbrowser://app-stdlib/vendor/lit-element/lit-element.js'
+import { BasePopup } from 'dbrowser://app-stdlib/js/com/popups/base.js'
+import popupsCSS from 'dbrowser://app-stdlib/css/com/popups.css.js'
+import spinnerCSS from 'dbrowser://app-stdlib/css/com/spinner.css.js'
+import _debounce from 'dbrowser://app-stdlib/vendor/lodash.debounce.js'
 
 // exported api
 // =
@@ -78,7 +78,7 @@ export class AddPostPopup extends BasePopup {
 
   renderBody () {
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <form @submit=${this.onSubmit}>
         <div>
           <textarea

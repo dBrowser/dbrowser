@@ -37,7 +37,7 @@ export default {
     // try to find a pane that's not our builtin tools or already attached to anything, if possible
     // if not, stick with the candidate
     var candidatePane = tab.getLastActivePane()
-    const isUndesirable = pane => /^beaker:\/\/(webterm|editor|explorer)/.test(pane.url) || pane.attachedPane || pane === senderPane
+    const isUndesirable = pane => /^dbrowser:\/\/(webterm|editor|explorer)/.test(pane.url) || pane.attachedPane || pane === senderPane
     if (!candidatePane || isUndesirable(candidatePane)) {
       candidatePane = tab.panes.find(p => !isUndesirable(p))
     }

@@ -59,7 +59,7 @@ export class HistoryApp extends LitElement {
       after = moment().subtract(1, 'day').startOf('day')
       before = moment().startOf('day')
     }
-    var rows = await beaker.history.getVisitHistory({
+    var rows = await dbrowser.history.getVisitHistory({
       before: +before,
       after: +after,
       offset,
@@ -89,9 +89,9 @@ export class HistoryApp extends LitElement {
 
   render () {
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <nav>
-        <h1><img src="asset:favicon:beaker://history/"> History</h1>
+        <h1><img src="asset:favicon:dbrowser://history/"> History</h1>
         <div class="section">
           <a @click=${this.onUpdatePeriodFilter} data-period="all" class="${this.currentPeriodFilter === 'all' ? 'active' : ''}">
             <i class="fas fa-angle-right"></i>
@@ -239,7 +239,7 @@ export class HistoryApp extends LitElement {
     if (!confirm('Are you sure?')) return
     var v = this.visits[i]
     this.visits.splice(i, 1)
-    beaker.history.removeVisit(v.url)
+    dbrowser.history.removeVisit(v.url)
     this.requestUpdate()
   }
 
@@ -250,14 +250,14 @@ export class HistoryApp extends LitElement {
     // clear all history
     if (period === 'all') {
       this.visits = []
-      beaker.history.removeAllVisits()
+      dbrowser.history.removeAllVisits()
       this.requestUpdate()
     } else {
       var threshold = moment().startOf(period).valueOf()
 
       // filter out visits that with a timestamp >= threshold
       this.visits = this.visits.filter(v => v.ts < threshold)
-      beaker.history.removeVisitsAfter(threshold)
+      dbrowser.history.removeVisitsAfter(threshold)
 
       // fetch and render more visits if possible
       this.fetchMore()

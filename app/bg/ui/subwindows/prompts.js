@@ -89,7 +89,7 @@ export async function create (webContents, promptName, params = {}) {
   view.webContents.on('console-message', (e, level, message) => {
     console.log('Prompts window says:', message)
   })
-  view.webContents.loadURL('beaker://prompts/')
+  view.webContents.loadURL('dbrowser://prompts/')
   await view.webContents.executeJavaScript(`showPrompt("${promptName}", ${JSON.stringify(params)}); undefined`)
   return view
 }

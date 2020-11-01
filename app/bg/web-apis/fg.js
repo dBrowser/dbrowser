@@ -7,19 +7,19 @@ import { contextBridge } from 'electron'
 
 export const setup = function () {
   // setup APIs
-  var beaker = {}
-  if (['beaker:', 'dweb:', 'https:', 'http:', 'data:'].includes(window.location.protocol) ||
+  var dbrowser = {}
+  if (['dbrowser:', 'dweb:', 'https:', 'http:', 'data:'].includes(window.location.protocol) ||
       window.location.hostname.endsWith('hyperdrive.network') /* TEMPRARY */) {
-    beaker.hyperdrive = hyperdrive.setup(rpc)
-    Object.assign(beaker, external.setup(rpc))
+    dbrowser.hyperdrive = hyperdrive.setup(rpc)
+    Object.assign(dbrowser, external.setup(rpc))
   }
-  if (['beaker:', 'dweb:'].includes(window.location.protocol)) {
+  if (['dbrowser:', 'dweb:'].includes(window.location.protocol)) {
     contextBridge.exposeInMainWorld('experimental', experimental.setup(rpc)) // TODO remove?
   }
-  if (window.location.protocol === 'beaker:' || /* TEMPRARY */ window.location.hostname.endsWith('hyperdrive.network')) {
-    Object.assign(beaker, internal.setup(rpc))
+  if (window.location.protocol === 'dbrowser:' || /* TEMPRARY */ window.location.hostname.endsWith('hyperdrive.network')) {
+    Object.assign(dbrowser, internal.setup(rpc))
   }
-  if (Object.keys(beaker).length > 0) {
-    contextBridge.exposeInMainWorld('beaker', beaker)
+  if (Object.keys(dbrowser).length > 0) {
+    contextBridge.exposeInMainWorld('dbrowser', dbrowser)
   }
 }

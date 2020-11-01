@@ -1,4 +1,4 @@
-/* globals beaker */
+/* globals dbrowser */
 
 import yo from 'yo-yo'
 import * as faviconMakerPopup from './favicon-maker'
@@ -21,7 +21,7 @@ export default function (opts) {
 
   // load the favicons if neded
   if (!builtinFaviconsList) {
-    beaker.browser.listBuiltinFavicons()
+    dbrowser.browser.listBuiltinFavicons()
       .catch(err => {
         loadError = err
         console.error('Error loading builtin favicons', err)
@@ -54,7 +54,7 @@ function render () {
             class="icon ${selectedFavicon === name ? 'selected' : ''}"
             onclick=${() => onClickIcon(name)}
           >
-            <img src="beaker://assets/favicons/${name}" />
+            <img src="dbrowser://assets/favicons/${name}" />
           </div>
         `)}
       </div>
@@ -77,7 +77,7 @@ function rerender () {
 
 async function onClickIcon (v) {
   selectedFavicon = v
-  onSelect(await beaker.browser.getBuiltinFavicon(selectedFavicon))
+  onSelect(await dbrowser.browser.getBuiltinFavicon(selectedFavicon))
   rerender()
 }
 
@@ -91,7 +91,7 @@ async function onCreateFavicon (e) {
   e.stopPropagation()
 
   var customFavicon = await faviconMakerPopup.create({currentFaviconUrl})
-  let v = await beaker.browser.imageToIco(customFavicon)
+  let v = await dbrowser.browser.imageToIco(customFavicon)
   if (v) {
     onSelect(v)
     rerender()
@@ -99,7 +99,7 @@ async function onCreateFavicon (e) {
 }
 
 async function uploadFavicon () {
-  let v = await beaker.browser.uploadFavicon()
+  let v = await dbrowser.browser.uploadFavicon()
   if (v) {
     onSelect(v)
     rerender()

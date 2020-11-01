@@ -48,7 +48,7 @@ class DonateMenu extends LitElement {
     const paymentLink = String(_get(this, 'driveInfo.links.payment.0.href'))
 
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="wrapper">
         <div class="header">
           <div class="header-info">

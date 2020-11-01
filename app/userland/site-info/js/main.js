@@ -45,15 +45,15 @@ class SiteInfoApp extends LitElement {
   }
 
   get isBeaker () {
-    return this.url && this.url.startsWith('beaker:')
+    return this.url && this.url.startsWith('dbrowser:')
   }
 
   get isRootDrive () {
-    return this.origin === beaker.hyperdrive.drive('dweb://system/').url
+    return this.origin === dbrowser.hyperdrive.drive('dweb://system/').url
   }
 
   get drive () {
-    return beaker.hyperdrive.drive(this.url)
+    return dbrowser.hyperdrive.drive(this.url)
   }
 
   get origin () {
@@ -77,13 +77,13 @@ class SiteInfoApp extends LitElement {
 
     // global event listeners
     window.addEventListener('blur', e => {
-      beaker.browser.toggleSiteInfo(false)
+      dbrowser.browser.toggleSiteInfo(false)
       this.reset()
     })
     window.addEventListener('contextmenu', e => e.preventDefault())
     window.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
-        beaker.browser.toggleSiteInfo(false)
+        dbrowser.browser.toggleSiteInfo(false)
       }
     })
     const globalAnchorClickHandler = (isPopup) => e => {
@@ -91,13 +91,13 @@ class SiteInfoApp extends LitElement {
       var a = e.path.reduce((acc, v) => acc || (v.tagName === 'A' ? v : undefined), undefined)
       if (a) {
         var href = a.getAttribute('href')
-        if (href && href !== '#' && !href.startsWith('beaker://')) {
+        if (href && href !== '#' && !href.startsWith('dbrowser://')) {
           if (isPopup || e.metaKey || a.getAttribute('target') === '_blank') {
-            beaker.browser.openUrl(href, {setActive: true})
+            dbrowser.browser.openUrl(href, {setActive: true})
           } else {
-            beaker.browser.gotoUrl(href)
+            dbrowser.browser.gotoUrl(href)
           }
-          beaker.browser.toggleSiteInfo(false)
+          dbrowser.browser.toggleSiteInfo(false)
         }
       }
     }
@@ -137,8 +137,8 @@ class SiteInfoApp extends LitElement {
         let drive = this.drive
         ;[this.info, this.driveCfg, this.forks] = await Promise.all([
           drive.getInfo(),
-          beaker.drives.get(this.url),
-          beaker.drives.getForks(this.url)
+          dbrowser.drives.get(this.url),
+          dbrowser.drives.getForks(this.url)
         ])
       } else {
         this.info = {
@@ -154,8 +154,8 @@ class SiteInfoApp extends LitElement {
       // all sites: get cert and requested perms
       var perms
       ;[perms, this.cert] = await Promise.all([
-        beaker.sitedata.getPermissions(this.origin),
-        beaker.browser.getCertificate(this.url)
+        dbrowser.sitedata.getPermissions(this.origin),
+        dbrowser.browser.getCertificate(this.url)
       ])
       if (this.cert && this.cert.type === 'hyperdrive') {
         this.cert.driveInfo = this.info
@@ -165,7 +165,7 @@ class SiteInfoApp extends LitElement {
         var permParam = beakerPermissions.getPermParam(perm)
         if (isDatHashRegex.test(permParam)) {
           let driveInfo
-          try { driveInfo = await beaker.beaker.hyperdrive.drive(permParam).getInfo() }
+          try { driveInfo = await dbrowser.dbrowser.hyperdrive.drive(permParam).getInfo() }
           catch (e) { /* ignore */ }
           opts.title = driveInfo && driveInfo.title ? driveInfo.title : toNiceDomain(permParam)
         }
@@ -195,7 +195,7 @@ class SiteInfoApp extends LitElement {
       `
     }
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div>
         ${this.renderSiteInfo()}
         ${this.renderNav()}
@@ -299,7 +299,7 @@ class SiteInfoApp extends LitElement {
       // adjust height based on rendering
       var height = this.shadowRoot.querySelector('div').clientHeight
       if (!height) return
-      beaker.browser.resizeSiteInfo({height})
+      dbrowser.browser.resizeSiteInfo({height})
     }, 50)
   }
 
@@ -313,7 +313,7 @@ class SiteInfoApp extends LitElement {
 
   onChangeUrl (e) {
     this.url = e.detail.url
-    beaker.browser.gotoUrl(this.url)
+    dbrowser.browser.gotoUrl(this.url)
     this.load()
   }
 
@@ -323,15 +323,15 @@ class SiteInfoApp extends LitElement {
   }
 
   async onClickDriveProperties (e) {
-    await beaker.shell.drivePropertiesDialog(this.url)
+    await dbrowser.shell.drivePropertiesDialog(this.url)
     this.load()
   }
 
   async onToggleSaveDrive (e) {
     if (this.driveCfg && this.driveCfg.saved) {
-      await beaker.drives.remove(this.origin)
+      await dbrowser.drives.remove(this.origin)
     } else {
-      await beaker.drives.configure(this.origin)
+      await dbrowser.drives.configure(this.origin)
     }
     this.load()
   }
@@ -346,7 +346,7 @@ class SiteInfoApp extends LitElement {
       right: true,
       roomy: false,
       noBorders: true,
-      fontAwesomeCSSUrl: 'beaker://assets/font-awesome.css',
+      fontAwesomeCSSUrl: 'dbrowser://assets/font-awesome.css',
       style: `padding: 4px 0`,
       items: [
         {
@@ -358,8 +358,8 @@ class SiteInfoApp extends LitElement {
           icon: 'far fa-fw fa-folder-open',
           label: 'Sync with local folder',
           click: async () => {
-            await beaker.folderSync.syncDialog(this.info.url)
-            await beaker.browser.refreshTabState()
+            await dbrowser.folderSync.syncDialog(this.info.url)
+            await dbrowser.browser.refreshTabState()
           }
         } : undefined,
         {
@@ -372,12 +372,12 @@ class SiteInfoApp extends LitElement {
   }
 
   async onForkDrive () {
-    var drive = await beaker.hyperdrive.forkDrive(this.url, {detached: false})
-    beaker.browser.openUrl(drive.url, {setActive: true})
+    var drive = await dbrowser.hyperdrive.forkDrive(this.url, {detached: false})
+    dbrowser.browser.openUrl(drive.url, {setActive: true})
   }
 
   async onDriveProps () {
-    await beaker.shell.drivePropertiesDialog(this.url)
+    await dbrowser.shell.drivePropertiesDialog(this.url)
     this.load()
   }
 }

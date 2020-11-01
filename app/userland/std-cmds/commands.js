@@ -1,10 +1,10 @@
-import { ensureDir, ensureMount, ensureUnmount, ensureUnmountByUrl, getAvailableName } from 'beaker://app-stdlib/js/fs.js'
+import { ensureDir, ensureMount, ensureUnmount, ensureUnmountByUrl, getAvailableName } from 'dbrowser://app-stdlib/js/fs.js'
 
 export async function ls () {
   var drives = await readInstalled()
   var driveInfos = []
   for (let drive of drives) {
-    driveInfos.push(await beaker.hyperdrive.drive(drive).getInfo())
+    driveInfos.push(await dbrowser.hyperdrive.drive(drive).getInfo())
   }
   driveInfos.toHTML = () => {
     return driveInfos.map(info => html`<p><a href=${info.url}><strong>${info.title}</strong></a> ${info.description}</p>`)
@@ -18,7 +18,7 @@ export async function create () {
   while (!title) title = await this.prompt('Package title')
   description = await this.prompt('Package description')
 
-  var drive = await beaker.hyperdrive.createDrive({
+  var drive = await dbrowser.hyperdrive.createDrive({
     title,
     description,
     prompt: false
@@ -89,12 +89,12 @@ export async function example (opts = {}, arg1, arg2) {
 `
 
 async function readInstalled () {
-  return beaker.hyperdrive.drive('dweb://system/').readFile('/webterm/command-packages.json').then(JSON.parse).catch(e => ([]))
+  return dbrowser.hyperdrive.drive('dweb://system/').readFile('/webterm/command-packages.json').then(JSON.parse).catch(e => ([]))
 }
 
 async function saveInstalled (urls) {
-  await beaker.hyperdrive.drive('dweb://system/').mkdir('/webterm').catch(e => undefined)
-  await beaker.hyperdrive.drive('dweb://system/').writeFile('/webterm/command-packages.json', JSON.stringify(urls, null, 2))
+  await dbrowser.hyperdrive.drive('dweb://system/').mkdir('/webterm').catch(e => undefined)
+  await dbrowser.hyperdrive.drive('dweb://system/').writeFile('/webterm/command-packages.json', JSON.stringify(urls, null, 2))
 }
 
 function toUrl (str = '') {

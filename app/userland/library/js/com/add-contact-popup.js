@@ -1,10 +1,10 @@
-/* globals beaker */
-import { html, css } from 'beaker://app-stdlib/vendor/lit-element/lit-element.js'
-import { BasePopup } from 'beaker://app-stdlib/js/com/popups/base.js'
-import popupsCSS from 'beaker://app-stdlib/css/com/popups.css.js'
-import spinnerCSS from 'beaker://app-stdlib/css/com/spinner.css.js'
-import _debounce from 'beaker://app-stdlib/vendor/lodash.debounce.js'
-import 'beaker://app-stdlib/js/com/img-fallbacks.js'
+/* globals dbrowser */
+import { html, css } from 'dbrowser://app-stdlib/vendor/lit-element/lit-element.js'
+import { BasePopup } from 'dbrowser://app-stdlib/js/com/popups/base.js'
+import popupsCSS from 'dbrowser://app-stdlib/css/com/popups.css.js'
+import spinnerCSS from 'dbrowser://app-stdlib/css/com/spinner.css.js'
+import _debounce from 'dbrowser://app-stdlib/vendor/lodash.debounce.js'
+import 'dbrowser://app-stdlib/js/com/img-fallbacks.js'
 
 // exported api
 // =
@@ -128,7 +128,7 @@ export class AddContactPopup extends BasePopup {
     var info
     var error
     try {
-      info = await beaker.hyperdrive.getInfo(this.urlValue)
+      info = await dbrowser.hyperdrive.getInfo(this.urlValue)
       if (info.version === 0) {
         info = undefined
         error = 'Unable to find this hyperdrive on the network'
@@ -167,7 +167,7 @@ export class AddContactPopup extends BasePopup {
 
   renderBody () {
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <form @submit=${this.onSubmit}>
         <div>
           <label for="url-input">Contact's URL</label>
@@ -188,10 +188,10 @@ export class AddContactPopup extends BasePopup {
             </div>
           ` : this.contactInfo ? html`
             <div class="loaded">
-              <beaker-img-fallbacks>
+              <dbrowser-img-fallbacks>
                 <img src="${this.contactInfo.url}/thumb" slot="img1">
-                <img src="beaker://assets/default-user-thumb" slot="img2">
-              </beaker-img-fallbacks>
+                <img src="dbrowser://assets/default-user-thumb" slot="img2">
+              </dbrowser-img-fallbacks>
               <div>
                 <div class="title">${this.contactInfo.title}</div>
                 <div class="description">${this.contactInfo.description}</div>
@@ -257,7 +257,7 @@ export class AddContactPopup extends BasePopup {
       return
     }
 
-    const sysDrive = beaker.hyperdrive.drive('dweb://system/')
+    const sysDrive = dbrowser.hyperdrive.drive('dweb://system/')
     var addressBook = await sysDrive.readFile('/address-book.json').then(JSON.parse).catch(e => ({contacts: []}))
     addressBook.contacts = addressBook.contacts || []
     var existingContact = addressBook.contacts.find(contact => contact.key === this.contactInfo.key)
@@ -267,7 +267,7 @@ export class AddContactPopup extends BasePopup {
     }
 
     if (this.hostChecked) {
-      await beaker.drives.configure(this.contactInfo.key)
+      await dbrowser.drives.configure(this.contactInfo.key)
     }
 
     this.dispatchEvent(new CustomEvent('resolve'))

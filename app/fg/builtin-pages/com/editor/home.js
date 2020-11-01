@@ -53,13 +53,13 @@ export function renderHome (opts) {
           ? yo`
             <h3 class="viewing">
               Viewing <strong>${versionLabel}</strong>.
-              <a class="link" href="beaker://editor/${archiveInfo.url}+latest">Go to latest</a>.
+              <a class="link" href="dbrowser://editor/${archiveInfo.url}+latest">Go to latest</a>.
             </h3>`
           : previewMode && workingCheckoutVersion !== 'preview'
             ? yo`
               <h3 class="viewing">
                 Viewing <strong>${versionLabel}</strong>.
-                <a class="link" href="beaker://editor/${archiveInfo.url}+preview">Go to preview</a>.
+                <a class="link" href="dbrowser://editor/${archiveInfo.url}+preview">Go to preview</a>.
               </h3>`
             : ''}
       ${renderDiff(currentDiff)}

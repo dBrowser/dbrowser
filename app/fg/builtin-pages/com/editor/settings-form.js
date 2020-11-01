@@ -52,7 +52,7 @@ export function render (workingCheckout, isReadonly, archiveInfo, workingDatJson
             ${inputControl(workingDatJson, {isReadonly, label: 'Title', name: 'title'})}
             ${textareaControl(workingDatJson, {isReadonly, label: 'Description', name: 'description'})}
             ${thumbControl(archiveInfo.url, {isReadonly})}
-            ${linkControl(workingDatJson, {isReadonly, label: 'Donation Link', name: 'payment', placeholder: 'e.g. http://opencollective.com/beaker', help: DONATE_LINK_HELP})}
+            ${linkControl(workingDatJson, {isReadonly, label: 'Donation Link', name: 'payment', placeholder: 'e.g. http://opencollective.com/dbrowser', help: DONATE_LINK_HELP})}
           </div>
         `)}
         ${section('publish', 'Publishing', yo`
@@ -585,7 +585,7 @@ function onCopy (e, str, successMessage = 'Copied to clipboard') {
 function onOpenFolder (e, path) {
   e.preventDefault()
   e.stopPropagation()
-  beaker.browser.openFolder(path)
+  dbrowser.browser.openFolder(path)
 }
 
 // helpers

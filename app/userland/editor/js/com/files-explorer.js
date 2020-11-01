@@ -25,7 +25,7 @@ class FilesExplorer extends LitElement {
   }
 
   get drive () {
-    return beaker.hyperdrive.drive(this.url)
+    return dbrowser.hyperdrive.drive(this.url)
   }
 
   get origin () {
@@ -138,7 +138,7 @@ class FilesExplorer extends LitElement {
       if (stat.mount) {
         return {
           path,
-          info: await beaker.hyperdrive.drive(stat.mount.key).getInfo()
+          info: await dbrowser.hyperdrive.drive(stat.mount.key).getInfo()
         }
       }
       pathParts.pop()
@@ -159,7 +159,7 @@ class FilesExplorer extends LitElement {
     }
     if (!this.isDrive) {
       return html`
-        <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+        <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
         <div class="empty"><span class="fas fa-fw fa-info-circle"></span> This site doesn't support file listings</div>
       `
     }
@@ -169,7 +169,7 @@ class FilesExplorer extends LitElement {
       return html`<span class="fa-fw far fa-file"></span>`
     }
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="path">
         <a>
           <span class="fa-fw ${this.currentFolder.mount ? 'fas fa-external-link-square-alt' : 'far fa-folder'}"></span>

@@ -61,7 +61,7 @@ class BrowserMenu extends LitElement {
     }
 
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="wrapper">
         ${autoUpdaterEl}
 
@@ -110,12 +110,12 @@ class BrowserMenu extends LitElement {
         </div>
 
         <div class="section">          
-          <div class="menu-item" @click=${e => this.onOpenPage(e, 'beaker://settings')}>
+          <div class="menu-item" @click=${e => this.onOpenPage(e, 'dbrowser://settings')}>
             <i class="fas fa-cog"></i>
             <span class="label">Settings</span>
           </div>
 
-          <div class="menu-item" @click=${e => this.onOpenPage(e, 'beaker://settings/?view=devices')}>
+          <div class="menu-item" @click=${e => this.onOpenPage(e, 'dbrowser://settings/?view=devices')}>
             <i class="fas fa-sync"></i>
             <span class="label">dSync</span>
           </div>
@@ -126,7 +126,7 @@ class BrowserMenu extends LitElement {
 
   renderBookmarks () {
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="wrapper">
         <div class="header">
           <button class="btn" @click=${e => this.onShowSubmenu('')} title="Go back">
@@ -148,7 +148,7 @@ class BrowserMenu extends LitElement {
 
   renderLibrary () {
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="wrapper">
         <div class="header">
           <button class="btn" @click=${e => this.onShowSubmenu('')} title="Go back">
@@ -158,22 +158,22 @@ class BrowserMenu extends LitElement {
         </div>
 
         <div class="section">
-          <div class="menu-item" @click=${e => this.onOpenPage(e, 'beaker://library/drives')}>
+          <div class="menu-item" @click=${e => this.onOpenPage(e, 'dbrowser://library/drives')}>
             <i class="far fa-star"></i>
             <span class="label">My dDrives</span>
           </div>
 
-          <div class="menu-item" @click=${e => this.onOpenPage(e, 'beaker://library/hosting')}>
+          <div class="menu-item" @click=${e => this.onOpenPage(e, 'dbrowser://library/hosting')}>
             <i class="fas fa-share-alt"></i>
             <span class="label">Hosting</span>
           </div>
 
-          <div class="menu-item" @click=${e => this.onOpenPage(e, 'beaker://library/address-book')}>
+          <div class="menu-item" @click=${e => this.onOpenPage(e, 'dbrowser://library/address-book')}>
             <i class="far fa-address-card"></i>
             <span class="label">Address Book</span>
           </div>
 
-          <div class="menu-item" @click=${e => this.onOpenPage(e, 'beaker://library/bookmarks')}>
+          <div class="menu-item" @click=${e => this.onOpenPage(e, 'dbrowser://library/bookmarks')}>
             <i class="far fa-star"></i>
             <span class="label">Bookmarks</span>
           </div>
@@ -183,7 +183,7 @@ class BrowserMenu extends LitElement {
             <span class="label">Downloads</span>
           </div>
 
-          <div class="menu-item" @click=${e => this.onOpenPage(e, 'beaker://history')}>
+          <div class="menu-item" @click=${e => this.onOpenPage(e, 'dbrowser://history')}>
             <i class="fas fa-history"></i>
             <span class="label">History</span>
           </div>
@@ -202,7 +202,7 @@ class BrowserMenu extends LitElement {
     var items = this.windowMenuItems[menu]
     if (!items) return html``
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="wrapper">
         <div class="header">
           <button class="btn" @click=${e => this.onShowSubmenu('')} title="Go back">
@@ -295,7 +295,7 @@ class BrowserMenu extends LitElement {
 
   onClickDownloads (e) {
     this.shouldPersistDownloadsIndicator = false
-    bg.shellMenus.createTab('beaker://library/downloads')
+    bg.shellMenus.createTab('dbrowser://library/downloads')
     bg.shellMenus.close()
   }
 

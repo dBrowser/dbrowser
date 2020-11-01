@@ -34,7 +34,7 @@ import { setupDefaultProfile, getProfile, getDriveIdent } from './filesystem/ind
 
 const IS_FROM_SOURCE = (process.defaultApp || /node_modules[\\/]electron[\\/]/.test(process.execPath))
 const IS_LINUX = !(/^win/.test(process.platform)) && process.platform !== 'darwin'
-const DOT_DESKTOP_FILENAME = 'appimagekit-beaker-browser.desktop'
+const DOT_DESKTOP_FILENAME = 'appimagekit-dbrowser-browser.desktop'
 const isBrowserUpdatesSupported = !(IS_LINUX || IS_FROM_SOURCE) // linux is temporarily not supported
 
 // how long between scheduled auto updates?
@@ -227,7 +227,7 @@ export async function downloadURL (url) {
 
 function readFile (obj, opts) {
   var pathname = undefined
-  if (obj === 'beaker://std-cmds/index.json') {
+  if (obj === 'dbrowser://std-cmds/index.json') {
     pathname = path.join(__dirname, 'userland', 'std-cmds', 'index.json')
   }
   if (!pathname) return
@@ -260,8 +260,8 @@ export async function getCertificate (url) {
   var cert = originCerts.get(url)
   if (cert) {
     return Object.assign({type: 'tls'}, cert)
-  } else if (url.startsWith('beaker:')) {
-    return {type: 'beaker'}
+  } else if (url.startsWith('dbrowser:')) {
+    return {type: 'dbrowser'}
   } else if (url.startsWith('dweb://')) {
     let ident = await getDriveIdent(url, true)
     return {
@@ -458,7 +458,7 @@ export async function getDefaultProtocolSettings () {
     // HACK
     // xdb-settings doesnt currently handle apps that you can't `which`
     // we can just use xdg-mime directly instead
-    // see https://github.com/beakerbrowser/beaker/issues/915
+    // see https://github.com/beakerbrowser/dbrowser/issues/915
     // -prf
     let [httpHandler, hyperHandler, datHandler] = await Promise.all([
       // If there is no default specified, be sure to catch any error
@@ -488,7 +488,7 @@ export async function setAsDefaultProtocolClient (protocol) {
     // HACK
     // xdb-settings doesnt currently handle apps that you can't `which`
     // we can just use xdg-mime directly instead
-    // see https://github.com/beakerbrowser/beaker/issues/915
+    // see https://github.com/beakerbrowser/dbrowser/issues/915
     // -prf
     await exec(`xdg-mime default ${DOT_DESKTOP_FILENAME} "x-scheme-handler/${protocol}"`)
     return true
@@ -770,7 +770,7 @@ function setUpdaterState (state) {
 function getAutoUpdaterFeedSettings () {
   return {
     provider: 'github',
-    repo: 'beaker',
+    repo: 'dbrowser',
     owner: 'beakerbrowser',
     vPrefixedTagName: false
   }

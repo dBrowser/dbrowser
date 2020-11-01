@@ -1,4 +1,4 @@
-/* globals beaker DatArchive confirm */
+/* globals dbrowser DatArchive confirm */
 
 import yo from 'yo-yo'
 import * as toast from '../toast'
@@ -29,7 +29,7 @@ export default class CrawlerStatus {
   async load () {
     if (!this.crawlStates) {
       // first load, bind events
-      let crawlerEvents = beaker.crawler.createEventsStream()
+      let crawlerEvents = dbrowser.crawler.createEventsStream()
       crawlerEvents.addEventListener('crawl-start', this.onCrawlStart.bind(this))
       crawlerEvents.addEventListener('crawl-dataset-progress', this.onCrawlDatasetProgress.bind(this))
       crawlerEvents.addEventListener('crawl-dataset-finish', this.onCrawlDatasetFinish.bind(this))
@@ -37,7 +37,7 @@ export default class CrawlerStatus {
       crawlerEvents.addEventListener('crawl-finish', this.onCrawlFinish.bind(this))
     }
 
-    this.crawlStates = await beaker.crawler.getCrawlStates()
+    this.crawlStates = await dbrowser.crawler.getCrawlStates()
     this.sort()
     this.rerender()
   }
@@ -92,7 +92,7 @@ export default class CrawlerStatus {
   renderStatusRow (row) {
     return yo`
       <div class="ll-row archive" oncontextmenu=${e => this.onContextmenuRow(e, row)}>
-        <img class="favicon" src="beaker-favicon:32,${row.url}?cache=${faviconCacheBuster}" />
+        <img class="favicon" src="dbrowser-favicon:32,${row.url}?cache=${faviconCacheBuster}" />
         <a href="${row.url}" target="_blank" class="title">${row.title ? row.title : getHostname(row.url)}</a>
         <span class="crawl-state">
           ${row.error
@@ -113,7 +113,7 @@ export default class CrawlerStatus {
   // =
 
   onClickCrawlAll () {
-    this.crawlStates.forEach(row => beaker.crawler.crawlSite(row.url))
+    this.crawlStates.forEach(row => dbrowser.crawler.crawlSite(row.url))
     toast.create('Crawl triggered')
   }
 
@@ -122,7 +122,7 @@ export default class CrawlerStatus {
       return
     }
     await Promise.all(this.crawlStates.map(async (row) => {
-      await beaker.crawler.resetSite(row.url)
+      await dbrowser.crawler.resetSite(row.url)
       Object.assign(row, initialState(row.url, row.title, null))
     }))
     toast.create('Index was deleted and will now rebuild')
@@ -156,14 +156,14 @@ export default class CrawlerStatus {
       {
         label: 'Crawl site',
         click: () => {
-          beaker.crawler.crawlSite(row.url)
+          dbrowser.crawler.crawlSite(row.url)
           toast.create('Crawl triggered')
         }
       },
       {
         label: 'Rebuild index',
         click: () => {
-          beaker.crawler.resetSite(row.url)
+          dbrowser.crawler.resetSite(row.url)
           Object.assign(row, initialState(row.url, row.title, null))
           toast.create('Index was deleted and will now rebuild')
           this.rerender()

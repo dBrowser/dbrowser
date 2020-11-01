@@ -1,7 +1,7 @@
-import {css} from 'beaker://app-stdlib/vendor/lit-element/lit-element.js'
-import commonCSS from 'beaker://app-stdlib/css/common.css.js'
-import buttonsCSS from 'beaker://app-stdlib/css/buttons2.css.js'
-import tooltipCSS from 'beaker://app-stdlib/css/tooltip.css.js'
+import {css} from 'dbrowser://app-stdlib/vendor/lit-element/lit-element.js'
+import commonCSS from 'dbrowser://app-stdlib/css/common.css.js'
+import buttonsCSS from 'dbrowser://app-stdlib/css/buttons2.css.js'
+import tooltipCSS from 'dbrowser://app-stdlib/css/tooltip.css.js'
 
 const cssStr = css`
 ${commonCSS}

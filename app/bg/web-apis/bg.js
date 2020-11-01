@@ -3,8 +3,8 @@ import * as rpc from 'pauls-electron-rpc'
 import { findTab } from '../ui/tabs/manager'
 
 // TEMPORARY: hyperdrive.network is trusted
-const INTERNAL_ORIGIN_REGEX = /^(beaker:|https?:\/\/(.*\.)?hyperdrive\.network(:|\/))/i
-const SITE_ORIGIN_REGEX = /^(beaker:|dweb:|https?:|data:)/i
+const INTERNAL_ORIGIN_REGEX = /^(dbrowser:|https?:\/\/(.*\.)?hyperdrive\.network(:|\/))/i
+const SITE_ORIGIN_REGEX = /^(dbrowser:|dweb:|https?:|data:)/i
 const IFRAME_WHITELIST = [
   'hyperdrive.loadDrive',
   'hyperdrive.getInfo',
@@ -21,7 +21,7 @@ const IFRAME_WHITELIST = [
 import loggerManifest from './manifests/internal/logger'
 import drivesManifest from './manifests/internal/drives'
 import beakerBrowserManifest from './manifests/internal/browser'
-import beakerFilesystemManifest from './manifests/internal/beaker-filesystem'
+import beakerFilesystemManifest from './manifests/internal/dbrowser-filesystem'
 import bookmarksManifest from './manifests/internal/bookmarks'
 import datLegacyManifest from './manifests/internal/dat-legacy'
 import downloadsManifest from './manifests/internal/downloads'
@@ -35,7 +35,7 @@ import { WEBAPI as loggerAPI } from '../logger'
 import { WEBAPI as auditLogAPI } from '../dbs/audit-log'
 import drivesAPI from './bg/drives'
 import * as bookmarksAPI from '../filesystem/bookmarks'
-import beakerFilesystemAPI from './bg/beaker-filesystem'
+import beakerFilesystemAPI from './bg/dbrowser-filesystem'
 import datLegacyAPI from './bg/dat-legacy'
 import folderSyncAPI from './bg/folder-sync'
 import historyAPI from './bg/history'
@@ -78,8 +78,8 @@ import experimentalGlobalFetchAPI from './bg/experimental/global-fetch'
 export const setup = function () {
   // internal apis
   rpc.exportAPI('logger', loggerManifest, Object.assign({}, auditLogAPI, loggerAPI), internalOnly)
-  rpc.exportAPI('beaker-browser', beakerBrowserManifest, beakerBrowserAPI, internalOnly)
-  rpc.exportAPI('beaker-filesystem', beakerFilesystemManifest, beakerFilesystemAPI, internalOnly)
+  rpc.exportAPI('dbrowser-browser', beakerBrowserManifest, beakerBrowserAPI, internalOnly)
+  rpc.exportAPI('dbrowser-filesystem', beakerFilesystemManifest, beakerFilesystemAPI, internalOnly)
   rpc.exportAPI('bookmarks', bookmarksManifest, bookmarksAPI, internalOnly)
   rpc.exportAPI('dat-legacy', datLegacyManifest, datLegacyAPI, internalOnly)
   rpc.exportAPI('downloads', downloadsManifest, downloadsAPI, internalOnly)

@@ -53,7 +53,7 @@ export const addVisit = async function (profileId, {url, title}) {
     await db.run('BEGIN TRANSACTION;')
 
     var ts = Date.now()
-    if (!url.startsWith('beaker://')) { // dont log stats on internal sites, keep them out of the search
+    if (!url.startsWith('dbrowser://')) { // dont log stats on internal sites, keep them out of the search
       // get current stats
       var stats = await db.get('SELECT * FROM visit_stats WHERE url = ?;', [url])
 

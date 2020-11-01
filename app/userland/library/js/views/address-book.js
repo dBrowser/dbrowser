@@ -1,12 +1,12 @@
-import { LitElement, html } from 'beaker://app-stdlib/vendor/lit-element/lit-element.js'
-import { repeat } from 'beaker://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
-import { pluralize } from 'beaker://app-stdlib/js/strings.js'
-import { writeToClipboard } from 'beaker://app-stdlib/js/clipboard.js'
-import * as toast from 'beaker://app-stdlib/js/com/toast.js'
-import * as contextMenu from 'beaker://app-stdlib/js/com/context-menu.js'
+import { LitElement, html } from 'dbrowser://app-stdlib/vendor/lit-element/lit-element.js'
+import { repeat } from 'dbrowser://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
+import { pluralize } from 'dbrowser://app-stdlib/js/strings.js'
+import { writeToClipboard } from 'dbrowser://app-stdlib/js/clipboard.js'
+import * as toast from 'dbrowser://app-stdlib/js/com/toast.js'
+import * as contextMenu from 'dbrowser://app-stdlib/js/com/context-menu.js'
 import addessBookCSS from '../../css/views/address-book.css.js'
 
-const sysDrive = beaker.hyperdrive.drive('dweb://system/')
+const sysDrive = dbrowser.hyperdrive.drive('dweb://system/')
 
 async function updateAddressBook (updateFn) {
   var addressBook = await sysDrive.readFile('/address-book.json').then(JSON.parse).catch(e => ({contacts: []}))
@@ -37,12 +37,12 @@ export class AddressBookView extends LitElement {
   }
 
   async load () {
-    this.contacts = await beaker.contacts.list()
+    this.contacts = await dbrowser.contacts.list()
     this.contacts.sort((a, b) => a.title.localeCompare(b.title))
     console.log(this.contacts)
 
     await Promise.all(this.contacts.map(async c => {
-      c.peers = await beaker.drives.getPeerCount(c.url)
+      c.peers = await dbrowser.drives.getPeerCount(c.url)
     }))
     this.requestUpdate()
   }
@@ -62,7 +62,7 @@ export class AddressBookView extends LitElement {
       fns[id] = items[i].click
       delete items[i].click
     }
-    var choice = await beaker.browser.showContextMenu(items)
+    var choice = await dbrowser.browser.showContextMenu(items)
     if (fns[choice]) fns[choice]()
   }
 
@@ -78,7 +78,7 @@ export class AddressBookView extends LitElement {
       ))
     }
     return html`
-      <link rel="stylesheet" href="beaker://app-stdlib/css/fontawesome.css">
+      <link rel="stylesheet" href="dbrowser://app-stdlib/css/fontawesome.css">
       ${contacts ? html`
         ${this.showHeader && !(this.hideEmpty && contacts.length === 0) ? html`
           <h4>Address Book</h4>

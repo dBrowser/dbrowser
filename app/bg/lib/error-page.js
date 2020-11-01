@@ -209,7 +209,7 @@ export default function (e) {
       </head>
       <body>
         <style>${errorPageCSS}</style>
-        <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+        <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
         <div class="error-page-content">
           <div class="icon-wrapper"><i class="fa ${icon}"></i></div>
 

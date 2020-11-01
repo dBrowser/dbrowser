@@ -32,7 +32,7 @@ export class HistoryAutocomplete extends LitElement {
 
   async runQuery () {
     var queryAtTimeOfRun = this.query
-    var res = this.query ? await beaker.history.search(this.query) : []
+    var res = this.query ? await dbrowser.history.search(this.query) : []
     console.log(res)
 
     if (queryAtTimeOfRun !== this.query) {
@@ -172,4 +172,4 @@ export class HistoryAutocomplete extends LitElement {
 }
 HistoryAutocomplete.styles = historyAutocompleteCSS
 
-customElements.define('beaker-history-autocomplete', HistoryAutocomplete)
+customElements.define('dbrowser-history-autocomplete', HistoryAutocomplete)

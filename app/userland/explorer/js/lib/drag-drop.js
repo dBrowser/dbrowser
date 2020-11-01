@@ -10,7 +10,7 @@ export async function handleDragDrop (targetEl, x, y, targetPath, dataTransfer) 
     if (dataTransfer.files && dataTransfer.files.length) {
       // files dragged into the window
       let targetUrl = joinPath(loc.getOrigin(), targetPath)
-      var res = await beaker.shell.importFilesAndFolders(targetUrl, Array.from(dataTransfer.files, f => f.path))
+      var res = await dbrowser.shell.importFilesAndFolders(targetUrl, Array.from(dataTransfer.files, f => f.path))
       toast.create(`Imported ${res.numImported} ${pluralize(res.numImported, 'item')}`)
       return
     }

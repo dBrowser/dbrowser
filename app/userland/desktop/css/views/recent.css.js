@@ -1,5 +1,5 @@
-import {css} from 'beaker://app-stdlib/vendor/lit-element/lit-element.js'
-import spinnerCSS from 'beaker://app-stdlib/css/com/spinner.css.js'
+import {css} from 'dbrowser://app-stdlib/vendor/lit-element/lit-element.js'
+import spinnerCSS from 'dbrowser://app-stdlib/css/com/spinner.css.js'
 
 const cssStr = css`
 ${spinnerCSS}

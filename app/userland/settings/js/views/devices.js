@@ -28,7 +28,7 @@ class DevicesView extends LitElement {
 
   render () {
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="section">
         <h2>dSync</h2>
 

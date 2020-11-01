@@ -1,7 +1,7 @@
 import errors from 'dbrowser-error-constants'
 import { parseDriveUrl } from '../../../lib/urls'
 import hyperdriveManifest from '../manifests/external/hyperdrive'
-import filesystemManifest from '../manifests/internal/beaker-filesystem'
+import filesystemManifest from '../manifests/internal/dbrowser-filesystem'
 import { EventTarget, Event, fromEventStream } from './event-target'
 import { createStat } from './stat'
 
@@ -330,7 +330,7 @@ export function setup (rpc) {
   }
 
   // add internal methods
-  if (window.location.protocol === 'beaker:') {
+  if (window.location.protocol === 'dbrowser:') {
     api.importFromFilesystem = async function (opts = {}) {
       return hyperdriveRPC.importFromFilesystem(opts)
     }

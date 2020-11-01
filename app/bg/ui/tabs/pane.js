@@ -224,7 +224,7 @@ export class Pane extends EventEmitter {
           }
         }
       }
-      if (urlp.protocol === 'beaker:') {
+      if (urlp.protocol === 'dbrowser:') {
         if (urlp.hostname === 'diff') return 'DBrowser Diff/Merge Tool'
         if (urlp.hostname === 'explorer') return 'DBrowser Files Explorer'
         if (urlp.hostname === 'history') return 'DBrowser History'
@@ -263,8 +263,8 @@ export class Pane extends EventEmitter {
     if (url.startsWith('https:') && !(this.loadError && this.loadError.isInsecureResponse)) {
       return 'fas fa-check-circle'
     }
-    if (url.startsWith('beaker:')) {
-      return 'beaker'
+    if (url.startsWith('dbrowser:')) {
+      return 'dbrowser'
     }
     return 'fas fa-info-circle'
   }
@@ -275,7 +275,7 @@ export class Pane extends EventEmitter {
       if (this.loadError && this.loadError.isInsecureResponse) {
         return 'untrusted'
       }
-      if (['https:', 'beaker:'].includes(urlp.protocol)) {
+      if (['https:', 'dbrowser:'].includes(urlp.protocol)) {
         return 'trusted'
       }
       if (urlp.protocol === 'http:') {
@@ -418,7 +418,7 @@ export class Pane extends EventEmitter {
   async updateHistory () {
     var url = this.url
     var title = this.title
-    if (url !== 'beaker://desktop/' && url !== 'beaker://history/') {
+    if (url !== 'dbrowser://desktop/' && url !== 'dbrowser://history/') {
       historyDb.addVisit(0, {url, title})
     }
   }

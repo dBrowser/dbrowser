@@ -78,7 +78,7 @@ class NavbarLocation extends LitElement {
   }
 
   get isBeaker () {
-    return this.url.startsWith('beaker://')
+    return this.url.startsWith('dbrowser://')
   }
 
   get isHyperdrive () {
@@ -87,7 +87,7 @@ class NavbarLocation extends LitElement {
 
   get modifiedUrl () {
     var url = this.url
-    if (url.startsWith('beaker://desktop')) {
+    if (url.startsWith('dbrowser://desktop')) {
       url = ''
     } else if (url.includes('://')) {
       try {
@@ -117,7 +117,7 @@ class NavbarLocation extends LitElement {
 
   render () {
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <shell-window-navbar-site-info
         url=${this.url}
         siteTitle=${this.siteTitle}
@@ -128,7 +128,7 @@ class NavbarLocation extends LitElement {
         ?writable=${this.writable}
         .loadError=${this.loadError}
         ?hide-origin=${this.hasExpanded}
-        ?rounded=${this.url.startsWith('beaker://desktop')}
+        ?rounded=${this.url.startsWith('dbrowser://desktop')}
       >
       </shell-window-navbar-site-info>
       ${this.renderLocation()}
@@ -162,14 +162,14 @@ class NavbarLocation extends LitElement {
   }
 
   renderInputPretty () {
-    if (this.url.startsWith('beaker://desktop')) {
+    if (this.url.startsWith('dbrowser://desktop')) {
       return html`
         <div class="input-pretty" @mouseup=${this.onClickLocation}>
           <span class="syntax">Search or enter your address here</span>
         </div>
       `
     }
-    if (/^(hyper|http|https|beaker|dat):\/\//.test(this.url)) {
+    if (/^(hyper|http|https|dbrowser|dat):\/\//.test(this.url)) {
       try {
         var { protocol, host, pathname, search, hash } = new URL(this.url)
         // TODO just show path?
@@ -190,11 +190,11 @@ class NavbarLocation extends LitElement {
           }
         }
         var cls = 'protocol'
-        // if (['beaker:'].includes(protocol)) cls += ' protocol-trusted'
+        // if (['dbrowser:'].includes(protocol)) cls += ' protocol-trusted'
         // if (['https:'].includes(protocol) && !this.loadError) cls += ' protocol-trusted'
         if (['https:'].includes(protocol) && this.loadError && this.loadError.isInsecureResponse) cls += ' protocol-untrusted'
         // if (['dwebx:'].includes(protocol)) cls += ' protocol-trusted'
-        // if (['beaker:'].includes(protocol)) cls += ' protocol-trusted'
+        // if (['dbrowser:'].includes(protocol)) cls += ' protocol-trusted'
         return html`
           <div class="input-pretty" @mouseup=${this.onClickLocation}>
             ${''/*<span class=${cls}>${protocol.slice(0, -1)}</span><span class="syntax">://</span><span class="host">${host}</span>*/}
@@ -358,7 +358,7 @@ class NavbarLocation extends LitElement {
 
   async onFocusLocation (e) {
     var input = e.currentTarget
-    if (!this.url.startsWith('beaker://desktop')) {
+    if (!this.url.startsWith('dbrowser://desktop')) {
       input.value = this.url
       this.hasExpanded = true
     } else {

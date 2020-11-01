@@ -94,7 +94,7 @@ export async function setup () {
       await bookmarks.add({href: 'dweb://6c1f613e733553ea136f92540a08db43e84eaf328ad2f3c28995c122e6794fa1/', title: 'Peeps', pinned: true})
       await bookmarks.add({href: 'dweb://a93ac89b1c48424744cd35f3060e49ef7fb68c4939a7e53d926457797ca81eb2/', title: 'DSocial', pinned: true})
       await bookmarks.add({href: 'dweb://9faa26f3c9363bcfbf55b23ea85d359dbcbd8422b92337522a71ef3acba1f975/', title: 'dWeb', pinned: true})
-     // await bookmarks.add({href: 'https://beaker.dev/', title: 'dBrowser Developer Portal', pinned: true})
+     // await bookmarks.add({href: 'https://dbrowser.dev/', title: 'dBrowser Developer Portal', pinned: true})
    }
   } catch (e) {
     console.error('Error while constructing the root drive', e.toString())

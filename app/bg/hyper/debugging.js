@@ -38,7 +38,7 @@ export const datDnsCachePage = function () {
     return `<tr><td><strong>${name}</strong></td><td>${key}</td></tr>`
   }).join('')}
       </table>
-      <script src="beaker://dwebx-dns-cache/main.js"></script>
+      <script src="dbrowser://dwebx-dns-cache/main.js"></script>
     </body>
   </html>`
 }
@@ -50,7 +50,7 @@ export const datDnsCacheJS = function () {
   return `
     document.querySelector('button').addEventListener('click', clear)
     async function clear () {
-      await beaker.drives.clearDnsCache()
+      await dbrowser.drives.clearDnsCache()
       location.reload()
     }
   `

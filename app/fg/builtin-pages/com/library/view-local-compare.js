@@ -1,4 +1,4 @@
-/* globals beaker CustomEvent */
+/* globals dbrowser CustomEvent */
 
 import yo from 'yo-yo'
 import {Archive as LibraryDatArchive} from 'builtin-pages-lib'
@@ -26,7 +26,7 @@ export default class LibraryViewLocalCompare {
   async loadCompareDiff () {
     // load diff
     if (this.target) {
-      this.compareDiff = await beaker.archives.diffLocalSyncPathListing(this.target.url, {compareContent: true, shallow: true})
+      this.compareDiff = await dbrowser.archives.diffLocalSyncPathListing(this.target.url, {compareContent: true, shallow: true})
       this.compareDiff.sort((a, b) => (a.path || '').localeCompare(b.path || ''))
       /* dont await */ this.loadFileDiffs(this.compareDiff)
       this.updatePage()
@@ -55,7 +55,7 @@ export default class LibraryViewLocalCompare {
 
       // run the diff
       try {
-        d.diff = await beaker.archives.diffLocalSyncPathFile(this.target.url, d.path)
+        d.diff = await dbrowser.archives.diffLocalSyncPathFile(this.target.url, d.path)
         d.diffDeletions = d.diff.reduce((sum, el) => sum + (el.removed ? el.count : 0), 0)
         d.diffAdditions = d.diff.reduce((sum, el) => sum + (el.added ? el.count : 0), 0)
       } catch (e) {
@@ -117,9 +117,9 @@ export default class LibraryViewLocalCompare {
     document.body.dispatchEvent(new CustomEvent('custom-start-publish'))
     try {
       if (isPublish) {
-        await beaker.archives.publishLocalSyncPathListing(this.target.url, opts)
+        await dbrowser.archives.publishLocalSyncPathListing(this.target.url, opts)
       } else {
-        await beaker.archives.revertLocalSyncPathListing(this.target.url, opts)
+        await dbrowser.archives.revertLocalSyncPathListing(this.target.url, opts)
       }
       toast.create('Files updated', 'success')
     } catch (e) {

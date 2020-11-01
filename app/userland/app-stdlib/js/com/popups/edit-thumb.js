@@ -26,7 +26,7 @@ export class BeakerEditThumb extends BasePopup {
 
   static async runFlow (profiles) {
     var profile = await profiles.me()
-    var drive = beaker.hyperdrive.drive(profile.url)
+    var drive = dbrowser.hyperdrive.drive(profile.url)
 
     // find the existing thumb
     var existingThumbPath = null
@@ -51,7 +51,7 @@ export class BeakerEditThumb extends BasePopup {
   }
 
   static destroy () {
-    return BasePopup.destroy('beaker-edit-thumb')
+    return BasePopup.destroy('dbrowser-edit-thumb')
   }
 
   // rendering
@@ -168,4 +168,4 @@ input[type="file"] {
 }
 `]
 
-customElements.define('beaker-edit-thumb', BeakerEditThumb)
+customElements.define('dbrowser-edit-thumb', BeakerEditThumb)

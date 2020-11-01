@@ -60,12 +60,12 @@ class PeersMenu extends LitElement {
     // var uploadTotal = _get(this, 'driveInfo.networkStats.uploadTotal', 0)
     if (this.isLoading) {
       return html`
-        <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+        <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
         <div class="wrapper"><span class="spinner"></span></div>
       `
     }
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="wrapper">
         <div class="header">
           <div class="header-info">
@@ -107,7 +107,7 @@ class PeersMenu extends LitElement {
         </div>
 
         ${''/*<div class="network-url">
-          <a @click=${e => this.onOpenPage(`beaker://swarm-debugger/${this.url}`)}>
+          <a @click=${e => this.onOpenPage(`dbrowser://swarm-debugger/${this.url}`)}>
             <i class="fa fa-cog"></i>
             View network activity
           </a>*/}

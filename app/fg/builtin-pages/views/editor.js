@@ -1,4 +1,4 @@
-/* globals DatArchive beaker monaco editor diffEditor localStorage hljs confirm sessionStorage location alert history */
+/* globals DatArchive dbrowser monaco editor diffEditor localStorage hljs confirm sessionStorage location alert history */
 
 import yo from 'yo-yo'
 import {FSArchive} from 'dbrowser-virtual-fs'
@@ -91,7 +91,7 @@ async function setup () {
   // load data
   userProfile = await profiles.me()
   let url = window.location.pathname.slice(1)
-  let browserInfo = beaker.browser.getInfo()
+  let browserInfo = dbrowser.browser.getInfo()
   OS_USES_META_KEY = browserInfo.platform === 'darwin'
   window.OS_CAN_IMPORT_FOLDERS_AND_FILES = browserInfo.platform === 'darwin'
   hotkeys.configure({OS_USES_META_KEY})
@@ -238,7 +238,7 @@ async function localCompare () {
   }
 
   try {
-    currentDiff = await beaker.archives.diffLocalSyncPathListing(archive.url, {compareContent: true, shallow: true})
+    currentDiff = await dbrowser.archives.diffLocalSyncPathListing(archive.url, {compareContent: true, shallow: true})
     sidebar.setCurrentDiff(currentDiff)
   } catch (e) {
     console.warn('Failed to diff local file listing', e)
@@ -509,7 +509,7 @@ function renderVersionPicker (isSmallBtn) {
       <div class="dropdown toggleable-container version-picker-ctrl">
         ${button(onToggle)}
         <div class="dropdown-items">
-          ${renderArchiveHistory(archiveFsRoot._archive, {currentVersion, viewerUrl: 'beaker://editor', includePreview})}
+          ${renderArchiveHistory(archiveFsRoot._archive, {currentVersion, viewerUrl: 'dbrowser://editor', includePreview})}
         </div>
       </div>`
   })
@@ -572,7 +572,7 @@ function onBeforeUnload (e) {
 
 async function onOpenSite (e) {
   var archive = await DatArchive.selectArchive()
-  window.location = `beaker://editor/${archive.url}`
+  window.location = `dbrowser://editor/${archive.url}`
 }
 
 async function onFilesChanged () {
@@ -601,7 +601,7 @@ async function onSetFavicon (e) {
     await workingCheckout.writeFile('/favicon.ico', imageData)
   } else {
     await workingCheckout.unlink('/favicon.ico').catch(e => null)
-    await beaker.sitedata.set(archive.url, 'favicon', '') // clear cache
+    await dbrowser.sitedata.set(archive.url, 'favicon', '') // clear cache
   }
   if (!models.getActive()) {
     // update general help view if it's active
@@ -618,24 +618,24 @@ async function onSetSiteInfo (e) {
 
 async function onFork (e) {
   var fork = await DatArchive.fork(archive.url)
-  window.location = `beaker://editor/${fork.url}`
+  window.location = `dbrowser://editor/${fork.url}`
 }
 
 async function onArchiveSave (e) {
-  await beaker.archives.add(archive.url)
+  await dbrowser.archives.add(archive.url)
   location.reload()
 }
 
 async function onArchiveUnsave (e) {
-  await beaker.archives.remove(archive.url)
+  await dbrowser.archives.remove(archive.url)
   location.reload()
 }
 
 async function onArchiveDeletePermanently (e) {
   if (!confirm('Delete permanently?')) return
   try {
-    await beaker.archives.delete(archive.url)
-    window.location = 'beaker://library'
+    await dbrowser.archives.delete(archive.url)
+    window.location = 'dbrowser://library'
   } catch (e) {
     console.error(e)
     toast.create(e.toString(), 'error')
@@ -787,7 +787,7 @@ async function onImportFiles (e) {
   if (!confirmChangeOnLatest()) return
 
   var dst = workingCheckout.url + e.detail.path
-  var files = await beaker.browser.showOpenDialog({
+  var files = await dbrowser.browser.showOpenDialog({
     title: 'Import files',
     buttonLabel: 'Import',
     properties: ['openFile', OS_CAN_IMPORT_FOLDERS_AND_FILES ? 'openDirectory' : false, 'multiSelections', 'createDirectory'].filter(Boolean)
@@ -801,7 +801,7 @@ async function onImportFolder (e) {
   if (!confirmChangeOnLatest()) return
 
   var dst = workingCheckout.url + e.detail.path
-  var folders = await beaker.browser.showOpenDialog({
+  var folders = await dbrowser.browser.showOpenDialog({
     title: 'Import folders',
     buttonLabel: 'Import',
     properties: ['openDirectory', 'createDirectory']
@@ -851,7 +851,7 @@ function onOpenFile (e) {
 async function onCommitFile (e) {
   await op('Committing...', async () => {
     const path = e.detail.path
-    await beaker.archives.publishLocalSyncPathListing(archive.url, {paths: [path]})
+    await dbrowser.archives.publishLocalSyncPathListing(archive.url, {paths: [path]})
     models.exitDiff()
     toast.create(`Committed ${path}`, 'success', 1e3)
   })
@@ -860,7 +860,7 @@ async function onCommitFile (e) {
 async function onRevertFile (e) {
   await op('Reverting...', async () => {
     const path = e.detail.path
-    await beaker.archives.revertLocalSyncPathListing(archive.url, {paths: [path]})
+    await dbrowser.archives.revertLocalSyncPathListing(archive.url, {paths: [path]})
     models.reload(findArchiveNode(path))
     models.exitDiff()
     toast.create(`Reverted ${path}`, 'success', 1e3)
@@ -871,7 +871,7 @@ async function onCommitAll (e) {
   await op('Committing...', async () => {
     // commit
     var paths = fileDiffsToPaths(currentDiff)
-    await beaker.archives.publishLocalSyncPathListing(archive.url, {shallow: false, paths})
+    await dbrowser.archives.publishLocalSyncPathListing(archive.url, {shallow: false, paths})
     toast.create(`Committed all changes`, 'success', 1e3)
   })
 
@@ -885,7 +885,7 @@ async function onRevertAll (e) {
   await op('Reverting...', async () => {
     // revert
     var paths = fileDiffsToPaths(currentDiff)
-    await beaker.archives.revertLocalSyncPathListing(archive.url, {shallow: false, paths})
+    await dbrowser.archives.revertLocalSyncPathListing(archive.url, {shallow: false, paths})
     toast.create(`Reverted all changes`, 'success', 1e3)
   })
 
@@ -971,8 +971,8 @@ async function onTogglePreviewMode () {
 
   try {
     previewMode = !previewMode
-    await beaker.archives.setUserSettings(archive.url, {previewMode})
-    window.location = `beaker://editor/${archive.checkout().url}` // trigger reload at default version
+    await dbrowser.archives.setUserSettings(archive.url, {previewMode})
+    window.location = `dbrowser://editor/${archive.checkout().url}` // trigger reload at default version
   } catch (e) {
     toast.create(e.toString(), 'error', 5e3)
     console.error(e)
@@ -986,8 +986,8 @@ async function onChangeSyncPath () {
   var currentPath = _get(archive, 'info.userSettings.localSyncPath')
   var defaultPath = ''
   if (!currentPath) {
-    let basePath = await beaker.browser.getSetting('workspace_default_path')
-    defaultPath = await beaker.browser.getDefaultLocalPath(basePath, archive.info.title)
+    let basePath = await dbrowser.browser.getSetting('workspace_default_path')
+    defaultPath = await dbrowser.browser.getDefaultLocalPath(basePath, archive.info.title)
   }
 
   var hasUnpublishedChanges = false
@@ -1010,13 +1010,13 @@ async function onChangeSyncPath () {
 
   try {
     // always enable preview-mode
-    await beaker.archives.setUserSettings(archive.url, {previewMode: true})
+    await dbrowser.archives.setUserSettings(archive.url, {previewMode: true})
 
     // set folder
-    await beaker.archives.setLocalSyncPath(archive.url, localSyncPath)
+    await dbrowser.archives.setLocalSyncPath(archive.url, localSyncPath)
 
     // open folder and reload page
-    beaker.browser.openFolder(localSyncPath)
+    dbrowser.browser.openFolder(localSyncPath)
     window.location.reload()
   } catch (e) {
     toast.create(e.toString(), 'error', 5e3)
@@ -1028,7 +1028,7 @@ async function onRemoveSyncPath (e) {
   if (!archive.info.isOwner) return
 
   try {
-    await beaker.archives.setLocalSyncPath(archive.url, null)
+    await dbrowser.archives.setLocalSyncPath(archive.url, null)
     window.location.reload()
   } catch (e) {
     toast.create(e.toString(), 'error', 5e3)

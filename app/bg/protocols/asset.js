@@ -64,8 +64,8 @@ export function setup () {
     }
 
     // hardcoded assets
-    if (asset !== 'screenshot' && url.startsWith('beaker://')) {
-      let name = /beaker:\/\/([^\/]+)/.exec(url)[1]
+    if (asset !== 'screenshot' && url.startsWith('dbrowser://')) {
+      let name = /dbrowser:\/\/([^\/]+)/.exec(url)[1]
       return servePng(path.join(__dirname, `./assets/img/favicons/${name}.png`), DEFAULTS[asset], cb)
     }
 

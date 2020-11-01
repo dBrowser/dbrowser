@@ -3,10 +3,10 @@ import { LitElement, html } from '../vendor/lit-element/lit-element'
 /*
 Usage:
 
-<beaker-hoverable>
+<dbrowser-hoverable>
   <button class="btn" slot="default">Hover me!</button>
   <button class="btn" slot="hover">I'm hovered!</button>
-</beaker-hoverable>
+</dbrowser-hoverable>
 */
 
 export class Hoverable extends LitElement {
@@ -37,4 +37,4 @@ export class Hoverable extends LitElement {
   }
 }
 
-customElements.define('beaker-hoverable', Hoverable)
+customElements.define('dbrowser-hoverable', Hoverable)

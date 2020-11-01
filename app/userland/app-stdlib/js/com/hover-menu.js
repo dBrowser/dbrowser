@@ -50,7 +50,7 @@ class HoverMenu extends LitElement {
       `
     }
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="dropdown" @click=${this.onClick} @mouseover=${this.onMouseOver} @mouseleave=${this.onMouseLeave}>
         <div class="dropdown-box">
           <span class="fa-fw ${this.icon}"></span>

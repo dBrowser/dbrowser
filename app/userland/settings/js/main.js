@@ -47,7 +47,7 @@ class SettingsApp extends LitElement {
   render () {
     document.title = 'Settings'
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="subnav">${this.renderSubnav()}</div>
       <div class="subview">${this.renderSubview()}</div>
     `

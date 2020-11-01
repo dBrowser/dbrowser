@@ -1,5 +1,5 @@
-@import "beaker://app-stdlib/css/common.css";
-@import "beaker://assets/font-awesome.css";
+@import "dbrowser://app-stdlib/css/common.css";
+@import "dbrowser://assets/font-awesome.css";
 
 body {
   --bg-color--main: #fff;
@@ -33,7 +33,7 @@ body {
   }
 }
 
-beaker-toast {
+dbrowser-toast {
   --toast-min-width: 150px;
   --toast-padding: 5px 10px;
   --toast-font-size: 13px;

@@ -1,4 +1,4 @@
-/* globals beaker */
+/* globals dbrowser */
 
 import yo from 'yo-yo'
 import * as toast from '../com/toast'
@@ -28,16 +28,16 @@ async function setup () {
   renderToPage()
 
   // wire up events
-  browserEvents = beaker.browser.createEventsStream()
+  browserEvents = dbrowser.browser.createEventsStream()
   browserEvents.addEventListener('updater-state-changed', onUpdaterStateChanged)
   browserEvents.addEventListener('updater-error', onUpdaterError)
   window.addEventListener('popstate', onPopState)
 
   // fetch data
-  browserInfo = beaker.browser.getInfo()
-  settings = await beaker.browser.getSettings()
-  defaultProtocolSettings = await beaker.browser.getDefaultProtocolSettings()
-  users = await beaker.users.list()
+  browserInfo = dbrowser.browser.getInfo()
+  settings = await dbrowser.browser.getSettings()
+  defaultProtocolSettings = await dbrowser.browser.getDefaultProtocolSettings()
+  users = await dbrowser.users.list()
 
   // set the view and render
   setViewFromHash()
@@ -70,7 +70,7 @@ function renderToPage () {
 function renderSidebar () {
   return yo`
     <div class="builtin-sidebar">
-      ${renderBuiltinPagesNav('beaker://settings/', 'Settings')}
+      ${renderBuiltinPagesNav('dbrowser://settings/', 'Settings')}
 
       <div class="nav-item ${activeView === 'general' ? 'active' : ''}" onclick=${() => onUpdateView('general')}>
         <i class="fa fa-angle-right"></i>
@@ -148,7 +148,7 @@ function renderUsers () {
     e.preventDefault()
     e.stopPropagation()
 
-    var opts = await beaker.browser.showModal('user', user)
+    var opts = await dbrowser.browser.showModal('user', user)
     Object.assign(user, opts)
     renderToPage()
   }
@@ -157,7 +157,7 @@ function renderUsers () {
     e.preventDefault()
     e.stopPropagation()
     if (confirm('Are you sure?')) {
-      await beaker.users.remove(user.url)
+      await dbrowser.users.remove(user.url)
       location.reload()
     }
   }
@@ -232,14 +232,14 @@ function renderDatSettings () {
   function onChangeUpload (e) {
     var v = e.currentTarget.value
     settings.dat_bandwidth_limit_up = (v && +v) ? +v : 0
-    beaker.browser.setSetting('dat_bandwidth_limit_up', settings.dat_bandwidth_limit_up)
+    dbrowser.browser.setSetting('dat_bandwidth_limit_up', settings.dat_bandwidth_limit_up)
     renderToPage()
     toast.create('Upload limit updated')
   }
   function onChangeDownload (e) {
     var v = e.currentTarget.value
     settings.dat_bandwidth_limit_down = (v && +v) ? +v : 0
-    beaker.browser.setSetting('dat_bandwidth_limit_down', settings.dat_bandwidth_limit_down)
+    dbrowser.browser.setSetting('dat_bandwidth_limit_down', settings.dat_bandwidth_limit_down)
     renderToPage()
     toast.create('Download limit updated')
   }
@@ -287,7 +287,7 @@ function renderAnalyticsSettings () {
   function toggle () {
     // update and optimistically render
     settings.analytics_enabled = (settings.analytics_enabled == 1) ? 0 : 1
-    beaker.browser.setSetting('analytics_enabled', settings.analytics_enabled)
+    dbrowser.browser.setSetting('analytics_enabled', settings.analytics_enabled)
     renderToPage()
   }
 
@@ -361,9 +361,9 @@ function renderInformation () {
       <div class="section">
         <h2 class="subtitle-heading">Get help</h2>
         <ul>
-          <li><a href="https://beakerbrowser.com/docs/using-beaker">Take a tour of dBrowser</a></li>
+          <li><a href="https://beakerbrowser.com/docs/using-dbrowser">Take a tour of dBrowser</a></li>
           <li><a href="https://beakerbrowser.com/docs">Read the documentation</a></li>
-          <li><a href="https://github.com/beakerbrowser/beaker/issues/new">Report an issue</a></li>
+          <li><a href="https://github.com/beakerbrowser/dbrowser/issues/new">Report an issue</a></li>
         </ul>
       </div>
     </div>
@@ -376,9 +376,9 @@ function renderProtocolSettings () {
     defaultProtocolSettings[protocol] = !defaultProtocolSettings[protocol]
 
     if (defaultProtocolSettings[protocol]) {
-      beaker.browser.setAsDefaultProtocolClient(protocol)
+      dbrowser.browser.setAsDefaultProtocolClient(protocol)
     } else {
-      beaker.browser.removeAsDefaultProtocolClient(protocol)
+      dbrowser.browser.removeAsDefaultProtocolClient(protocol)
     }
     renderToPage()
   }
@@ -561,33 +561,33 @@ function onUpdateView (view) {
 
 function onCustomStartPageChange (e) {
   settings.custom_start_page = e.target.value
-  beaker.browser.setSetting('custom_start_page', settings.custom_start_page)
+  dbrowser.browser.setSetting('custom_start_page', settings.custom_start_page)
 }
 
 function onClickCheckUpdates () {
   // trigger check
-  beaker.browser.checkForUpdates()
+  dbrowser.browser.checkForUpdates()
 }
 
 function onClickCheckPrereleases (e) {
   e.preventDefault()
-  beaker.browser.checkForUpdates({prerelease: true})
+  dbrowser.browser.checkForUpdates({prerelease: true})
 }
 
 function onToggleAutoRedirect () {
   settings.auto_redirect_to_dat = isAutoRedirectEnabled() ? 0 : 1
   renderToPage()
-  beaker.browser.setSetting('auto_redirect_to_dat', settings.auto_redirect_to_dat)
+  dbrowser.browser.setSetting('auto_redirect_to_dat', settings.auto_redirect_to_dat)
 }
 
 function onToggleAutoUpdate () {
   settings.auto_update_enabled = isAutoUpdateEnabled() ? 0 : 1
   renderToPage()
-  beaker.browser.setSetting('auto_update_enabled', settings.auto_update_enabled)
+  dbrowser.browser.setSetting('auto_update_enabled', settings.auto_update_enabled)
 }
 
 async function onUpdateWorkspaceDefaultPath () {
-  let path = await beaker.browser.showOpenDialog({
+  let path = await dbrowser.browser.showOpenDialog({
     title: 'Select a folder',
     buttonLabel: 'Select folder',
     properties: ['openDirectory']
@@ -596,7 +596,7 @@ async function onUpdateWorkspaceDefaultPath () {
   if (path) {
     path = path[0]
     settings.workspace_default_path = path
-    beaker.browser.setSetting('workspace_default_path', settings.workspace_default_path)
+    dbrowser.browser.setSetting('workspace_default_path', settings.workspace_default_path)
     renderToPage()
     toast.create('Default working directory updated')
   }
@@ -604,7 +604,7 @@ async function onUpdateWorkspaceDefaultPath () {
 
 async function onChangeDefaultDatIgnore (e) {
   try {
-    await beaker.browser.setSetting('default_dat_ignore', e.target.value)
+    await dbrowser.browser.setSetting('default_dat_ignore', e.target.value)
     toast.create('Default .datignore updated')
   } catch (e) {
     console.error(e)
@@ -612,7 +612,7 @@ async function onChangeDefaultDatIgnore (e) {
 }
 
 function onClickRestart () {
-  beaker.browser.restartBrowser()
+  dbrowser.browser.restartBrowser()
 }
 
 function onUpdaterStateChanged (e) {

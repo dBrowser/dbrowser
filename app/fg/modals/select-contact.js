@@ -153,7 +153,7 @@ class SelectContactModal extends LitElement {
 
   render () {
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="wrapper">
         <h1 class="title">
           ${this.showProfilesOnly ? `
@@ -184,10 +184,10 @@ class SelectContactModal extends LitElement {
         <div class="checkmark">
           <span class="${selected ? 'fas fa-check' : 'fas fa-circle'}"></span>
         </div>
-        <beaker-img-fallbacks>
+        <dbrowser-img-fallbacks>
           <img src="asset:thumb-30:${contact.url}" slot="img1">
-          <img src="beaker://assets/default-user-thumb" slot="img2">
-        </beaker-img-fallbacks>
+          <img src="dbrowser://assets/default-user-thumb" slot="img2">
+        </dbrowser-img-fallbacks>
         <div class="title"><span>${contact.title || 'Anonymous'}</span></div>
         <div class="description"><span>${contact.description}</span></div>
         <div class="profile-badge">${contact.isProfile ? html`<span>My Profile</span>` : ''}</div>

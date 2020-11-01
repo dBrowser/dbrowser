@@ -24,7 +24,7 @@ class CreateMenu extends LitElement {
 
   render () {
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="header"><h2>Create new</h2></div>
       <div class="wrapper">
         <div class="menu-item" @click=${e => this.onClickNew('wiki')}>
@@ -41,7 +41,7 @@ class CreateMenu extends LitElement {
   // =
 
   onClickNew (template) {
-    bg.shellMenus.createTab(`beaker://library/?view=new-website&template=${encodeURIComponent(template || '')}`)
+    bg.shellMenus.createTab(`dbrowser://library/?view=new-website&template=${encodeURIComponent(template || '')}`)
     bg.shellMenus.close()
   }
 }

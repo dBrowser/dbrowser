@@ -1,4 +1,4 @@
-/* globals beaker Image */
+/* globals dbrowser Image */
 
 import yo from 'yo-yo'
 import closeIcon from '../../icon/close'

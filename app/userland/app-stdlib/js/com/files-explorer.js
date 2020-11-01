@@ -28,7 +28,7 @@ class FilesExplorer extends LitElement {
   }
 
   get drive () {
-    return beaker.hyperdrive.drive(this.url)
+    return dbrowser.hyperdrive.drive(this.url)
   }
 
   get origin () {
@@ -117,7 +117,7 @@ class FilesExplorer extends LitElement {
     }
     if (!this.isDrive) {
       return html`
-        <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+        <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
         <div class="toolbar">
           <div><span class="fas fa-fw fa-info-circle"></span> This site doesn't support file listings</div>
         </div>
@@ -129,7 +129,7 @@ class FilesExplorer extends LitElement {
       return html`<span class="fa-fw far fa-file"></span>`
     }
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="toolbar">
         ${this.readOnly ? html`
           <div><span class="fas fa-fw fa-info-circle"></span> This site is read-only</div>
@@ -183,7 +183,7 @@ class FilesExplorer extends LitElement {
     contextMenu.create({
       x: e.clientX,
       y: e.clientY,
-      fontAwesomeCSSUrl: 'beaker://assets/font-awesome.css',
+      fontAwesomeCSSUrl: 'dbrowser://assets/font-awesome.css',
       noBorders: true,
       roomy: true,
       items: [
@@ -221,7 +221,7 @@ class FilesExplorer extends LitElement {
       icon: 'fas fa-fw fa-external-link-alt',
       label: `Open in new tab`,
       click: () => {
-        beaker.browser.openUrl(url, {setActive: true})
+        dbrowser.browser.openUrl(url, {setActive: true})
       }
     })
     if (item.stat.isFile()) {
@@ -229,7 +229,7 @@ class FilesExplorer extends LitElement {
         icon: 'fas fa-fw fa-edit',
         label: `Edit file`,
         click: () => {
-          beaker.browser.openUrl(`beaker://editor/?url=${url}`, {setActive: true})
+          dbrowser.browser.openUrl(`dbrowser://editor/?url=${url}`, {setActive: true})
         }
       })
     }
@@ -251,7 +251,7 @@ class FilesExplorer extends LitElement {
         var newpath = joinPath(this.folderPath, newname)
         await this.drive.rename(oldpath, newpath)
         if (oldpath === this.pathname) {
-          beaker.browser.gotoUrl(joinPath(this.origin, newpath))
+          dbrowser.browser.gotoUrl(joinPath(this.origin, newpath))
         } else {
           this.load()
         }
@@ -264,7 +264,7 @@ class FilesExplorer extends LitElement {
           icon: 'fas fa-fw fa-external-link-alt',
           label: `Open mount in new tab`,
           click: () => {
-            beaker.browser.openUrl(`dweb://${item.stat.mount.key}/`, {setActive: true})
+            dbrowser.browser.openUrl(`dweb://${item.stat.mount.key}/`, {setActive: true})
           }
         },
         {
@@ -308,7 +308,7 @@ class FilesExplorer extends LitElement {
     contextMenu.create({
       x: e.clientX,
       y: e.clientY,
-      fontAwesomeCSSUrl: 'beaker://assets/font-awesome.css',
+      fontAwesomeCSSUrl: 'dbrowser://assets/font-awesome.css',
       noBorders: true,
       roomy: true,
       items
@@ -323,7 +323,7 @@ class FilesExplorer extends LitElement {
     contextMenu.create({
       x: rect.left - 3,
       y: rect.bottom + 1,
-      fontAwesomeCSSUrl: 'beaker://assets/font-awesome.css',
+      fontAwesomeCSSUrl: 'dbrowser://assets/font-awesome.css',
       noBorders: true,
       roomy: true,
       withTriangle: true,
@@ -373,14 +373,14 @@ class FilesExplorer extends LitElement {
       icon: 'fas fa-fw fa-arrow-right',
       label: `Go to this folder`,
       click: () => {
-        beaker.browser.gotoUrl(url)
+        dbrowser.browser.gotoUrl(url)
       }
     })
     items.push({
       icon: 'fas fa-fw fa-external-link-alt',
       label: `Open in new tab`,
       click: () => {
-        beaker.browser.openUrl(url, {setActive: true})
+        dbrowser.browser.openUrl(url, {setActive: true})
       }
     })
     items.push({
@@ -398,7 +398,7 @@ class FilesExplorer extends LitElement {
           icon: 'fas fa-fw fa-external-link-alt',
           label: `Open mount in new tab`,
           click: () => {
-            beaker.browser.openUrl(`dweb://${this.currentFolder.mount.key}/`, {setActive: true})
+            dbrowser.browser.openUrl(`dweb://${this.currentFolder.mount.key}/`, {setActive: true})
           }
         },
         {
@@ -415,7 +415,7 @@ class FilesExplorer extends LitElement {
     contextMenu.create({
       x: e.clientX,
       y: e.clientY,
-      fontAwesomeCSSUrl: 'beaker://assets/font-awesome.css',
+      fontAwesomeCSSUrl: 'dbrowser://assets/font-awesome.css',
       noBorders: true,
       roomy: true,
       items
@@ -445,17 +445,17 @@ class FilesExplorer extends LitElement {
   async onClickImportFiles (e) {
     if (this.readOnly) return
 
-    let browserInfo = await beaker.browser.getInfo()
+    let browserInfo = await dbrowser.browser.getInfo()
     var osCanImportFoldersAndFiles = browserInfo.platform === 'darwin'
 
-    var files = await beaker.browser.showOpenDialog({
+    var files = await dbrowser.browser.showOpenDialog({
       title: 'Import files',
       buttonLabel: 'Import',
       properties: ['openFile', osCanImportFoldersAndFiles ? 'openDirectory' : false, 'multiSelections', 'createDirectory'].filter(Boolean)
     })
     if (files) {
       for (let src of files) {
-        await beaker.hyperdrive.importFromFilesystem({
+        await dbrowser.hyperdrive.importFromFilesystem({
           src,
           dst: joinPath(this.origin, this.folderPath),
           ignore: ['index.json'],
@@ -467,13 +467,13 @@ class FilesExplorer extends LitElement {
   }
 
   async onClickExportFiles (e) {
-    beaker.browser.downloadURL(`${this.origin}?download_as=zip`)
+    dbrowser.browser.downloadURL(`${this.origin}?download_as=zip`)
   }
 
   async onClickMount (e) {
     if (this.readOnly) return
 
-    var url = await beaker.shell.selectDriveDialog()
+    var url = await dbrowser.shell.selectDriveDialog()
     if (!url) return
     var name = await prompt('Enter the mount name')
     if (!name) return

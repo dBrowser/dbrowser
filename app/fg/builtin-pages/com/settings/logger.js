@@ -1,4 +1,4 @@
-/* globals beaker DatArchive confirm */
+/* globals dbrowser DatArchive confirm */
 
 import yo from 'yo-yo'
 import * as toast from '../toast'
@@ -49,12 +49,12 @@ export default class Logger {
     this.rerenderControls()
     var filter = {level: this.settings.level}
     if (this.settings.category !== 'all') filter.category = this.settings.category
-    this.rows = await beaker.logger.query({limit: 5e2, filter, until: this.pauseTime, sort: 'desc'})
+    this.rows = await dbrowser.logger.query({limit: 5e2, filter, until: this.pauseTime, sort: 'desc'})
     this.rows = this.rows.filter(row => this.applyCustomRules(row))
 
     if (this.readStream) this.readStream.close()
     if (!this.isPaused) {
-      this.readStream = beaker.logger.stream({since: Date.now(), filter})
+      this.readStream = dbrowser.logger.stream({since: Date.now(), filter})
       this.readStream.addEventListener('data', row => {
         if (!this.applyCustomRules(row)) return
         this.rows.unshift(row)
@@ -308,14 +308,14 @@ export default class Logger {
       {
         label: 'Crawl site',
         click: () => {
-          beaker.crawler.crawlSite(row.url)
+          dbrowser.crawler.crawlSite(row.url)
           toast.create('Crawl triggered')
         }
       },
       {
         label: 'Rebuild index',
         click: () => {
-          beaker.crawler.resetSite(row.url)
+          dbrowser.crawler.resetSite(row.url)
           Object.assign(row, initialState(row.url, row.msg, null))
           toast.create('Index was deleted and will now rebuild')
           this.rerender()

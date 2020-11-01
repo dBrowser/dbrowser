@@ -1,12 +1,12 @@
-import { LitElement, html } from 'beaker://app-stdlib/vendor/lit-element/lit-element.js'
-import { repeat } from 'beaker://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
-import { classMap } from 'beaker://app-stdlib/vendor/lit-element/lit-html/directives/class-map.js'
-import { pluralize } from 'beaker://app-stdlib/js/strings.js'
-import { writeToClipboard } from 'beaker://app-stdlib/js/clipboard.js'
-import * as toast from 'beaker://app-stdlib/js/com/toast.js'
+import { LitElement, html } from 'dbrowser://app-stdlib/vendor/lit-element/lit-element.js'
+import { repeat } from 'dbrowser://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
+import { classMap } from 'dbrowser://app-stdlib/vendor/lit-element/lit-html/directives/class-map.js'
+import { pluralize } from 'dbrowser://app-stdlib/js/strings.js'
+import { writeToClipboard } from 'dbrowser://app-stdlib/js/clipboard.js'
+import * as toast from 'dbrowser://app-stdlib/js/com/toast.js'
 import drivesCSS from '../../css/views/drives.css.js'
 
-const EXPLORER_URL = drive => `beaker://explorer/${drive.url.slice('dweb://'.length)}`
+const EXPLORER_URL = drive => `dbrowser://explorer/${drive.url.slice('dweb://'.length)}`
 
 export class DrivesView extends LitElement {
   static get properties () {
@@ -33,7 +33,7 @@ export class DrivesView extends LitElement {
   }
 
   async load () {
-    var drives = await beaker.drives.list({includeSystem: false})
+    var drives = await dbrowser.drives.list({includeSystem: false})
 
     drives = drives.filter(drive => {
       // move forks onto their parents
@@ -110,30 +110,30 @@ export class DrivesView extends LitElement {
       delete items[i].click
     }
 
-    var choice = await beaker.browser.showContextMenu(items)
+    var choice = await dbrowser.browser.showContextMenu(items)
     if (fns[choice]) fns[choice]()
   }
 
   async forkDrive (drive) {
-    var drive = await beaker.hyperdrive.forkDrive(drive.url)
+    var drive = await dbrowser.hyperdrive.forkDrive(drive.url)
     toast.create('Drive created')
     window.open(drive.url)
     this.load()
   }
 
   async diffDrive (drive) {
-    window.open(`beaker://diff/?base=${drive.url}`)
+    window.open(`dbrowser://diff/?base=${drive.url}`)
   }
 
   async driveProps (drive) {
-    await beaker.shell.drivePropertiesDialog(drive.url)
+    await dbrowser.shell.drivePropertiesDialog(drive.url)
     this.load()
   }
 
   async removeDrive (drive) {
-    await beaker.drives.remove(drive.url)
+    await dbrowser.drives.remove(drive.url)
     const undo = async () => {
-      await beaker.drives.configure(drive.url)
+      await dbrowser.drives.configure(drive.url)
       this.drives.push(drive)
       this.requestUpdate()
     }
@@ -150,7 +150,7 @@ export class DrivesView extends LitElement {
       drives = drives.filter(drive => drive.info.title.toLowerCase().includes(this.filter))
     }
     return html`
-      <link rel="stylesheet" href="beaker://app-stdlib/css/fontawesome.css">
+      <link rel="stylesheet" href="dbrowser://app-stdlib/css/fontawesome.css">
       ${drives ? html`
         ${this.showHeader && !(this.hideEmpty && drives.length === 0) ? html`
           <h4>Drives</h4>

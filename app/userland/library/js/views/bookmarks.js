@@ -1,9 +1,9 @@
-import { LitElement, html } from 'beaker://app-stdlib/vendor/lit-element/lit-element.js'
-import { repeat } from 'beaker://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
-import { writeToClipboard } from 'beaker://app-stdlib/js/clipboard.js'
-import { emit } from 'beaker://app-stdlib/js/dom.js'
-import * as toast from 'beaker://app-stdlib/js/com/toast.js'
-import * as contextMenu from 'beaker://app-stdlib/js/com/context-menu.js'
+import { LitElement, html } from 'dbrowser://app-stdlib/vendor/lit-element/lit-element.js'
+import { repeat } from 'dbrowser://app-stdlib/vendor/lit-element/lit-html/directives/repeat.js'
+import { writeToClipboard } from 'dbrowser://app-stdlib/js/clipboard.js'
+import { emit } from 'dbrowser://app-stdlib/js/dom.js'
+import * as toast from 'dbrowser://app-stdlib/js/com/toast.js'
+import * as contextMenu from 'dbrowser://app-stdlib/js/com/context-menu.js'
 import { EditBookmarkPopup } from '../com/edit-bookmark-popup.js'
 import bookmarksCSS from '../../css/views/bookmarks.css.js'
 
@@ -42,11 +42,11 @@ export class BookmarksView extends LitElement {
   }
 
   async load () {
-    var bookmarks = await beaker.hyperdrive.drive('dweb://system/').query({
+    var bookmarks = await dbrowser.hyperdrive.drive('dweb://system/').query({
       type: 'file',
       path: ['/bookmarks/*.goto']
     })
-    var toolbar = await beaker.hyperdrive.readFile('dweb://system/toolbar.json', 'json').catch(e => undefined)
+    var toolbar = await dbrowser.hyperdrive.readFile('dweb://system/toolbar.json', 'json').catch(e => undefined)
     if (toolbar && toolbar.items && Array.isArray(toolbar.items)) {
       for (let bookmark of bookmarks) {
         bookmark.toolbar = !!toolbar.items.find(item => item && typeof item === 'object' && bookmark.path.split('/').pop() === item.bookmark)
@@ -76,7 +76,7 @@ export class BookmarksView extends LitElement {
       fns[id] = items[i].click
       delete items[i].click
     }
-    var choice = await beaker.browser.showContextMenu(items)
+    var choice = await dbrowser.browser.showContextMenu(items)
     if (fns[choice]) fns[choice]()
   }
 
@@ -92,7 +92,7 @@ export class BookmarksView extends LitElement {
       ))
     }
     return html`
-      <link rel="stylesheet" href="beaker://app-stdlib/css/fontawesome.css">
+      <link rel="stylesheet" href="dbrowser://app-stdlib/css/fontawesome.css">
       ${bookmarks ? html`
         ${this.showHeader && !(this.hideEmpty && bookmarks.length === 0) ? html`
           <h4>Bookmarks</h4>
@@ -153,9 +153,9 @@ export class BookmarksView extends LitElement {
       e.stopPropagation()
     }
     if (_pinned(bookmark)) {
-      await beaker.hyperdrive.drive('dweb://system/').deleteMetadata(bookmark.path, ['pinned'])
+      await dbrowser.hyperdrive.drive('dweb://system/').deleteMetadata(bookmark.path, ['pinned'])
     } else {
-      await beaker.hyperdrive.drive('dweb://system/').updateMetadata(bookmark.path, {pinned: '1'})
+      await dbrowser.hyperdrive.drive('dweb://system/').updateMetadata(bookmark.path, {pinned: '1'})
     }
     this.load()
     emit(this, 'update-pins')
@@ -163,7 +163,7 @@ export class BookmarksView extends LitElement {
 
   async onToggleBookmarToolbar (bookmark) {
     var filename = bookmark.path.split('/').pop()
-    var toolbar = await beaker.hyperdrive.readFile('dweb://system/toolbar.json', 'json').catch(e => undefined)
+    var toolbar = await dbrowser.hyperdrive.readFile('dweb://system/toolbar.json', 'json').catch(e => undefined)
     toolbar = toolbar || {}
     toolbar.items = toolbar.items && Array.isArray(toolbar.items) ? toolbar.items : []
     if (bookmark.toolbar) {
@@ -172,8 +172,8 @@ export class BookmarksView extends LitElement {
       toolbar.items = toolbar.items.filter(item => item && typeof item === 'object' && item.bookmark !== filename)
       toolbar.items.push({bookmark: filename})
     }
-    await beaker.hyperdrive.writeFile('dweb://system/toolbar.json', toolbar, 'json')
-    beaker.browser.updateWindowToolbar()
+    await dbrowser.hyperdrive.writeFile('dweb://system/toolbar.json', toolbar, 'json')
+    dbrowser.browser.updateWindowToolbar()
     this.load()
   }
 
@@ -189,7 +189,7 @@ export class BookmarksView extends LitElement {
 
   async onClickRemove (file) {
     if (!confirm('Are you sure?')) return
-    await beaker.hyperdrive.drive('dweb://system/').unlink(file.path)
+    await dbrowser.hyperdrive.drive('dweb://system/').unlink(file.path)
     toast.create('Bookmark removed', '', 10e3)
     this.load()
   }

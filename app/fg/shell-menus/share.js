@@ -128,7 +128,7 @@ class ShareMenu extends LitElement {
 
   render () {
     return html`
-      <link rel="stylesheet" href="beaker://assets/font-awesome.css">
+      <link rel="stylesheet" href="dbrowser://assets/font-awesome.css">
       <div class="wrapper">
         ${this.canShare ? html`
           ${this.hasCopied ? html`<span class="copied-notice">Copied to your clipboard</span>` : ''}

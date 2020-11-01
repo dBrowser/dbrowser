@@ -1,4 +1,4 @@
-/* globals beaker */
+/* globals dbrowser */
 
 import yo from 'yo-yo'
 import toggleable, {closeAllToggleables} from '../toggleable'
@@ -33,7 +33,7 @@ function renderLoading (current, opts) {
 
   // load archives and re-render
   if (!loadPromise) {
-    loadPromise = beaker.archives.list({isSaved: true, isOwner: true})
+    loadPromise = dbrowser.archives.list({isSaved: true, isOwner: true})
   }
   loadPromise.then(res => {
     loadedArchivesList = res
@@ -46,7 +46,7 @@ function renderLoading (current, opts) {
 
 function renderLoaded (current, {archiveOptions, onSelect, toggleId} = {}) {
   if (!archiveOptions) archiveOptions = loadedArchivesList
-  var icon = current ? yo`<img class="favicon" src="beaker-favicon:${current.url}" />` : ''
+  var icon = current ? yo`<img class="favicon" src="dbrowser-favicon:${current.url}" />` : ''
   var label = current ? current.info.title : 'Select archive'
 
   function onClickArchive (a) {
@@ -77,7 +77,7 @@ function renderLoaded (current, {archiveOptions, onSelect, toggleId} = {}) {
         <div class="scroll">
           ${archiveOptions.map(a => yo`
             <div class="dropdown-item" onclick=${e => onClickArchive(a)}>
-              <img class="favicon" src="beaker-favicon:${a.url}" />
+              <img class="favicon" src="dbrowser-favicon:${a.url}" />
               <span class="title">${a.title || yo`<em>Untitled</em>`}</span>
               <span class="url">${a.key.slice(0, 6)}</span>
             </div>`

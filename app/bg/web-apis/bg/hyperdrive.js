@@ -21,7 +21,7 @@ import { PermissionsError, UserDeniedError, QuotaExceededError, ArchiveNotWritab
 // exported api
 // =
 
-const isSenderBeaker = (sender) => /^(beaker:|https?:\/\/(.*\.)?hyperdrive\.network(:|\/))/.test(sender.getURL())
+const isSenderBeaker = (sender) => /^(dbrowser:|https?:\/\/(.*\.)?hyperdrive\.network(:|\/))/.test(sender.getURL())
 
 const to = (opts) =>
   (opts && typeof opts.timeout !== 'undefined')
@@ -32,7 +32,7 @@ export default {
   async createDrive ({title, description, author, visibility, prompt} = {}) {
     var newDriveUrl
 
-    // only allow these vars to be set by beaker, for now
+    // only allow these vars to be set by dbrowser, for now
     if (!isSenderBeaker(this.sender)) {
       visibility = undefined
       author = undefined // TODO _get(windows.getUserSessionFor(this.sender), 'url')
@@ -81,7 +81,7 @@ export default {
   async forkDrive (url, {detached, title, description, label, prompt} = {}) {
     var newDriveUrl
 
-    // only allow these vars to be set by beaker, for now
+    // only allow these vars to be set by dbrowser, for now
     if (!isSenderBeaker(this.sender)) {
       label = undefined
     }
@@ -142,7 +142,7 @@ export default {
         var info = await drives.getDriveInfo(driveKey)
         var isCap = urlp.hostname.endsWith('.cap')
 
-        // request from beaker internal sites: give all data
+        // request from dbrowser internal sites: give all data
         if (isSenderBeaker(this.sender)) {
           return info
         }
@@ -181,12 +181,12 @@ export default {
         if (!settings || typeof settings !== 'object') throw new Error('Invalid argument')
 
         // handle 'visibility' specially
-        // also, only allow beaker to set 'visibility' for now
+        // also, only allow dbrowser to set 'visibility' for now
         if (('visibility' in settings) && isSenderBeaker(this.sender)) {
           // TODO uwg await datLibrary.configureDrive(drive, {visibility: settings.visibility})
         }
 
-        // only allow beaker to set these manifest updates for now
+        // only allow dbrowser to set these manifest updates for now
         if (!isSenderBeaker(this.sender)) {
           delete settings.author
         }
@@ -709,7 +709,7 @@ function assertUnprotectedFilePath (filepath, sender) {
   }
 }
 
-// temporary helper to make sure the call is made by a beaker: page
+// temporary helper to make sure the call is made by a dbrowser: page
 function assertBeakerOnly (sender) {
   if (!isSenderBeaker(sender)) {
     throw new PermissionsError()
@@ -717,7 +717,7 @@ function assertBeakerOnly (sender) {
 }
 
 async function assertCreateDrivePermission (sender) {
-  // beaker: always allowed
+  // dbrowser: always allowed
   if (isSenderBeaker(sender)) {
     return true
   }
@@ -752,7 +752,7 @@ async function assertWritePermission (drive, sender) {
   var details = await drives.getDriveInfo(newDriveKey)
   const perm = ('modifyDrive:' + newDriveKey)
 
-  // beaker: always allowed
+  // dbrowser: always allowed
   if (isSenderBeaker(sender)) {
     return true
   }
@@ -777,7 +777,7 @@ async function assertDeleteDrivePermission (drive, sender) {
   var driveKey = drive.key.toString('hex')
   const perm = ('deleteDrive:' + driveKey)
 
-  // beaker: always allowed
+  // dbrowser: always allowed
   if (isSenderBeaker(sender)) {
     return true
   }
@@ -790,8 +790,8 @@ async function assertDeleteDrivePermission (drive, sender) {
 }
 
 async function assertQuotaPermission (drive, senderOrigin, byteLength) {
-  // beaker: always allowed
-  if (senderOrigin.startsWith('beaker:')) {
+  // dbrowser: always allowed
+  if (senderOrigin.startsWith('dbrowser:')) {
     return
   }
 

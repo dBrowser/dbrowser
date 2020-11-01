@@ -1,4 +1,4 @@
-/* globals DatArchive beaker */
+/* globals DatArchive dbrowser */
 
 import yo from 'yo-yo'
 import {shortenHash} from '../../../lib/strings'
@@ -55,7 +55,7 @@ async function setup () {
     var archive = new DatArchive(archiveKey)
     peers = (await archive.getInfo()).peerInfo
     updatePeers()
-    beaker.archives.addEventListener('network-changed', ({details}) => {
+    dbrowser.archives.addEventListener('network-changed', ({details}) => {
       if (details.url.slice('dwebx://'.length) === archiveKey) {
         peers = details.peers
         updatePeers()
@@ -63,9 +63,9 @@ async function setup () {
     })
   }
 
-  var debugEvents = beaker.archives.createDebugStream()
+  var debugEvents = dbrowser.archives.createDebugStream()
   debugEvents.addEventListener(archiveKey || 'all', onLog)
-  logEntries = (await beaker.archives.getDebugLog(archiveKey)).split('\n').map(parseJSON).filter(Boolean)
+  logEntries = (await dbrowser.archives.getDebugLog(archiveKey)).split('\n').map(parseJSON).filter(Boolean)
   logEntries.forEach(tabulateStat)
   render()
 }

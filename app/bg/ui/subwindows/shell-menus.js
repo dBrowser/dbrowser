@@ -40,7 +40,7 @@ export function setup (parentWindow) {
   view.webContents.on('console-message', (e, level, message) => {
     console.log('Shell-Menus window says:', message)
   })
-  view.webContents.loadURL('beaker://shell-menus/')
+  view.webContents.loadURL('dbrowser://shell-menus/')
 }
 
 export function destroy (parentWindow) {

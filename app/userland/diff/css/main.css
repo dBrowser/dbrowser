@@ -1,9 +1,9 @@
-@import "beaker://app-stdlib/css/common.css";
-@import "beaker://app-stdlib/css/fontawesome.css";
-@import "beaker://app-stdlib/css/buttons2.css";
-@import "beaker://app-stdlib/css/inputs.css";
-@import "beaker://app-stdlib/css/tooltip.css";
-@import "beaker://app-stdlib/css/com/spinner.css";
+@import "dbrowser://app-stdlib/css/common.css";
+@import "dbrowser://app-stdlib/css/fontawesome.css";
+@import "dbrowser://app-stdlib/css/buttons2.css";
+@import "dbrowser://app-stdlib/css/inputs.css";
+@import "dbrowser://app-stdlib/css/tooltip.css";
+@import "dbrowser://app-stdlib/css/com/spinner.css";
 
 body {
   --color-folder: #9ec2e0;

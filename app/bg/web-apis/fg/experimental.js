@@ -12,7 +12,7 @@ export const setup = function (rpc) {
   const opts = {timeout: false, errors}
 
   // hyperdrive or internal only
-  if (['beaker:', 'dweb:'].includes(window.location.protocol)) {
+  if (['dbrowser:', 'dweb:'].includes(window.location.protocol)) {
     const globalFetchRPC = rpc.importAPI('experimental-global-fetch', experimentalGlobalFetchManifest, opts)
     const capturePageRPC = rpc.importAPI('experimental-capture-page', experimentalCapturePageManifest, opts)
     const datPeersRPC = rpc.importAPI('experimental-dat-peers', experimentalDatPeersManifest, opts)

@@ -1,4 +1,4 @@
-/* globals beaker */
+/* globals dbrowser */
 
 import yo from 'yo-yo'
 import closeIcon from '../../icon/close'
@@ -96,7 +96,7 @@ function render () {
                     There are unpublished changes in the current local folder. Updating the local folder will cause these changes to be lost.
                   </p>
                   <p>
-                    <a onclick=${destroy} href="beaker://library/dwebx://${archiveKey}#local-compare">Review unpublished changes</a>
+                    <a onclick=${destroy} href="dbrowser://library/dwebx://${archiveKey}#local-compare">Review unpublished changes</a>
                   </p>
                 </div>`
               : ''}
@@ -152,7 +152,7 @@ async function onSelectDirectory (e) {
   e.preventDefault()
   e.stopPropagation()
 
-  let path = await beaker.browser.showOpenDialog({
+  let path = await dbrowser.browser.showOpenDialog({
     title: 'Select a folder',
     buttonLabel: 'Select folder',
     properties: ['openDirectory', 'createDirectory'],
@@ -177,7 +177,7 @@ function onSubmit (e) {
 
 async function checkForConflicts () {
   if (!checkConflicts) return
-  let res = await beaker.archives.validateLocalSyncPath(archiveKey, localSyncPath)
+  let res = await dbrowser.archives.validateLocalSyncPath(archiveKey, localSyncPath)
   hasConflicts = res.hasConflicts
   conflicts = res.conflicts
 }

@@ -7,7 +7,7 @@ export default function render (currentUrl, currentPage) {
   return yo`
     <div class="builtin-pages-nav">
       <div>
-        <img src=${`beaker-favicon:${currentUrl}`}>
+        <img src=${`dbrowser-favicon:${currentUrl}`}>
         ${currentPage}
       </div>
     </div>`

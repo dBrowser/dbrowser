@@ -1,4 +1,4 @@
-/* globals beaker confirm CustomEvent */
+/* globals dbrowser confirm CustomEvent */
 
 import yo from 'yo-yo'
 import moment from 'moment'
@@ -81,7 +81,7 @@ function rVersion (filesBrowser, currentSource) {
       return yo`
         <div class="warning">
           * You are editing the live version of this file.
-          <a class="link" href="beaker://library/${archive.checkout('preview').url}${currentSource._path}">
+          <a class="link" href="dbrowser://library/${archive.checkout('preview').url}${currentSource._path}">
             Edit preview
           </a>
         </div>`
@@ -462,7 +462,7 @@ function onClickSaveEdit (e) {
 
 function onClickDownload (e, currentSource) {
   e.preventDefault()
-  beaker.browser.downloadURL(`${currentSource.url}${currentSource.type !== 'file' ? '?download_as=zip' : ''}`)
+  dbrowser.browser.downloadURL(`${currentSource.url}${currentSource.type !== 'file' ? '?download_as=zip' : ''}`)
 }
 
 function onClickCancelEdit (e) {
@@ -561,7 +561,7 @@ function emitDeleteFile (path, isFolder) {
 }
 
 async function onAddFiles (e, node, filesOnly) {
-  var files = await beaker.browser.showOpenDialog({
+  var files = await dbrowser.browser.showOpenDialog({
     title: 'Add files to this archive',
     buttonLabel: 'Add',
     properties: ['openFile', filesOnly ? false : 'openDirectory', 'multiSelections', 'createDirectory'].filter(Boolean)
@@ -572,7 +572,7 @@ async function onAddFiles (e, node, filesOnly) {
 }
 
 async function onAddFolder (e, node) {
-  var files = await beaker.browser.showOpenDialog({
+  var files = await dbrowser.browser.showOpenDialog({
     title: 'Add a folder to this archive',
     buttonLabel: 'Add',
     properties: ['openDirectory', 'createDirectory']

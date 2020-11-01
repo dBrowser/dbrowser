@@ -1,4 +1,4 @@
-/* globals beaker */
+/* globals dbrowser */
 
 const yo = require('yo-yo')
 const moment = require('moment')
@@ -85,7 +85,7 @@ async function loadVisits (offset, cb) {
     after = moment().subtract(1, 'day').startOf('day')
     before = moment().startOf('day')
   }
-  var rows = await beaker.history.getVisitHistory({
+  var rows = await dbrowser.history.getVisitHistory({
     before: +before,
     after: +after,
     offset,
@@ -233,7 +233,7 @@ function render () {
       <div class="history-wrapper builtin-wrapper">
         <div class="builtin-main">
           <div class="builtin-sidebar">
-            ${renderBuiltinPagesNav('beaker://history/', 'History')}
+            ${renderBuiltinPagesNav('dbrowser://history/', 'History')}
 
             <div class="section">
               <div onclick=${onUpdatePeriodFilter} data-period="all" class="nav-item ${currentPeriodFilter === 'all' ? 'active' : ''}">
@@ -303,7 +303,7 @@ function onClickDelete (i) {
   // remove
   var v = visits[i]
   visits.splice(i, 1)
-  beaker.history.removeVisit(v.url)
+  dbrowser.history.removeVisit(v.url)
   render()
 }
 
@@ -313,14 +313,14 @@ function onClickDeleteBulk () {
   // clear all history
   if (period === 'all') {
     visits = []
-    beaker.history.removeAllVisits()
+    dbrowser.history.removeAllVisits()
     render()
   } else {
     var threshold = moment().startOf(period).valueOf()
 
     // filter out visits that with a timestamp >= threshold
     visits = visits.filter(v => v.ts < threshold)
-    beaker.history.removeVisitsAfter(threshold)
+    dbrowser.history.removeVisitsAfter(threshold)
 
     // fetch and render more visits if possible
     fetchMore(render)

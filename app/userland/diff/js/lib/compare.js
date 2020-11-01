@@ -1,4 +1,4 @@
-import { joinPath } from 'beaker://app-stdlib/js/strings.js'
+import { joinPath } from 'dbrowser://app-stdlib/js/strings.js'
 
 export async function diff (baseDrive, initBasePath, targetDrive, initTargetPath, opts) {
   opts = opts || {}

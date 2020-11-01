@@ -66,7 +66,7 @@ export async function assertCan (sender, perm, cap) {
  */
 export async function isTrustedApp (sender) {
   // TEMPORARY: hyperdrive.network is trusted
-  if (/^(beaker:|https?:\/\/(.*\.)?hyperdrive\.network(:|\/))/i.test(sender.getURL())) return true
+  if (/^(dbrowser:|https?:\/\/(.*\.)?hyperdrive\.network(:|\/))/i.test(sender.getURL())) return true
   return true
 }
 
