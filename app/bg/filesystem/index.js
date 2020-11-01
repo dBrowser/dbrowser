@@ -90,11 +90,11 @@ export async function setup () {
     // default bookmarks
     if (isInitialCreation) {
       //await bookmarks.add({href: 'https://explorer.arisen.network/', title: 'Arisen Explorer', pinned: true})
-      await bookmarks.add({href: 'dweb://6e33ba21a5dfdfae2876676edb5db99ffc98cfb395bce89e977cca3f62c42cb9/', title: 'Arisen', pinned: true})
-      await bookmarks.add({href: 'dweb://6c1f613e733553ea136f92540a08db43e84eaf328ad2f3c28995c122e6794fa1/', title: 'Peeps', pinned: true})
-      await bookmarks.add({href: 'dweb://a93ac89b1c48424744cd35f3060e49ef7fb68c4939a7e53d926457797ca81eb2/', title: 'DSocial', pinned: true})
-      await bookmarks.add({href: 'dweb://9faa26f3c9363bcfbf55b23ea85d359dbcbd8422b92337522a71ef3acba1f975/', title: 'dWeb', pinned: true})
-     // await bookmarks.add({href: 'https://dbrowser.dev/', title: 'dBrowser Developer Portal', pinned: true})
+      await bookmarks.add({href: 'dweb://3ad74dbdcd4038c67566d198bad8400587799b88a4d66e8cd7d546f900e1c072/', title: 'Arisen', pinned: true})
+      await bookmarks.add({href: 'dweb://aaa95739de575306d02a0de934cd803e5e46b26781bab31726b9a6cb8da6940e/', title: 'Peeps', pinned: true})
+      await bookmarks.add({href: 'dweb://15fe085b3fd10ec87d3790af50efb91c146693dd7fb8d4c1d1a81761c12f3dd3/', title: 'DSocial', pinned: true})
+      await bookmarks.add({href: 'dweb://9b5675ac43a38f99c5beb4afe99c284bf00ca49f1b9f0f56a527fbaa21f65e55/', title: 'dWeb', pinned: true})
+    // await bookmarks.add({href: 'https://dbrowser.dev/', title: 'dBrowser Developer Portal', pinned: true})
    }
   } catch (e) {
     console.error('Error while constructing the root drive', e.toString())
