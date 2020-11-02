@@ -4,10 +4,10 @@
  * Helper protocol to serve site favicons and avatars from the cache.
  * Examples:
  *
- *  - asset:favicon:dweb://beakerbrowser.com
- *  - asset:favicon-32:dweb://beakerbrowser.com
- *  - asset:thumb:dweb://beakerbrowser.com
- *  - asset:cover:dweb://beakerbrowser.com
+ *  - asset:favicon:dweb://dbrowser.com
+ *  - asset:favicon-32:dweb://dbrowser.com
+ *  - asset:thumb:dweb://dbrowser.com
+ *  - asset:cover:dweb://dbrowser.com
  **/
 
 import { screen, nativeImage } from 'electron'

@@ -5,7 +5,7 @@ import * as toast from '../toast'
 
 const DOMAIN_NAME_HELP = yo`<span>
   You can set a human-readable domain name using DNS.
-  <a class="link" href="https://beakerbrowser.com/docs/guides/use-a-domain-name-with-dat" target="_blank">Follow this guide to setup your DNS record</a>,
+  <a class="link" href="https://dbrowser.com/docs/guides/use-a-domain-name-with-dat" target="_blank">Follow this guide to setup your DNS record</a>,
   then confirm the domain name here.
 </span>`
 

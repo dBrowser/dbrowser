@@ -5,7 +5,7 @@ import { URL } from 'url'
 // constants
 // =
 
-const API_DOCS_URL = 'https://beakerbrowser.com/docs/apis/experimental-capturepage.html'
+const API_DOCS_URL = 'https://dbrowser.com/docs/apis/experimental-capturepage.html'
 const API_PERM_ID = 'experimentalCapturePage'
 const LAB_API_ID = 'capturePage'
 

@@ -70,7 +70,7 @@ const STEPS = [
           </span>
         </div>
 
-        <a href="dwebx://explore.beakerbrowser.com" class="module" target="_blank">
+        <a href="dwebx://explore.dbrowser.com" class="module" target="_blank">
           <img src="dbrowser://assets/img/onboarding/community.svg"/>
 
           <span>
@@ -85,7 +85,7 @@ const STEPS = [
           </span>
         </a>
 
-        <a href="dwebx://beakerbrowser.com/docs" class="module" target="_blank">
+        <a href="dwebx://dbrowser.com/docs" class="module" target="_blank">
           <img src="dbrowser://assets/img/onboarding/documentation.svg"/>
 
           <span>

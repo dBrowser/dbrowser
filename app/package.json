@@ -4,8 +4,8 @@
   "description": "An Experimental Peer-to-Peer Web Browser.",
   "homepage": "https://dbrowser.com/",
   "version": "1.0.0",
-  "author": "Blue Link Labs <support@dbrowser.com>",
-  "copyright": "© 2020, Blue Link Labs",
+  "author": "Peeps Labs <support@dbrowser.com>",
+  "copyright": "© 2020, Peeps Labs",
   "main": "main.build.js",
   "dependencies": {
     "@dbrowser/dwebx-serve-resolve-path": "git://github.com/dBrowser/dwebx-serve-resolve-path.git#b35836d4a7bde674c01a0137a28f78eba8b0511e",

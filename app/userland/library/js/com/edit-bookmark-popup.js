@@ -62,7 +62,7 @@ export class EditBookmarkPopup extends BasePopup {
           <input required type="text" id="title-input" name="title" value="${this.bookmark?.stat.metadata.title || ''}" placeholder="E.g. dBrowser" />
 
           <label for="href-input">URL</label>
-          <input required type="text" id="href-input" name="href" value="${this.bookmark?.stat.metadata.href || ''}" placeholder="E.g. beakerbrowser.com" />
+          <input required type="text" id="href-input" name="href" value="${this.bookmark?.stat.metadata.href || ''}" placeholder="E.g. dbrowser.com" />
 
           <label for="pinned-input">
             <input type="checkbox" id="pinned-input" name="pinned" value="1" ?checked=${!!this.bookmark?.stat.metadata.pinned} />

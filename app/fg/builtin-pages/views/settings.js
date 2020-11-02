@@ -361,8 +361,8 @@ function renderInformation () {
       <div class="section">
         <h2 class="subtitle-heading">Get help</h2>
         <ul>
-          <li><a href="https://beakerbrowser.com/docs/using-dbrowser">Take a tour of dBrowser</a></li>
-          <li><a href="https://beakerbrowser.com/docs">Read the documentation</a></li>
+          <li><a href="https://dbrowser.com/docs/using-dbrowser">Take a tour of dBrowser</a></li>
+          <li><a href="https://dbrowser.com/docs">Read the documentation</a></li>
           <li><a href="https://github.com/beakerbrowser/dbrowser/issues/new">Report an issue</a></li>
         </ul>
       </div>
