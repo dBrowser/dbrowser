@@ -815,14 +815,14 @@ export function buildWindowMenu (opts = {}) {
         label: 'dBrowser Help',
         accelerator: 'F1',
         click: function (item) {
-          if (win) tabManager.create(win, 'https://github.com/dbrowser/dbrowser', {setActive: true})
+          if (win) tabManager.create(win, 'https://docs.arisen.network', {setActive: true})
         }
       },
       {
         id: 'developerPortal',
         label: 'Developer Portal',
         click: function (item) {
-          if (win) tabManager.create(win, 'https://github.com/dbrowser/dbrowser', {setActive: true})
+          if (win) tabManager.create(win, 'https://docs.arisen.network', {setActive: true})
         }
       },
       {type: 'separator'},

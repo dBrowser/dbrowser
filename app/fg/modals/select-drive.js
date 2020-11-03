@@ -239,7 +239,7 @@ class SelectDriveModal extends LitElement {
           <div class="form-actions">
             <div class="left">
               <button type="button" @click=${this.onClickCreate} data-content="newdrive" class="btn">
-                Create new drive
+                Create new dDrive
               </button>
             </div>
             <div class="right">

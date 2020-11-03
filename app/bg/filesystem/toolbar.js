@@ -79,9 +79,9 @@ export async function ensure () {
     await filesystem.get().pda.stat('/toolbar.json')
   } catch (e) {
     var paths = await Promise.all([
-      bookmarks.ensure({href: 'https://explorer.arisen.network/', title: 'Arisen Explorer'}),
-      bookmarks.ensure({href: 'https://arisen.network/', title: 'Arisen'}),
-      bookmarks.ensure({href: 'https://peepsx.com/', title: 'Peeps'}),
+      bookmarks.ensure({href: 'dbrowser://editor/', title: 'Editor'}),
+      bookmarks.ensure({href: 'dbrowser://explorer/', title: 'Explore Files'}),
+      bookmarks.ensure({href: 'dbrowser://webterm/', title: 'Terminal'}),
     ])
     await write({
       items: [
