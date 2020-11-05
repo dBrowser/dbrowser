@@ -1,4 +1,4 @@
-[Join The Patriots Club & Back This Project!](https://peepsx.com/fund/)
+[Join The Patriots Club & Back This Project!](https://peepsx.com/fund)
 
 dBrowser is a web browser for the dweb://, as well as the rest of the web. [Visit the website](http://dbrowser.com).
 
@@ -10,7 +10,7 @@ You can become a sponsor of this project by donating $100 or more via our [Donat
 
 ## Installing
 ### Binaries
-Installers are available via the [official download page](https://peepsx.com/dbrowser/) or via the [Releases Page](https://github.com/dbrowser/dbrowser/releases) via this repo.
+Installers are available via the [official download page](https://peepsx.com/dbrowser) or via the [Releases Page](https://github.com/dbrowser/dbrowser/releases) via this repo.
 
 ### Building From Source
 Requires Node.JS 12 or higher
