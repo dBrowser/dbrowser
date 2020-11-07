@@ -29,7 +29,7 @@
   },
   "build": {
     "afterSign": "./afterSignHook.js",
-    "appId": "com.peepsid.dbrowser-x",
+    "appId": "com.peepsid.dbrowser",
     "asar": false,
     "asarUnpack": [
       "./fg/json-renderer/index.build.js",
