@@ -2,9 +2,9 @@ import { DEFAULT_SETTINGS } from './settings';
 
 export const DIRECTORIES = ['adblock', 'extensions', 'storage'];
 
-export const WEBUI_PROTOCOL = 'wexond';
+export const WEBUI_PROTOCOL = 'dbrowser';
 
-export const ERROR_PROTOCOL = 'wexond-error';
+export const ERROR_PROTOCOL = 'dbrowser-error';
 
 export const NETWORK_ERROR_HOST = 'network-error';
 

@@ -10,12 +10,6 @@ dBrowser is a web browser for Web3, built on top of modern web technologies such
 
 </div>
 
-# Contributing
-
-If you have found any bugs or just want to see some new features in dBrowser, feel free to open an issue. Every suggestion is very valuable for us, as they help us improve the browsing experience. Also, please don't hesitate to open a pull request. This is really important to us and for the further development of this project.
-
-By opening a pull request, you agree to the conditions of the [Contributor License Agreement](cla.md).
-
 # Development
 
 ## Running

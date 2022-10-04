@@ -49,7 +49,7 @@ function getIcon(
     }
   }
 
-  if (Application.instance.settings.object.theme === 'wexond-dark') {
+  if (Application.instance.settings.object.theme === 'dbrowser-dark') {
     if (isFolder) {
       return getPath('folder_light');
     } else {
